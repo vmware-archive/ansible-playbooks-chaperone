@@ -1,0 +1,8 @@
+apache_listen_port: 80
+apache_vhosts:
+  - {servername: "supervio.vmware.local", documentroot: "/var/www/vhosts/supervio.vmware.local"}
+
+new_priv_key: "~{{ sshkeys_user }}/.ssh/id_priv_new"
+new_pub_key: "{{ new_priv_key }}.pub"
+
+update_pkg_cache: "yes"

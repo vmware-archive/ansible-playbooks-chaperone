@@ -1,0 +1,8 @@
+apache_listen_port: 80
+apache_vhosts:
+  - {servername: "supervio.vmware.local", documentroot: "/var/www/vhosts/supervio.vmware.local"}
+apache_create_vhosts: False
+
+supervio_apache_loglevel: debug
+
+update_pkg_cache: "no"
