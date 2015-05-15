@@ -1,6 +1,10 @@
 ---
 - hosts: ansible
   sudo: yes
+  vars:
+    ansible_additional_packages:
+      - geany
+      - geany-plugins
   roles:
     - sudo
     - ansible
