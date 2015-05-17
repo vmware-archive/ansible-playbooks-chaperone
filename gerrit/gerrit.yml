@@ -1,0 +1,10 @@
+---
+- hosts: gerrit
+  sudo: yes
+  vars:
+    - update_pkg_cache: "yes"
+  roles:
+    - { role: postfix,
+          postfix_domain: 'cloudbuilders.vmware.local',
+          postfix_notify_email: 'thite@vmware.com' }
+    - gerrit
