@@ -5,6 +5,8 @@
     - update_pkg_cache: "yes"
     - openldap_server_rootpw: vmware
     - openldap_server_domain_name: vmware.local
+  vars_files:
+    - vars/users.yml
   roles:
     - role: postfix
       postfix_domain: 'cloudbuilders.vmware.local'
