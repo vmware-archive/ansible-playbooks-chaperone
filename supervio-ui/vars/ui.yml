@@ -7,4 +7,4 @@ supervio_apache_loglevel: debug
 supervio_django_template_debug: True
 supervio_django_debug: True
 
-update_pkg_cache: "no"
+update_pkg_cache: "yes"
