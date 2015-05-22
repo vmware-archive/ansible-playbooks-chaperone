@@ -1,27 +1,5 @@
 ---
-- name: prepare vcenter for autodeploy
-  hosts: vcsa
-  roles:
-    - vcsa_autodeploy 
-
-- name: setup vcenter with clusters and nsx for vio
+- name: setup vcenter with nsx for vio
   hosts: local
   roles:
-    - vcenter_clusters
     - nsx
-
-- name: setup net and dhcptftp roles 
-  hosts: net
-  su: true
-  su_user: "{{ vcenter_user }}"
-  roles:
-    - net
-    - net_dhcpd
-    - net_tftpd
-    - net_powercli
-
-- name: prepare autodeploy with powercli
-  hosts: windows
-  roles:
-    - windows_softwaredepot
-    - windows_autodeploy 
