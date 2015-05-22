@@ -1,9 +1,9 @@
 ---
-- name: setup net and dhcptftp roles 
+- name: setup net and dhcptftp roles
   hosts: net
   remote_user: root
   su: true
   su_user: root
   roles:
-  - net
-  - net_dhcpd
+    - net
+    - net_dhcp
