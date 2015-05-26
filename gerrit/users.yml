@@ -1,0 +1,11 @@
+---
+- hosts: gerrit
+  sudo: yes
+  vars:
+    - update_pkg_cache: "yes"
+    - openldap_server_rootpw: vmware
+    - openldap_server_domain_name: vmware.local
+  vars_files:
+    - vars/users.yml
+  roles:
+    - gerrit
