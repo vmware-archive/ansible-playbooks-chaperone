@@ -1,0 +1,9 @@
+---
+- hosts: photon
+  sudo: no
+  remote_user: root
+  roles:
+    - hosts
+    - sudo
+  vars_files:
+    - vars/main.yml

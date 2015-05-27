@@ -1,0 +1,10 @@
+---
+- hosts: photon
+  sudo: yes
+  remote_user: vmware
+  roles:
+    - pip
+    - ansible
+    - repo
+  vars_files:
+    - vars/main.yml

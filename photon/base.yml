@@ -1,0 +1,8 @@
+---
+- hosts: photon
+  sudo: yes
+  remote_user: vmware
+  roles:
+    - sshkeys
+  vars_files:
+    - vars/main.yml

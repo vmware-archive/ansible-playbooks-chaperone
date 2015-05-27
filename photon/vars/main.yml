@@ -1,0 +1,12 @@
+update_pkg_cache: "yes"
+
+# ansible
+ansible_services: []
+
+ansible_packages:
+    - git
+    - curl
+
+# sshkeys
+new_priv_key: "~{{ sshkeys_user }}/.ssh/id_priv_new"
+new_pub_key: "{{ new_priv_key }}.pub"
