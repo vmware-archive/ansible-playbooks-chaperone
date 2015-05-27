@@ -1,5 +1,5 @@
 ---
-- name: setup vcenter with clusters and nsx for vio
+- name: setup vcenter datacenter and clusters
   hosts: local
   roles:
     - vcenter

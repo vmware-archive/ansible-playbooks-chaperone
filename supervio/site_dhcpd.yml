@@ -1,7 +1,6 @@
 ---
 - name: setup net and dhcptftp roles
-  hosts: local
-  sudo: true
-  sudo_user: root
+  hosts: net
+  remote_user: root
   roles:
     - net

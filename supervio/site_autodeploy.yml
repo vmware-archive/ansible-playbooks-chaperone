@@ -1,5 +1,6 @@
 ---
 - name: prepare vcenter for autodeploy
   hosts: vcsa
+  remote_user: root
   roles:
-    - autodeploy 
+    - autodeploy

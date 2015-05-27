@@ -1,2 +1,11 @@
 [supervio-ui]
 supervio-ui.vmware.local
+
+[vcsa]
+172.16.0.77
+
+[local]
+localhost	ansible_connection=local
+
+[net]
+172.16.0.250
