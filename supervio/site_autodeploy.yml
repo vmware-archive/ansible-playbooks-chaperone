@@ -4,3 +4,14 @@
   remote_user: root
   roles:
     - autodeploy
+  vars:
+    - autodeploy_vcsa: true
+    - autodeploy_rules: false
+
+- name: prepare autodeploy rules
+  hosts: ruleshost
+  roles:
+    - autodeploy
+  vars:
+    - autodeploy_vcsa: false
+    - autodeploy_rules: true
