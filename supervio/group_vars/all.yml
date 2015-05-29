@@ -1,9 +1,21 @@
 ---
 # Global variables
+nsx_name: 'NSX Manager'
+nsx_datastore: 'datastore2'
+nsx_network: 'VMnetwork'
+nsx_ova: 'VMware-NSX-Manager-6.1.4-2691049.ova'
+nsx_datacenter: 'ref-dc'
+nsx_cluster: 'ref-cluster'
+nsx_dir: '/tmp'
+mem_size: '12288'
+ipallocationpolicy: 'dhcpPolicy'
+ipprotocol: 'IPv4'
+cli_pass: 'VMware1!'
+nsx_ntp: '0.pool.ntp.org'
 iptables_mods: ip_conntrack_tftp
 tftp_root: /tftpboot
 tftp_ip: 172.16.0.251
-tftp_zip: '/opt/supervio-ansible/supervio/tmp'
+tftp_zip: '/opt/supervio-ansible/playbooks/supervio/tmp'
 dhcp_conf_dest: '/etc/dhcp/dhcpd.conf'
 boot_filename: undionly.kpxe.vmw-hardwired
 vcenter_ip: 172.16.0.77
@@ -19,24 +31,27 @@ dhcp_range_a: 172.16.0.100
 dhcp_range_b: 172.16.0.150
 dhcp_next: 172.16.0.251
 boot_filename: undionly.kpxe.vmw-hardwired
-net_powercli: '../files/VMware-vSphere-CLI-6.0.0-2503617.x86_64.tar.gz'
-vio_datacenter: 'datacenter-11'
-vio_clusters_mgmt: 'Mgmt02'
-vio_clusters_edge: 'Edge02'
-vio_clusters_compute: 'Compute02'
-esx_svrs:
- - name: esx-2a
-   ip: 172.16.0.50
-   mac: 00:50:56:39:51:84
- - name: esx-3a
-   ip: 172.16.0.51
-   mac: 00:50:56:24:A8:78
- - name: esx-4a
-   ip: 172.16.0.52
-   mac: 00:50:56:2F:B2:63
+auto_deploy_ps: '/tmp/auto_rule.ps1'
+auto_deploy_src: '/opt/supervio-ansible/roles/audodeploy/templates/windows/auto_rule.ps1'
+vio_datacenter: 'VIO-Datacenter'
+vio_cluster_mgmt: 'Management-02'
+vio_cluster_edge: 'Edge-02'
+vio_cluster_compute: 'Compute-02'
 datacenter:
   name: "{{ vio_datacenter }}"
   clusters:
-  - name: "{{ vio_clusters_mgmt }}"
-  - name: "{{ vio_clusters_edge }}"
-  - name: "{{ vio_clusters_compute }}"
+  - name: "{{ vio_cluster_mgmt }}"
+    hosts:
+    - name: esx-2a
+      ip: 172.16.0.101
+      mac: 00:50:56:39:51:84
+  - name: "{{ vio_cluster_edge }}"
+    hosts:
+    - name: esx-3a
+      ip: 172.16.0.102
+      mac: 00:50:56:24:A8:78
+  - name: "{{ vio_cluster_compute }}"
+    hosts:
+    - name: esx-4a
+      ip: 172.16.0.103
+      mac: 00:50:56:2F:B2:63

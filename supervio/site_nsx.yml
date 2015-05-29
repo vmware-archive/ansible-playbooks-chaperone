@@ -1,5 +1,17 @@
 ---
-- name: setup vcenter with nsx for vio
-  hosts: local
+#- name: setup vcenter with nsx for vio
+#  hosts: local
+#  roles:
+#    - nsx
+#  vars:
+#    - nsx_deploy: false
+#    - nsx_config: true
+
+- name: deploy nsxmanager ova
+  hosts: nsxova
+  remote_user: root
   roles:
     - nsx
+  vars:
+    - nsx_deploy: true
+    - nsx_config: false

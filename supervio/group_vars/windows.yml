@@ -1,0 +1,5 @@
+---
+ansible_ssh_user: administrator
+ansible_ssh_pass: VMware1!
+ansible_ssh_port: 5986
+ansible_connection: winrm

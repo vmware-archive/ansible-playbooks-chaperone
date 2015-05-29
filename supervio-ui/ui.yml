@@ -7,6 +7,6 @@
     - supervio
   vars:
     supervio_django_debug: "True"
-    supervio_vcenter_port: 11443
+    #supervio_vcenter_port: 11443
   vars_files:
     - vars/ui.yml

@@ -3,15 +3,15 @@
   hosts: vcsa
   remote_user: root
   roles:
-    - autodeploy
+    - audodeploy
   vars:
     - autodeploy_vcsa: true
     - autodeploy_rules: false
 
-- name: prepare autodeploy rules
-  hosts: ruleshost
-  roles:
-    - autodeploy
-  vars:
-    - autodeploy_vcsa: false
-    - autodeploy_rules: true
+#- name: prepare autodeploy rules
+#  hosts: ruleshost
+#  roles:
+#    - audodeploy
+#  vars:
+#    - autodeploy_vcsa: false
+#    - autodeploy_rules: true
