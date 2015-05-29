@@ -2,4 +2,4 @@
 - name: setup vcenter with portgroup
   hosts: local
   roles:
-    - portgroup 
+    - portgroup

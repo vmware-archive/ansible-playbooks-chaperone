@@ -12,5 +12,5 @@
       postfix_domain: 'cloudbuilders.vmware.local'
       postfix_notify_email: 'thite@vmware.com'
     - role: openldap
-      openldap_server_enable_ssl: no     
+      openldap_server_enable_ssl: no
     - gerrit

@@ -18,6 +18,6 @@ localhost     ansible_connection=local
 [ruleshost]
 172.16.0.81
 
-# ubuntu host for ovftool 
+# ubuntu host for ovftool
 [nsxova]
 172.16.0.52
