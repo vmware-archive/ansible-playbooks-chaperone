@@ -18,7 +18,7 @@ tftp_ip: 172.16.0.251
 tftp_zip: '/opt/supervio-ansible/playbooks/supervio/tmp'
 dhcp_conf_dest: '/etc/dhcp/dhcpd.conf'
 boot_filename: undionly.kpxe.vmw-hardwired
-vcenter_ip: 172.16.0.77
+vcenter_host: 172.16.0.77
 vcenter_user: 'administrator@vsphere.local'
 vcenter_password: 'VMware1!'
 dhcp_sub_mask: 255.255.0.0
