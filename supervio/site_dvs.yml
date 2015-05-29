@@ -1,0 +1,5 @@
+---
+- name: create a new distributed virtual switch in the datacenter
+  hosts: local
+  roles:
+    - dvs
