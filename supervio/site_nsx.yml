@@ -8,7 +8,7 @@
 #    - nsx_config: true
 
 - name: deploy nsxmanager ova
-  hosts: nsxova
+  hosts: net
   remote_user: root
   roles:
     - nsx

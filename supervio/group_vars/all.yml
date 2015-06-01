@@ -1,9 +1,18 @@
 ---
 # Global variables
+##vCenter
+vcenter_host: 172.16.0.77
+vcenter_user: 'administrator@vsphere.local'
+vcenter_password: 'VMware1!'
+###
+##NSX ova deploy
 nsx_name: 'NSX Manager'
 nsx_datastore: 'datastore2'
 nsx_network: 'VMnetwork'
-nsx_ova: 'VMware-NSX-Manager-6.1.4-2691049.ova'
+## this is setup for local testing need to upload ova to vpod datastore 
+#	and add the corresponding https path
+nsx_ova_https: "https://root:{{ vcenter_password }}@{{ vcenter_host }}/folder/ova2/VMware-NSX-Manager-6.1.4-2691049.ovf?dcPath=ha%252ddatacenter&dsName=datastore2"
+nsx_ova_file: 'VMware-NSX-Manager-6.1.4-2691049.ova'
 nsx_datacenter: 'ref-dc'
 nsx_cluster: 'ref-cluster'
 nsx_dir: '/tmp'
@@ -12,15 +21,15 @@ ipallocationpolicy: 'dhcpPolicy'
 ipprotocol: 'IPv4'
 cli_pass: 'VMware1!'
 nsx_ntp: '0.pool.ntp.org'
+###
+## dhcp and tftp vars
 iptables_mods: ip_conntrack_tftp
 tftp_root: /tftpboot
+# change these ips for vpod
 tftp_ip: 172.16.0.251
 tftp_zip: '/opt/supervio-ansible/playbooks/supervio/tmp'
 dhcp_conf_dest: '/etc/dhcp/dhcpd.conf'
 boot_filename: undionly.kpxe.vmw-hardwired
-vcenter_host: 172.16.0.77
-vcenter_user: 'administrator@vsphere.local'
-vcenter_password: 'VMware1!'
 dhcp_sub_mask: 255.255.0.0
 dhcp_bast_addr: 172.16.255.255
 dhcp_rout: 172.16.0.1
@@ -30,9 +39,14 @@ dhcp_subnet: 172.16.0.0
 dhcp_range_a: 172.16.0.100
 dhcp_range_b: 172.16.0.150
 dhcp_next: 172.16.0.251
-boot_filename: undionly.kpxe.vmw-hardwired
+###
+##Autodeploy-powercli
 auto_deploy_ps: '/tmp/auto_rule.ps1'
 auto_deploy_src: '/opt/supervio-ansible/roles/audodeploy/templates/windows/auto_rule.ps1'
+esxi_depot_zip: 'VMware-ESXi-6.0.0-2494585-depot.zip'
+esxi_host_profile: 'esx-ref-profile'
+esxi_img: 'ESXi-*-standard'
+###
 vio_datacenter: 'VIO-Datacenter'
 vio_cluster_mgmt: 'Management-02'
 vio_cluster_edge: 'Edge-02'
