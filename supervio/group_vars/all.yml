@@ -4,7 +4,6 @@
 vcenter_host: 172.16.0.77
 vcenter_user: 'administrator@vsphere.local'
 vcenter_password: 'VMware1!'
-vcenter_port: 443
 ###
 ##NSX ova deploy
 nsx_name: 'NSX Manager'
