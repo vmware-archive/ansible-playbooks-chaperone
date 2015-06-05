@@ -17,6 +17,7 @@ localhost     ansible_connection=local
 # Set this to the windows host on which the powercli command will run
 [ruleshost]
 172.16.0.81
+#192.168.110.10
 
 # ubuntu host for ovftool
 [nsxova]

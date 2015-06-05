@@ -3,3 +3,5 @@
   hosts: local
   roles:
     - vio
+  vars_files:
+    - /var/lib/supervio/answerfile.yml

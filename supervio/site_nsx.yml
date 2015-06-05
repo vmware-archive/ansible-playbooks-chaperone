@@ -15,3 +15,5 @@
   vars:
     - nsx_deploy: true
     - nsx_config: false
+  vars_files:
+    - /var/lib/supervio/answerfile.yml
