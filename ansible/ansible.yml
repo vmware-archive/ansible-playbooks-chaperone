@@ -3,8 +3,7 @@
   sudo: yes
   vars:
     ansible_additional_packages:
-      - geany
-      - geany-plugins
+      - vim
   roles:
     - sudo
     - ansible
