@@ -7,7 +7,7 @@
     - nsx_deploy: false
     - nsx_config: true
   vars_files:
-    - id: /var/lib/supervio/answerfile.yml
+    - /var/lib/supervio/answerfile.yml
 
 - name: deploy nsxmanager ova
   hosts: net
