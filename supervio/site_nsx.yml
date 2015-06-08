@@ -1,6 +1,7 @@
 ---
 - name: setup vcenter with nsx for vio
   hosts: local
+  remote_user: root
   roles:
     - nsx
   vars:
