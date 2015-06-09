@@ -11,6 +11,20 @@ can clone new VMs;
 - You have Fusion or Workstation (or something reasonably as good);
 - Your clonable VM has a "vmware" userid.
 
+## Special Note about Domains:
+The default domain name for most things SuperVIO is "vmware.local" for
+development VMs or containers. However, at times (arguably often) work
+will occur on One Cloud systems, which generally use a domain name of
+"corp.local" instead.
+
+Given that note, take care to understand the actual domain name the DNS
+server you use uses in the event it is providing names, for example,
+as supervio-ui.corp.local.
+
+There are variables in some of the playbooks, and inventory files, that
+require care and attention. In particular, the inventory files will need
+changes from "vmware.local" to "corp.local" in One Cloud scenarios.
+
 ## The General Process
 Generally you create two VMs, the first of which is the one from which
 you run ansible-playbooks and the second the one on which you install
