@@ -1,5 +1,0 @@
-# empty by default, place users here as in the following:
-# gerrit_users:
-#   - { userid: user1, fullname: "User One", password: "t#password@!" }
-#   - { userid: user2, fullname: "User Two", password: "#tanother!@" }
-#   . . .
