@@ -44,7 +44,7 @@ ansible VM and referencs to SVM will mean the SuperVIO UI VM.
 Start your AVM and login. You also will need to assure the following are
 installed on the AVM:
 
-- Ansible
+- Ansible (don't use apt-get, use: sudo pip install ansible)
 - Git;
 - [Google Repo](https://source.android.com/source/using-repo.html);
 - A userid "vmware" to which you are logged in and will run everything.
@@ -81,7 +81,7 @@ Once Gerrit access is working, you can pull the code base:
 
     mkdir supervio
     cd supervio
-    repo init -u http://gerrit.cloudbuilders.vmware.local/supervio -b master -g supervio
+    repo init -u http://gerrit.cloudbuilders.vmware.local:8080/supervio -b master -g supervio
     repo sync
 
 ### Setup the AVM for future work
@@ -120,8 +120,8 @@ from the AVM. The playbooks install and configure the SVM automatically
 with commands similar to the following:
 
     cd ~/supervio/ansible/playbooks/supervio-ui
-    ansible --ask-pass --ask-sudo-pass -i inventory base.yml
-    ansible -i inventory ui.yml
+    ansible-playbook --ask-pass --ask-sudo-pass -i inventory base.yml
+    ansible-playbook -i inventory ui.yml
 
 NOTE: The commands above will execute the sshkeys role, which creates
 and rotates keys across fleets of servers -- any listed in the the
