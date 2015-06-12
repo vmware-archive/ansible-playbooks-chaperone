@@ -1,8 +1,9 @@
 apache_listen_port: 80
 apache_vhosts:
-  - {servername: "supervio.vmware.local", documentroot: "/var/www/vhosts/supervio.vmware.local"}
+  - {servername: "supervio.{{ supervio_django_domain }}", documentroot: "/var/www/vhosts/supervio.{{ supervio_django_domain }}"}
 apache_create_vhosts: False
 
+supervio_django_app: supervio
 supervio_apache_loglevel: debug
 supervio_django_template_debug: True
 supervio_django_debug: True

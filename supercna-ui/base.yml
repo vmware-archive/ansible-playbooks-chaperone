@@ -1,0 +1,10 @@
+---
+- hosts: supervio-ui
+  sudo: yes
+  roles:
+    - hosts
+    - sudo
+    - sshkeys
+    - ansible
+  vars_files:
+    - vars/main.yml
