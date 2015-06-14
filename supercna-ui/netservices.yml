@@ -1,0 +1,11 @@
+---
+- hosts: supercna-ui
+  sudo: yes
+  roles:
+    - dnsmasq
+  vars:
+    update_pkg_cache: "yes"
+    dnsmasq_group: root
+    dnsmasq_nameservers:
+      - "172.16.78.2"
+    dnsmasq_masquerade: yes
