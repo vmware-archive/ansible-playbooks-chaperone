@@ -1,0 +1,4 @@
+[consul-dc1]
+consul-01a.vmware.local
+consul-02a.vmware.local
+consul-03a.vmware.local

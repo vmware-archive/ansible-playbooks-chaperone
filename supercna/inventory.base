@@ -1,0 +1,4 @@
+[consul-dc1]
+consul-01a.vmware.local ansible_ssh_pass="VMware1!" ansible_sudo_pass="VMware1!" ansible_sudo=true
+consul-02a.vmware.local ansible_ssh_pass="VMware1!" ansible_sudo_pass="VMware1!" ansible_sudo=true
+consul-03a.vmware.local ansible_ssh_pass="VMware1!" ansible_sudo_pass="VMware1!" ansible_sudo=true

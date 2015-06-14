@@ -1,0 +1,13 @@
+---
+- hosts: consul-dc1
+  sudo: yes
+  roles:
+    - hosts
+    - sudo
+    - sshkeys
+  vars:
+    # sshkeys
+      new_priv_key: "~{{ sshkeys_user }}/.ssh/id_priv_new"
+      new_pub_key: "{{ new_priv_key }}.pub"
+    # packages
+      update_pkg_cache: "yes"
