@@ -1,0 +1,8 @@
+---
+- hosts: swarm-manager
+  sudo: yes
+  vars:
+    - start_swarm: false
+    - start_swarm_manager: true
+  roles:
+    - docker

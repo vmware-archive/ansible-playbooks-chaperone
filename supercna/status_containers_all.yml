@@ -1,0 +1,13 @@
+---
+- hosts: photon
+  sudo: yes
+  tasks:
+    - name: show all containers
+      command: "docker ps -a"
+      register: docker
+
+- hosts: swarm-manager
+  sudo: yes
+  tasks:
+    - name: show all containers via swarm
+      command: "docker -H photon-01a.vmware.local:8333 ps"

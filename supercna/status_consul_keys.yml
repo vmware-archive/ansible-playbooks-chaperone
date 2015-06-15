@@ -1,0 +1,8 @@
+---
+- hosts: one-consul
+  sudo: yes
+  tasks:
+    - name: show all keys
+      command: /opt/consul/bin/consulkv ls
+      register: consul
+    - debug: msg="{{ consul.stdout }}"

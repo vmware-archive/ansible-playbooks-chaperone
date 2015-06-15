@@ -1,0 +1,9 @@
+---
+- hosts: photon
+  sudo: yes
+  vars:
+    - update_pkg_cache: "yes"
+    - start_swarm: true
+    - start_swarm_manager: false
+  roles:
+    - docker

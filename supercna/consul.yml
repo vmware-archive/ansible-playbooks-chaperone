@@ -15,6 +15,7 @@
       - consul-01a.vmware.local
       - consul-02a.vmware.local
       - consul-03a.vmware.local
+    consul_client_address: "0.0.0.0"
     consul_join_at_start: false
     consul_rejoin_after_leave: true
     consul_leave_on_terminate: true

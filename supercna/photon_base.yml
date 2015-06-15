@@ -1,0 +1,8 @@
+---
+- hosts: photon-base
+  sudo: no
+  remote_user: root
+  vars:
+    - update_pkg_cache: "yes"
+  roles:
+    - sudo

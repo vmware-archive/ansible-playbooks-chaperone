@@ -1,0 +1,8 @@
+---
+- hosts: photon
+  sudo: yes
+  vars:
+    - start_swarm: false
+    - kill_swarm: true
+  roles:
+    - docker
