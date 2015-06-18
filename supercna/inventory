@@ -3,6 +3,13 @@ consul-01a.vmware.local
 consul-02a.vmware.local
 consul-03a.vmware.local
 
+[consul-dc1-clients]
+consul-04a.vmware.local
+consul-05a.vmware.local
+consul-06a.vmware.local
+consul-07a.vmware.local
+consul-08a.vmware.local
+
 [one-consul]
 consul-01a.vmware.local
 

@@ -1,0 +1,25 @@
+---
+- hosts: consul-dc1-clients
+  sudo: yes
+  roles:
+    - consul
+  vars:
+    consul_version: "0.5.2"
+    consul_is_server: flase
+    consul_bootstrap_expect: 3
+    consul_is_ui: true
+    consul_datacenter: "consul-dc1"
+    consul_node_name: "{{ inventory_hostname_short }}"
+    consul_retry_join: true
+    consul_servers:
+      - consul-01a.vmware.local
+      - consul-02a.vmware.local
+      - consul-03a.vmware.local
+    consul_client_address: "0.0.0.0"
+    consul_join_at_start: false
+    consul_rejoin_after_leave: true
+    consul_leave_on_terminate: true
+    consul_log_level: "INFO"
+    consul_encrypt: "yj3A0PIoQoEyIIBZo1/sXQ=="
+    openssl_certs_path: "/etc/openssl/certs"
+    openssl_keys_path: "/etc/openssl/keys"
