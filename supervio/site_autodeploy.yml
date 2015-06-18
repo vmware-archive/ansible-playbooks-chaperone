@@ -17,9 +17,5 @@
   vars:
     - autodeploy_vcsa: false
     - autodeploy_rules: true
-    - ansible_ssh_user: administrator
-    - ansible_ssh_pass: VMware1!
-    - ansible_ssh_port: 5986
-    - ansible_connection: winrm
   vars_files:
     - /var/lib/supervio/answerfile.yml
