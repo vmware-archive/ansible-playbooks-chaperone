@@ -2,8 +2,8 @@
 - name: prepare variables files #[XXX] hardcoded in playbook
   hosts: local
   tasks:
-  - name: prepare vcenter variables 
-    template: src="/opt/supervio-ansible/roles/{{ item }}/defaults/main.yml.j2" dest="/opt/supervio-ansible/roles/{{ item }}/defaults/main.yml.j2"
+  - name: prepare vcenter variables
+    template: src="/opt/supervio-ansible/roles/{{ item }}/defaults/main.yml.j2" dest="/opt/supervio-ansible/roles/{{ item }}/defaults/main.yml"
     with_items:
     - vcenter
     - supervio
