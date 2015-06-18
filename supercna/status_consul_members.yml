@@ -1,0 +1,8 @@
+---
+- hosts: one-consul
+  sudo: yes
+  tasks:
+    - name: show consul members
+      command: /opt/consul/bin/consul members
+      register: consul
+    - debug: msg="{{ consul.stdout }}"

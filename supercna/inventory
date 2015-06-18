@@ -14,8 +14,14 @@ consul-08a.vmware.local
 consul-01a.vmware.local
 
 [photon]
-photon-01a.vmware.local
-photon-02a.vmware.local
+photon-01.vmware.local
+photon-02.vmware.local
 
 [swarm-manager]
-photon-01a.vmware.local
+photon-01.vmware.local
+
+[bonneville]
+localhost
+
+[bonneville-swarm]
+localhost

@@ -4,9 +4,9 @@ consul-02a.vmware.local ansible_ssh_user=vmware ansible_ssh_pass="VMware1!" ansi
 consul-03a.vmware.local ansible_ssh_user=vmware ansible_ssh_pass="VMware1!" ansible_sudo_pass="VMware1!" ansible_sudo=yes
 
 [photon-base]
-photon-01a.vmware.local ansible_ssh_user=root ansible_ssh_pass="VMware1!" ansible_sudo=no
-photon-02a.vmware.local ansible_ssh_user=root ansible_ssh_pass="VMware1!" ansible_sudo=no
+photon-01.vmware.local ansible_ssh_user=root ansible_ssh_pass="vmware" ansible_sudo=no
+photon-02.vmware.local ansible_ssh_user=root ansible_ssh_pass="vmware" ansible_sudo=no
 
 [photon]
-photon-01a.vmware.local ansible_ssh_user=vmware ansible_ssh_pass="vmware" ansible_sudo=yes
-photon-02a.vmware.local ansible_ssh_user=vmware ansible_ssh_pass="vmware" ansible_sudo=yes
+photon-01.vmware.local ansible_ssh_user=vmware ansible_ssh_pass="vmware" ansible_sudo=no
+photon-02.vmware.local ansible_ssh_user=vmware ansible_ssh_pass="vmware" ansible_sudo=no

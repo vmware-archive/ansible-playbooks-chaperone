@@ -4,5 +4,9 @@
   vars:
     - start_swarm: false
     - start_swarm_manager: true
+    - docker_exports:
+      - "DOCKER=docker"
+    - swarm_running_file: "/tmp/swarm_is_running"
+    - swarm_manager_running_file: "/tmp/swarm_manager_is_running"
   roles:
     - docker

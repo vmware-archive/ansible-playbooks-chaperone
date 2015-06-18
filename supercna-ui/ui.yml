@@ -5,6 +5,7 @@
     - pip
     - ansible
     - apache
+    - vmware
     - supervio
   vars:
     supervio_django_debug: 'True'

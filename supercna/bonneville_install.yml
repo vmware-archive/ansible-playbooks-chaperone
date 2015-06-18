@@ -1,0 +1,12 @@
+---
+- hosts: bonneville
+  connection: local
+  sudo: no
+  vars_files:
+    - /var/lib/supercna/answerfile.yml
+  vars:
+    - bonneville_deploy: true
+    - bonneville_targets:
+      - {  name: "{{ bonneville_docker_name }}", network: "VM External", passwd: "VMware1!", pool: "localhost.localdomain", target: "{{ bonneville_target_host }}", user: "root" }
+  roles:
+    - bonneville

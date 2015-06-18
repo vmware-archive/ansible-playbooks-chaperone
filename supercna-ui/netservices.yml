@@ -8,6 +8,8 @@
     dnsmasq_group: root
     dnsmasq_nameservers:
       - "172.16.78.2"
+    dnsmasq_forwards:
+      - { interface: eth1, proto: tcp, inport: 8500, fwd_address: "192.168.1.11", dport: 8500 }
     dnsmasq_masquerade: yes
     dnsmasq_hosts:
       - { host: "consul-01a.vmware.local", ipv4: "192.168.1.11" }

@@ -1,0 +1,5 @@
+---
+# Before running this play, assure you ran:
+#   ansible-playbook --ask-pass --ask-sudo-pass -i inventory base.yml
+- include: netservices.yml
+- include: ui.yml
