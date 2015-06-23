@@ -2,6 +2,7 @@
 - name: prepare vcenter for autodeploy
   hosts: vcsa
   remote_user: root
+  gather_facts: false
   roles:
     - autodeploy
   vars:
