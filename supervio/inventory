@@ -1,7 +1,7 @@
 # Supervio UI (Django) server
 [supervio-ui]
-supervio-ui.vmware.local
-#supervio-ui.corp.local
+#supervio-ui.vmware.local
+supervio-ui.corp.local
 
 [local]
 localhost     ansible_connection=local
@@ -17,6 +17,13 @@ localhost     ansible_connection=local
 # Set this to the windows host on which the powercli command will run
 [ruleshost]
 192.168.110.10
+
+[ruleshost:vars]
+# ruleshosts are windows machines
+ansible_ssh_user="{{ win_admin }}"
+ansible_ssh_pass="{{ win_pass }}"
+ansible_ssh_port=5986
+ansible_connection=winrm
 
 # host for ovftool
 [nsxova]
