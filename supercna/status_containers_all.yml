@@ -13,7 +13,7 @@
     - /var/lib/supercna/answerfile.yml
   tasks:
     - name: show all containers on Bonneville
-      command: "/tmp/bonneville/docker-linux -H tcp://{{ bonneville_docker_host }}:2376 ps -a"
+      command: "{{ bonneville_dir }}/docker-linux -H tcp://{{ bonneville_docker_host }}:2376 ps -a"
 
 - hosts: swarm-manager
   sudo: yes

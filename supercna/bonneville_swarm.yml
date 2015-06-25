@@ -8,7 +8,7 @@
     - bonneville_deploy: false
     - docker_exports:
       - "DOCKER_HOST=tcp://{{ bonneville_docker_host }}:2376"
-      - "DOCKER=/tmp/bonneville/docker-linux"
+      - "DOCKER={{ bonneville_dir }}/docker-linux"
     - swarm_running_file: "/tmp/swarm_{{ bonneville_docker_name }}_is_running"
     - swarm_manager_running_file: ""
   roles:

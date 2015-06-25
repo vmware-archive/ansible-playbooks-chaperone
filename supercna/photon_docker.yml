@@ -4,5 +4,7 @@
   vars:
     - update_pkg_cache: "yes"
     - start_swarm: false
+    - docker_exports:
+      - "DOCKER=docker"
   roles:
     - docker
