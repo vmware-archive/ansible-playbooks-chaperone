@@ -1,6 +1,7 @@
-apache_listen_port: 80
+# this is defining the download vhost
+apache_listen_port: 81
 apache_vhosts:
-  - {servername: "supervio.vmware.local", documentroot: "/var/www/vhosts/supervio.vmware.local"}
+  - {servername: "supervio-ui.{{ supervio_django_domain }}", documentroot: "/var/www/vhosts/supervio-ui.{{ supervio_django_domain }}"}
 
 new_priv_key: "~{{ sshkeys_user }}/.ssh/id_priv_new"
 new_pub_key: "{{ new_priv_key }}.pub"

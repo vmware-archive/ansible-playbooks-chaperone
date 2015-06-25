@@ -1,7 +1,8 @@
 ---
 - name: setup net and dhcptftp roles
-  hosts: net
-  remote_user: root
+  hosts: local
+  become: True
+  become_user: root
   roles:
     - net
   vars_files:

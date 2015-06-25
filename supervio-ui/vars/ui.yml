@@ -1,6 +1,7 @@
+# this is defining the ui vhost
 apache_listen_port: 80
 apache_vhosts:
-  - {servername: "supervio.{{ supervio_django_domain }}", documentroot: "/var/www/vhosts/supervio.{{ supervio_django_domain }}"}
+  - {servername: "supervio-ui.{{ supervio_django_domain }}", documentroot: "/var/www/vhosts/supervio-ui.{{ supervio_django_domain }}"}
 apache_create_vhosts: False
 
 supervio_django_app: supervio

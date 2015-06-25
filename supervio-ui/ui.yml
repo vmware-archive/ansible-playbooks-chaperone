@@ -7,7 +7,7 @@
     - supervio
   vars:
     supervio_django_debug: "True"
-    #supervio_django_domain: "corp.local"
+    supervio_django_domain: "corp.local"
     #supervio_vcenter_port: 11443
     #supervio_download_files: true
   vars_files:

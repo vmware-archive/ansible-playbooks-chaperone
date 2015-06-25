@@ -12,7 +12,7 @@ localhost     ansible_connection=local
 
 # DHCP and tftp server
 [net]
-192.168.110.14
+localhost     ansible_connection=local
 
 # Set this to the windows host on which the powercli command will run
 [ruleshost]
