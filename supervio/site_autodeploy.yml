@@ -1,8 +1,18 @@
 ---
-- name: prepare vcenter for autodeploy
+- name: prepare vcsa for ansible
   hosts: vcsa
   remote_user: root
   gather_facts: false
+  roles:
+    - autodeploy # [XXX] should be seperate role
+  vars:
+    - prepare_vcsa: true
+  vars_files:
+    - /var/lib/supervio/answerfile.yml
+
+- name: prepare vcenter for autodeploy
+  hosts: vcsa
+  remote_user: root
   roles:
     - autodeploy
   vars:

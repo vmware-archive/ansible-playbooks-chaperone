@@ -10,6 +10,10 @@ localhost     ansible_connection=local
 [vcsa]
 192.168.110.20
 
+[vcsa:vars]
+ansible_ssh_pass="{{ vcenter_password }}"
+
+
 # DHCP and tftp server
 [net]
 localhost     ansible_connection=local
