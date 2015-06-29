@@ -1,5 +1,5 @@
-# this is defining the download vhost
-apache_listen_port: 81
+# this is defining the ui vhost
+apache_listen_port: 80
 apache_vhosts:
   - {servername: "supervio-ui.{{ supervio_django_domain }}", documentroot: "/var/www/vhosts/supervio-ui.{{ supervio_django_domain }}"}
 
