@@ -8,7 +8,7 @@ localhost     ansible_connection=local
 
 # vCenter Server Appliance address
 [vcsa]
-192.168.110.20
+192.168.102.1
 
 [vcsa:vars]
 ansible_ssh_pass="{{ vcenter_password }}"
@@ -20,7 +20,7 @@ localhost     ansible_connection=local
 
 # Set this to the windows host on which the powercli command will run
 [ruleshost]
-192.168.110.10
+192.168.102.4
 
 [ruleshost:vars]
 # ruleshosts are windows machines
