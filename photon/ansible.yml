@@ -9,7 +9,5 @@
   tasks:
     - name: enable Docker service
       service: name=docker state=started enabled=yes
-    - name: add vmware user to docker
-      user: name=vmware groups=docker append=yes
   vars_files:
     - vars/main.yml
