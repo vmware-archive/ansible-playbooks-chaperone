@@ -6,8 +6,6 @@
     - pip
     - ansible
     - repo
-  tasks:
-    - name: enable Docker service
-      service: name=docker state=started enabled=yes
+    - photon
   vars_files:
     - vars/main.yml
