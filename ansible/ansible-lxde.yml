@@ -7,6 +7,7 @@
       - lxdm
       - geany
       - geany-plugins
+      - chromium-browser
   roles:
     - sudo
     - ansible
