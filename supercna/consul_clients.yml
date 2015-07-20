@@ -5,7 +5,7 @@
     - consul
   vars:
     consul_version: "0.5.2"
-    consul_is_server: flase
+    consul_is_server: false
     consul_bootstrap_expect: 3
     consul_is_ui: true
     consul_datacenter: "consul-dc1"
