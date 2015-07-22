@@ -5,6 +5,7 @@
     - pip
     - apache
     - supervio
+    - ovftool
   vars:
     supervio_django_debug: "True"
     supervio_django_domain: "corp.local"
