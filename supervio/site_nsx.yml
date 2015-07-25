@@ -1,22 +1,8 @@
 ---
 - name: setup vcenter with nsx for vio
   hosts: local
-  remote_user: root
+  remote_user: vmware
   roles:
-    - nsx
-  vars:
-    - nsx_deploy: false
-    - nsx_config: true
-  vars_files:
-    - /var/lib/supervio/answerfile.yml
-
-- name: deploy nsxmanager ova
-  hosts: net
-  remote_user: root
-  roles:
-    - nsx
-  vars:
-    - nsx_deploy: true
-    - nsx_config: false
+   - nsx
   vars_files:
     - /var/lib/supervio/answerfile.yml
