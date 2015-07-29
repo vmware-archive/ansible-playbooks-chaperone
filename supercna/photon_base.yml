@@ -3,8 +3,19 @@
   sudo: no
   remote_user: root
   vars:
-    - update_pkg_cache: "yes"
+    update_pkg_cache: "yes"
+  # need dns to do this
+  # logstash_server: "photon-01.vmware.local"
+    # this allows us to get the first server in the logstash-server group from inventory
+    logstash_server: "{{ hostvars[groups['logstash-server'][0]]['ansible_eth0']['ipv4']['address'] }}"
+    logstash_port: 32768
+
+    # lets send remote syslog to the logstash server
+    remote_syslog_server: "{{ logstash_server }}"
+    remote_syslog_port: "{{ logstash_port }}"
   roles:
     - sudo
     - pip
     - photon
+  tasks:
+  - debug: msg="logstash server {{ logstash_server }} and {{ remote_syslog_server }}"
