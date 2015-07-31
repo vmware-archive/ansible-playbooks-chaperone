@@ -1,7 +1,9 @@
 ---
 - hosts: elasticsearch
-  name: gather facts from elasticsearch servers
-  tasks: [ ]
+  sudo: yes
+  vars:
+  roles:
+    - elasticsearch
 
 - hosts: logstash-server
   sudo: yes
@@ -15,3 +17,10 @@
 
   roles:
     - logstash-server
+
+- hosts: kibana
+  sudo: yes
+  vars:
+  roles:
+    - kibana
+
