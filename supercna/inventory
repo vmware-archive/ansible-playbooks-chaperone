@@ -16,7 +16,7 @@ photon-01.vmware.local
 photon-01.vmware.local
 
 [elasticsearch]
-photon-[01:05].vmware.local
+photon-[02:05].vmware.local
 
 [swarm-manager]
 photon-01.vmware.local
@@ -28,7 +28,7 @@ localhost
 localhost
 
 [graphite-api]
-photon-03.vmware.local
+photon-04.vmware.local
 
 [kube-master]
 photon-01.vmware.local

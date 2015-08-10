@@ -1,9 +1,9 @@
 ---
 - hosts: elasticsearch
-  serial: 1
   sudo: yes
   roles:
     - elasticsearch
+
 
 - hosts: logstash-server
   sudo: yes

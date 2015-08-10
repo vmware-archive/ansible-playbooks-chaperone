@@ -1,11 +1,13 @@
 ---
+- hosts: consul-dc1
+  name: gather facts from servers
+  tasks: [ ]
+
 - hosts: photon
   sudo: yes
   remote_user: vmware
   vars:
     update_pkg_cache: "yes"
-    docker_dns_hosts:
-      - photon-01.vmware.local
-      - photon-02.vmware.local
+    docker_dns_hosts: "{{ groups['consul-dc1'] }}"
   roles:
     - registrator

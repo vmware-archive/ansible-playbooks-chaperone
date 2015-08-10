@@ -3,7 +3,9 @@
   sudo: yes
   roles:
     - consul
+    - registrator
   vars:
+    consul_install_dnsmasq: true
     consul_version: "0.5.2"
     consul_is_server: true
     consul_bootstrap_expect: 3
@@ -20,3 +22,4 @@
     consul_encrypt: "yj3A0PIoQoEyIIBZo1/sXQ=="
     openssl_certs_path: "/etc/openssl/certs"
     openssl_keys_path: "/etc/openssl/keys"
+    docker_dns_hosts: "{{ consul_servers }}"
