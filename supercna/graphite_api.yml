@@ -1,0 +1,6 @@
+---
+- hosts: graphite-api
+  sudo: yes
+  vars:
+  roles:
+    - graphite-api

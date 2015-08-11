@@ -37,3 +37,6 @@ localhost
 
 [bonneville-swarm]
 localhost
+
+[graphite-api]
+photon-01.vmware.local
