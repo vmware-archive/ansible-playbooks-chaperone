@@ -17,17 +17,19 @@ consul-01a.vmware.local
 photon-01.vmware.local
 photon-02.vmware.local
 photon-03.vmware.local
+photon-04.vmware.local
 
 [logstash-server]
+photon-01.vmware.local
 photon-02.vmware.local
 
 [kibana]
-photon-03.vmware.local
+photon-01.vmware.local
 
 [elasticsearch]
 photon-01.vmware.local
-photon-02.vmware.local
 photon-03.vmware.local
+photon-04.vmware.local
 
 [swarm-manager]
 photon-01.vmware.local

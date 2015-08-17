@@ -13,9 +13,13 @@
     # lets send remote syslog to the logstash server
     remote_syslog_server: "{{ logstash_server }}"
     remote_syslog_port: "{{ logstash_port }}"
+    docker_dns_hosts:
+      - photon-01.vmware.local
+      - photon-02.vmware.local
   roles:
     - sudo
     - pip
     - photon
+    - registrator
   tasks:
   - debug: msg="logstash server {{ logstash_server }} and {{ remote_syslog_server }}"

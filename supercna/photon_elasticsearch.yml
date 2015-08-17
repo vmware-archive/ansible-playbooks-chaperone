@@ -1,5 +1,6 @@
 ---
 - hosts: elasticsearch
+  serial: 1
   sudo: yes
   vars:
   roles:
