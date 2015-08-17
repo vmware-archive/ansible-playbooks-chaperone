@@ -1,12 +1,7 @@
 ---
-- hosts: elasticsearch
-  serial: 1
+- hosts: kibana
   sudo: yes
-  roles:
-    - elasticsearch
-
-- hosts: logstash-server
-  sudo: yes
+  vars:
     logstash_container_port: 32768
     logstash_server_port: 8514
     # for demo only, host and port
@@ -15,10 +10,4 @@
     send_to_port: 9000
 
   roles:
-    - logstash-server
-
-- hosts: kibana
-  sudo: yes
-  roles:
     - kibana
-
