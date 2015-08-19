@@ -1,7 +1,7 @@
 ---
 - hosts: photon
-  sudo: no
-  remote_user: root
+  sudo: yes
+  remote_user: vmware
   vars:
     update_pkg_cache: "yes"
   # need dns to do this
@@ -20,6 +20,5 @@
     - sudo
     - pip
     - photon
-    - registrator
   tasks:
   - debug: msg="logstash server {{ logstash_server }} and {{ remote_syslog_server }}"

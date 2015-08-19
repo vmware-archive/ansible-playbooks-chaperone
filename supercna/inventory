@@ -1,35 +1,22 @@
 [consul-dc1]
-consul-01a.vmware.local
-consul-02a.vmware.local
-consul-03a.vmware.local
+photon-[01:05].vmware.local
 
 [consul-dc1-clients]
-consul-04a.vmware.local
-consul-05a.vmware.local
-consul-06a.vmware.local
-consul-07a.vmware.local
-consul-08a.vmware.local
 
 [one-consul]
-consul-01a.vmware.local
+photon-01.vmware.local
 
 [photon]
-photon-01.vmware.local
-photon-02.vmware.local
-photon-03.vmware.local
-photon-04.vmware.local
+photon-[01:05].vmware.local
 
 [logstash-server]
 photon-01.vmware.local
-photon-02.vmware.local
 
 [kibana]
 photon-01.vmware.local
 
 [elasticsearch]
-photon-01.vmware.local
-photon-03.vmware.local
-photon-04.vmware.local
+photon-[01:05].vmware.local
 
 [swarm-manager]
 photon-01.vmware.local
@@ -41,4 +28,10 @@ localhost
 localhost
 
 [graphite-api]
+photon-03.vmware.local
+
+[kube-master]
 photon-01.vmware.local
+
+[kube-node]
+photon-[02:05].vmware.local

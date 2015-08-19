@@ -7,10 +7,6 @@
     kube_config_dir: /etc/kubernetes
     master_address: "{{ hostvars[groups['kube-master'][0]]['ansible_eth0']['ipv4']['address'] }}"
 
-    # doing this because we don't have them in the public repo yet.
-    # just remove these 2 line once we do
-    kubernetes_package: /vagrant/kubernetes-1.0.2-1.x86_64.rpm
-    flannel_package: /vagrant/flannel-0.5.2-1.x86_64.rpm
   roles:
     - kubernetes_master
 
@@ -29,15 +25,7 @@
     remote_syslog_server: "{{ logstash_server }}"
     remote_syslog_port: "{{ logstash_port }}"
 
-    # doing this because we don't have them in the public repo yet.
-    # just remove these 2 line once we do
-    kubernetes_package: /vagrant/kubernetes-1.0.2-1.x86_64.rpm
-    flannel_package: /vagrant/flannel-0.5.2-1.x86_64.rpm
-
     kube_config_dir: /etc/kubernetes
   roles:
-    - sudo
-    - pip
-    - photon
     - kubernetes_node
 

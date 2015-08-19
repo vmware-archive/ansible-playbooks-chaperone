@@ -7,6 +7,7 @@
 
 - hosts: logstash-server
   sudo: yes
+  vars:
     logstash_container_port: 32768
     logstash_server_port: 8514
     # for demo only, host and port
