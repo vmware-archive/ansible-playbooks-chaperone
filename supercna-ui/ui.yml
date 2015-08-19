@@ -5,12 +5,12 @@
     - pip
     - ansible
     - apache
-    - vmware
     - supervio
   vars:
     supervio_django_debug: 'True'
     supervio_django_shortname: SuperCNA
     supervio_django_app: supercna
+    supervio_django_domain: corp.local
     #supervio_vcenter_port: 11443
     #supervio_download_files: true
     # Apache server
