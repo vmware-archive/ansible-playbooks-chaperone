@@ -35,3 +35,6 @@ photon-01.vmware.local
 
 [kube-node]
 photon-[02:05].vmware.local
+
+[logstash-server]
+photon-03.vmware.local

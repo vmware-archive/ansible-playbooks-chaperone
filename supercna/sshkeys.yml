@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: photon-base 
   sudo: yes
   vars:
     - update_pkg_cache: "yes"

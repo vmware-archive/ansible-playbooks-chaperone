@@ -1,7 +1,7 @@
 ---
-- hosts: photon
-  sudo: yes
-  remote_user: vmware
+- hosts: photon-base
+  sudo: no 
+  remote_user: root 
   vars:
     update_pkg_cache: "yes"
   # need dns to do this
