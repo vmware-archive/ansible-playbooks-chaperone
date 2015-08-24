@@ -1,0 +1,10 @@
+
+- include: photon_base.yml
+- include: consul.yml
+- include: consul_clients.yml
+
+- include: photon_kube.yml
+
+- include: photon_registrator.yml
+#- include: photon_elk.yml
+
