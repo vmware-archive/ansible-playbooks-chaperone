@@ -1,0 +1,9 @@
+# this is defining the ui vhost
+apache_listen_port: 80
+apache_vhosts:
+  - {servername: "{{ supervio_django_app }}-ui.{{ supervio_django_domain }}", documentroot: "/var/www/vhosts/{{ supervio_django_app }}-ui.{{ supervio_django_domain }}"}
+
+new_priv_key: "~{{ sshkeys_user }}/.ssh/id_priv_new"
+new_pub_key: "{{ new_priv_key }}.pub"
+
+update_pkg_cache: "yes"
