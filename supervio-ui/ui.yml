@@ -22,9 +22,11 @@
     - supervio
     - ovftool
   vars:
-    supervio_django_debug: "True"
-    supervio_django_domain: "corp.local"
-    #supervio_vcenter_port: 11443
-    #supervio_download_files: true
-  vars_files:
-    - vars/ui.yml
+    django_debug: "True"
+    django_domain: "corp.local"
+    django_app: "supervio"
+    django_shortname: "SuperVIO"
+    apache_loglevel: debug
+    django_template_debug: True
+    django_debug: True
+    update_pkg_cache: "yes"

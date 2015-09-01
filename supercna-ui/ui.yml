@@ -22,24 +22,15 @@
     - apache
     - supervio
   vars:
-    supervio_django_debug: 'True'
-    supervio_django_shortname: SuperCNA
-    supervio_django_app: supercna
-    supervio_django_domain: corp.local
+    django_debug: 'True'
+    django_shortname: SuperCNA
+    django_app: supercna
+    django_domain: corp.local
     #supervio_vcenter_port: 11443
     #supervio_download_files: true
     # Apache server
-    apache_listen_port: 80
-    apache_vhosts:
-      - {servername: "supercna.{{ supervio_django_domain }}", documentroot: "/var/www/vhosts/supervio.{{ supervio_django_domain }}"}
-    apache_create_vhosts: False
-    # supervio (django) app
-    supervio_apache_loglevel: debug
-    supervio_django_template_debug: True
-    supervio_django_debug: True
-    # supervio general setup
-    supervio_log_dir: /var/log/supercna
-    supervio_answer_dir: "/var/lib/{{ supervio_django_app }}"
-    supervio_prepare_files_dir: "/var/lib/{{ supervio_django_app }}/prepare"
+    apache_loglevel: debug
+    django_template_debug: True
+    django_debug: True
     # package manager
     update_pkg_cache: "yes"

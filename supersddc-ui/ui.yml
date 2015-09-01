@@ -18,26 +18,14 @@
   sudo: yes
   roles:
     - pip
-    - ansible
     - apache
     - supervio
+    - ovftool
   vars:
-    supervio_django_debug: 'True'
-    supervio_django_shortname: SuperSDDC
-    supervio_django_app: supersddc
-    supervio_django_domain: corp.local
-    # Apache server
-    apache_listen_port: 80
-    apache_vhosts:
-      - {servername: "{{ supervio_django_app }}.{{ supervio_django_domain }}", documentroot: "/var/www/vhosts/supervio.{{ supervio_django_domain }}"}
-    apache_create_vhosts: False
-    # supervio (django) app
-    supervio_apache_loglevel: debug
-    supervio_django_template_debug: True
-    supervio_django_debug: True
-    # supervio general setup
-    supervio_log_dir: "/var/log/{{ supervio_django_app }}"
-    supervio_answer_dir: "/var/lib/{{ supervio_django_app }}"
-    supervio_prepare_files_dir: "/var/lib/{{ supervio_django_app }}/prepare"
-    # package manager
+    django_shortname: SuperSDDC
+    django_app: supersddc
+    django_domain: corp.local
+    apache_loglevel: debug
+    django_template_debug: True
+    django_debug: True
     update_pkg_cache: "yes"
