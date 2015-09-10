@@ -14,8 +14,8 @@
 #  limitations under the License.
 #
 [supervio-ui]
-#supervio-ui.vmware.local
 supervio-ui.corp.local
+#supervio-ui.vmware.local
 
 # for the vpod,  point your hosts file at the vpod router public address and
 # specify the port that was is forwarded into the supervio vm:

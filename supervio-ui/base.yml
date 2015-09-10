@@ -17,7 +17,11 @@
 - hosts: supervio-ui
   sudo: yes
   roles:
-    - hosts
+    - { role: hosts, when: ansible_virtualization_type != 'docker' }
+
+- hosts: supervio-ui
+  sudo: yes
+  roles:
     - sudo
     - sshkeys
     - ansible
