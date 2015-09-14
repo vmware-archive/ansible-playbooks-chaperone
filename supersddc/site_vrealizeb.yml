@@ -13,8 +13,10 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 #
-[defaults]
-remote_user = vmware
-roles_path = ../../roles
-host_key_checking = False
-library = ../../library
+---
+- name:  Deploy OVA and create config.json for vio
+  hosts: local
+  roles:
+    - vrealizeb
+  vars_files:
+    - /var/lib/supersddc/answerfile.yml
