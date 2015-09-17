@@ -17,6 +17,6 @@
 - name:  Deploy OVA and create config.json for vio
   hosts: local
   roles:
-    - vrealizeb
+    - vrb
   vars_files:
     - /var/lib/supersddc/answerfile.yml
