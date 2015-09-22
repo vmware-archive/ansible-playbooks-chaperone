@@ -16,12 +16,5 @@
 # this is defining the download vhost
 apache_listen_port: 81
 apache_vhosts:
-  - {servername: "{{ supervio_django_app }}-ui.{{ supervio_django_domain }}", documentroot: "/var/www/vhosts/{{ supervio_django_app }}-ui.{{ supervio_django_domain }}"}
+  - {servername: "{{ django_app }}-ui.{{ django_domain }}", documentroot: "/var/www/vhosts/{{ django_app }}-ui.{{ django_domain }}"}
 apache_create_vhosts: False
-
-supervio_django_app: supervio
-supervio_apache_loglevel: debug
-supervio_django_template_debug: True
-supervio_django_debug: True
-
-update_pkg_cache: "yes"

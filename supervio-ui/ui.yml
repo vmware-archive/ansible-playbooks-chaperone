@@ -25,8 +25,12 @@
     django_debug: "True"
     django_domain: "corp.local"
     django_app: "supervio"
-    django_shortname: "SuperVIO"
+    django_shortname: "Chaperone"
     apache_loglevel: debug
     django_template_debug: True
     django_debug: True
     update_pkg_cache: "yes"
+    # When running a VIO based vPod from OpenCloud or NSBU, the
+    # following will allow running a local UI server against the remote
+    # vCenter server for deploys.
+    #vcenter_port: 11443

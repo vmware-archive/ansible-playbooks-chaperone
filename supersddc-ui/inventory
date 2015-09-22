@@ -18,4 +18,4 @@ supersddc-ui.corp.local
 
 # for the vpod,  point your hosts file at the vpod router public address and
 # specify the port that was is forwarded into the supervio vm:
-#supervio-ui.corp.local:8422
+#supervio-ui.corp.local:11443

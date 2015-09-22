@@ -25,7 +25,11 @@
     django_shortname: SuperSDDC
     django_app: supersddc
     django_domain: corp.local
-    apache_loglevel: debug
     django_template_debug: True
     django_debug: True
     update_pkg_cache: "yes"
+    apache_loglevel: debug
+    # When running a VIO based vPod from OpenCloud or NSBU, the
+    # following will allow running a local UI server against the remote
+    # vCenter server for deploys.
+    #vcenter_port: 11443

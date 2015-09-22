@@ -23,8 +23,6 @@
     - ansible
     - apache
   vars:
-#    supervio_django_debug: "True"
-#    supervio_django_domain: "corp.local"
+    update_pkg_cache: "yes"
     new_priv_key: "~{{ sshkeys_user }}/.ssh/id_priv_new"
     new_pub_key: "{{ new_priv_key }}.pub"
-    update_pkg_cache: "yes"
