@@ -19,4 +19,5 @@
   roles:
     - vrb
   vars_files:
+    - /var/lib/supersddc/vcenter.yml
     - /var/lib/supersddc/answerfile.yml

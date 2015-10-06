@@ -22,5 +22,7 @@
   vars:
     - update_pkg_cache: "yes"
     - action: "deploy"
+    - mgmt_vc_port: "443"
   vars_files:
-    - /var/lib/supervio/answerfile.yml
+    - /var/lib/supersddc/vcenter.yml
+    - /var/lib/supersddc/answerfile.yml
