@@ -20,3 +20,4 @@
     - vio
   vars_files:
     - /var/lib/supervio/answerfile.yml
+    - /opt/supervio-ansible/roles/supervio/defaults/main.yml
