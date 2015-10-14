@@ -14,11 +14,14 @@
 #  limitations under the License.
 #
 ---
+
 - hosts: photon
   sudo: yes
   remote_user: photon
+  vars:
+    update_pkg_cache: "yes"
+
   roles:
     - photon
     - pip
-  vars_files:
-    - vars/main.yml
+    - jenkins
