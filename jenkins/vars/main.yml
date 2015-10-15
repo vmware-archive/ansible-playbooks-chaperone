@@ -13,16 +13,10 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 #
----
+update_pkg_cache: "yes"
+jenkins_container_name: "jenkins"
 
-- hosts: photon
-  sudo: yes
-  remote_user: photon
-  vars_files:
-    - vars/main.yml
-
-  roles:
-    - photon
-    - pip
-    - jenkins
-    - haproxy
+# haproxy
+haproxy_backend_server: "jenkins:8080"
+haproxy_backend_container: "{{jenkins_container_name}}"
+haproxy_fqnd: "jenkins.cloudbuilders.local"
