@@ -24,5 +24,6 @@
   roles:
     - photon
     - pip
+    - sudo
     - jenkins
     - haproxy

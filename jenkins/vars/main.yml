@@ -16,6 +16,9 @@
 update_pkg_cache: "yes"
 jenkins_container_name: "jenkins"
 
+sudo_users:
+  - { userid: photon, group: photon, password: "$6$Fc666CGq$dMNO5zBsimDNeZmncxDMbl6/3EyAJUm4y48hLzja0/UzunDjaoUX0j1hwPgaA58OOLXsOs0mX1dj1eEeFMV8W." }
+
 # haproxy
 haproxy_backend_server: "jenkins:8080"
 haproxy_backend_container: "{{jenkins_container_name}}"
