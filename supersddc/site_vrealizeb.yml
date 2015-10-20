@@ -16,6 +16,8 @@
 ---
 - name:  Deploy OVA and create config.json for vio
   hosts: local
+  vars:
+    - mgmt_vc_port: "443"
   roles:
     - vrb
   vars_files:
