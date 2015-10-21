@@ -16,4 +16,3 @@
 ---
 - include: os.yml
 - include: base.yml
-- include: ansible.yml
