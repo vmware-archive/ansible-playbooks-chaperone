@@ -15,8 +15,8 @@
 #
 ---
 - hosts: photon
-  sudo: no
-  remote_user: root
+  sudo: yes
+  remote_user: vmware
   roles:
     - hosts
     - sudo

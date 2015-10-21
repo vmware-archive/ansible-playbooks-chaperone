@@ -16,8 +16,8 @@
 update_pkg_cache: "yes"
 
 # ansible
+ansible_install: False
 ansible_services: []
-
 ansible_packages:
     - git
     - curl

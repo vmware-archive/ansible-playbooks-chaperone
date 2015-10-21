@@ -19,5 +19,8 @@
   remote_user: vmware
   roles:
     - sshkeys
+    - pip
+    - photon
+    - { role: ansible, when: ansible_install }
   vars_files:
     - vars/main.yml

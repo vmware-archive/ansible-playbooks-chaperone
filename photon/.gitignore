@@ -13,14 +13,15 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 #
----
-- hosts: photon
-  sudo: yes
-  remote_user: vmware
-  roles:
-    - pip
-    - ansible
-    - repo
-    - photon
-  vars_files:
-    - vars/main.yml
+# Temporary files from editing and compiling
+*~
+.*.swp
+*.pyc
+*.pyo
+*.bak
+.secret_key_store
+.DS_Store
+# Python virtualenv
+env
+# Local needs
+inventory
