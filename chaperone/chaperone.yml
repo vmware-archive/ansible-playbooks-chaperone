@@ -18,7 +18,6 @@
   sudo: yes
   connection: local
   roles:
-    - { role: hosts, when: ansible_virtualization_type != 'docker' }
     - sudo
     - pip
     - photon

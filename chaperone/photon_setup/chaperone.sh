@@ -53,7 +53,7 @@ check_docker() {
 # start the containers
 start_containers() {
 	dev=$(docker run -d --name chaperone-dev -p 2222:22 -p 5900:5900 -v ${HOME}/chaperone:/home/vmware/chaperone registry.cloudbuilders.vmware.local:5000/openedge/chaperone-lxde)
-	#ui=$(docker run -d -p 2223:22 -p 80:80 -v ${HOME}/chaperone:/home/vmware/chaperone registry.cloudbuilders.vmware.local:5000/openedge/chaperone-base)
+	ui=$(docker run -d -p 2223:22 -p 80:80 -v ${HOME}/chaperone:/home/vmware/chaperone registry.cloudbuilders.vmware.local:5000/openedge/chaperone-base)
 
 	ipaddr=$(ip a show eth0 | awk -F '[ /^]' '/^ *inet[^6]/ {print $6}')
 	cat <<-EOF
