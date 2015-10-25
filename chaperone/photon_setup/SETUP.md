@@ -24,7 +24,7 @@ Get the code we'll use to setup Photon:
 
 Change directories so accessing the setup scripts is easier:
 
-    cd ansible-playbooks-supevio/chaperone/photon_setup
+    cd ansible-playbooks-supervio/chaperone/photon_setup
 
 Fix the 'vars' file with the appropriate values for the gerrit and docker registry:
 
