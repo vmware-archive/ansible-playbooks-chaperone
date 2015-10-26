@@ -18,5 +18,8 @@
   hosts: local
   roles:
     - vra
+  vars:
+    - mgmt_vc_port: "443"
   vars_files:
+    - /var/lib/supersddc/vcenter.yml
     - /var/lib/supersddc/answerfile.yml
