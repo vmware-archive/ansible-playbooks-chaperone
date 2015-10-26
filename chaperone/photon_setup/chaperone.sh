@@ -23,11 +23,11 @@ else
 	exit 1
 fi
 
-# run the ansible base playbook
-ansible_base() {
-	echo ">>>>>>>>>> ansible base playbook . . ."
+# run ansible playbook
+ansible_run() {
+	echo ">>>>>>>>>> ansible ${1} playbook . . ."
 	pushd $(dirname $(dirname $(realpath ${0})))
-	ansible-playbook -i examples/inventory chaperone.yml
+	ansible-playbook -i examples/inventory ${1}.yml
 	popd
 }
 
@@ -51,12 +51,10 @@ check_docker() {
 }
 
 # start the containers
-start_containers() {
-	dev=$(docker run -d --name chaperone-dev -p 2222:22 -p 5900:5900 -v ${HOME}/chaperone:/home/vmware/chaperone registry.cloudbuilders.vmware.local:5000/openedge/chaperone-lxde)
-	ui=$(docker run -d -p 2223:22 -p 80:80 -v ${HOME}/chaperone:/home/vmware/chaperone registry.cloudbuilders.vmware.local:5000/openedge/chaperone-base)
-
+instructions() {
 	ipaddr=$(ip a show eth0 | awk -F '[ /^]' '/^ *inet[^6]/ {print $6}')
 	cat <<-EOF
+		===============================================================================
 
 		You can SSH to your dev container at IP address ${ipaddr} port 2222 with user vmware, password vmware.
 		You can SSH to your ui container at IP address ${ipaddr} port 2223 with user vmware, password vmware.
@@ -72,12 +70,16 @@ start_containers() {
 			repo init -u http://gerrit.cloudbuilders.vmware.local:8080/supervio -b master -g supervio
 			repo sync
 
-	EOF
+		Don't worry about all the 404 warnings from the sync -- they don't matter.
 
+		===============================================================================
+	EOF
 }
 
 ###
 # Main Line Code
-ansible_base
+ansible_run base
+ansible_run chaperone
 check_docker
-start_containers
+ansible_run containers
+instructions

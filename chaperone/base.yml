@@ -15,16 +15,12 @@
 #
 ---
 - hosts: chaperone
-  sudo: yes
+  sudo: no
   connection: local
-  roles:
-    - sudo
-    - pip
-    - photon
   tasks:
-    - pip: name=docker-py
-  vars:
-    update_pkg_cache: "yes"
-    docker_insecure_registries:
-      - {host: registry.cloudbuilders.vmware.local, port: 5000}
-    sudo_users: []
+    - file: path=roles state=directory mode=0755
+    - shell: git clone "http://gerrit.cloudbuilders.vmware.local:8080/{{ item.repo }}" "{{ item.dest }}"
+      with_items:
+        - { repo: 'ansible-role-sudo', dest: 'roles/sudo' }
+        - { repo: 'ansible-role-photon', dest: 'roles/photon' }
+        - { repo: 'ansible-role-pip', dest: 'roles/pip' }
