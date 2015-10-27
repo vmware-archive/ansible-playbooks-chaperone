@@ -1,0 +1,62 @@
+#
+#  Copyright 2015 VMware, Inc.
+#
+#  Licensed under the Apache License, Version 2.0 (the "License");
+#  you may not use this file except in compliance with the License.
+#  You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+#  Unless required by applicable law or agreed to in writing, software
+#  distributed under the License is distributed on an "AS IS" BASIS,
+#  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#  See the License for the specific language governing permissions and
+#  limitations under the License.
+#
+---
+
+# Network Services on specific nics
+dnsmasq_dhcp_interfaces:
+  - {  device: eth0 }
+dnsmasq_static_interfaces:
+  - {  device: eth1, address: "172.16.69.1", netmask: "255.255.255.0", broadcast: "172.16.69.255", }
+dnsmasq_dhcp_ranges:
+  - { Interface: eth1, Range: "172.16.69.32,172.16.69.254", Netmask: "255.255.255.0", Lease: 1440, DNS: "172.16.69.1" }
+dnsmasq_dhcp_reservations:
+  - { Mac: "00:50:56:a1:77:dc", Address: "172.16.69.10" }
+
+# dnsmasq configurations
+dnsmasq_etc_path: "/etc/dnsmasq.d"
+dnsmasq_domain_name: "cloudbuilders.vmware.local"
+dnsmasq_resolv_file: "{{ dnsmasq_etc_path }}/dnsmasq.resolv"
+dnsmasq_dhcp_hosts: "{{ dnsmasq_etc_path }}/dhcp-hosts"
+dnsmasq_hosts:
+  - { ipv4: "172.16.69.10", "jenkins.cloudbuilders.vmware.local" }
+#hosts: {{ dnsmasq_etc_path }}/hosts.{{ dnsmasq_domain_name }}
+dnsmasq_additional_hosts:
+  - { ipv4: "10.150.111.238", host: "gerrit.cloudbuilders.vmware.local" }
+  - { ipv4: "10.150.111.238", host: "redmine.cloudbuilders.vmware.local" }
+
+# --- NAT setup
+iptables_masquerade: True
+
+# network info for the NAT itself
+iptables_nat_networks:
+  - { internal_net: "172.16.69.0/24", external_dev: "eth0" }
+
+# allowed networks (free access)
+iptables_allowed_networks:
+  - "172.16.69.0/24"
+
+# port forwarding
+iptables_forwards:
+  - { interface: eth0, proto: tcp, inport: 443, fwd_address: 172.16.69.10, dport: 443 }
+  - { interface: eth0, proto: tcp, inport: 2222, fwd_address: 172.16.69.10, dport: 22 }
+
+# port allowance (if you forward, you better allow too)
+iptables_enable_ports:
+  - { port: 443, proto: "tcp" }
+  - { port: 2222, proto: "tcp" }
+  - { port: "53", proto: "udp" }
+  - { port: "67", proto: "udp" }
+  - { port: "68", proto: "udp" }
