@@ -25,9 +25,11 @@ fi
 
 # run ansible playbook
 ansible_run() {
+	local play="${1}"
+	shift
 	echo ">>>>>>>>>> ansible ${1} playbook . . ."
 	pushd $(dirname $(dirname $(realpath ${0})))
-	ansible-playbook -i examples/inventory ${1}.yml
+	ansible-playbook -i examples/inventory ${1}.yml "$@"
 	popd
 }
 
@@ -79,7 +81,7 @@ instructions() {
 ###
 # Main Line Code
 ansible_run base
-ansible_run chaperone
+ansible_run chaperone --ask-sudo-pass
 check_docker
 ansible_run containers
 instructions
