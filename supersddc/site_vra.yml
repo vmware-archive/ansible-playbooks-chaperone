@@ -23,3 +23,14 @@
   vars_files:
     - /var/lib/supersddc/vcenter.yml
     - /var/lib/supersddc/answerfile.yml
+
+- name:  Run vRA windows script
+  hosts: ruleshost
+  roles:
+    - vra
+  vars:
+    - run_win_script: true
+  vars_files:
+    - /var/lib/supersddc/vcenter.yml
+    - /var/lib/supersddc/answerfile.yml
+
