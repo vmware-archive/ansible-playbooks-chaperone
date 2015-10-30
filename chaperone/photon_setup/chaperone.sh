@@ -27,9 +27,9 @@ fi
 ansible_run() {
 	local play="${1}"
 	shift
-	echo ">>>>>>>>>> ansible ${1} playbook . . ."
+	echo ">>>>>>>>>> ansible ${play} playbook . . ."
 	pushd $(dirname $(dirname $(realpath ${0})))
-	ansible-playbook -i examples/inventory ${1}.yml "$@"
+	ansible-playbook -i examples/inventory ${play}.yml "$@"
 	popd
 }
 

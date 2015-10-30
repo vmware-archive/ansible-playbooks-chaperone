@@ -7,16 +7,19 @@ Chaperone on Photon OS.
 Start a Photon VM. For example, on AppCatalyst:
 
     appcatalyst vm create chaperone
+    appcatalyst vmpower on chaperone
+
+Wait for the VM to obtain an IP address (usually ~30 seconds):
+    
+    until appcatalyst guest getip chaperone 2> /dev/null; do echo -n '.'; sleep 1; done
 
 SSH to that VM:
 
-    appcatalyst guest getip chaperone
-      (assume that returned 172.16.61.128)
-    ssh -i /opt/vmware/appcatalyst/etc/appcatalyst_insecure_ssh_key.pub photon@172.16.61.128
+    ssh -i /opt/vmware/appcatalyst/etc/appcatalyst_insecure_ssh_key photon@$(appcatalyst guest getip chaperone)
 
 Make sure git is available
 
-    sudo tdnf install git
+    sudo tdnf install -y git
 
 Get the code we'll use to setup Photon:
 
