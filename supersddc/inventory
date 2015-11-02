@@ -22,10 +22,13 @@ localhost     ansible_connection=local
 [vrli_host]
 192.168.100.131     ansible_ssh_user=root ansible_ssh_pass='VMware1!'
 
-[ruleshost]
-192.168.110.10
+[vra_lin]
+192.168.110.81 ansible_ssh_user=vmware ansible_ssh_pass='vmware'
 
-[ruleshost:vars]
+[iaas_win]
+192.168.110.80
+
+[iaas_win:vars]
 # ruleshosts are windows machines
 ansible_ssh_user="administrator"
 ansible_ssh_pass="VMware1!"

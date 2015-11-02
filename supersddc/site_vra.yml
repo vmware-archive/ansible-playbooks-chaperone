@@ -15,21 +15,11 @@
 #
 ---
 - name:  Deploy OVA and create config.json for vio
-  hosts: local
+  hosts: [local, vra_lin, iaas_win]
   roles:
     - vra
   vars:
     - mgmt_vc_port: "443"
-  vars_files:
-    - /var/lib/supersddc/vcenter.yml
-    - /var/lib/supersddc/answerfile.yml
-
-- name:  Run vRA windows script
-  hosts: ruleshost
-  roles:
-    - vra
-  vars:
-    - run_win_script: true
   vars_files:
     - /var/lib/supersddc/vcenter.yml
     - /var/lib/supersddc/answerfile.yml
