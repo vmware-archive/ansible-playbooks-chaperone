@@ -1,0 +1,57 @@
+appliance_deployment_option: 'tiny'
+appliance_deployment_scheme: 'combined'
+appliance_networking_mode: 'DHCP'
+appliance_thin_disk_mode: '1'
+compute_esx_ip_0: ''
+compute_esx_mac_0: ''
+compute_esx_name_0: ''
+compute_esx_password_0: ''
+compute_esx_username_0: ''
+compute_vsan: '0'
+datacenter_name: Datacenter
+edge_esx_ip_0: ''
+edge_esx_mac_0: ''
+edge_esx_name_0: ''
+edge_esx_password_0: ''
+edge_esx_username_0: ''
+edge_vsan: '0'
+esx_datastore: ds-63-nssd
+esx_hostname: 10.150.106.67
+esx_network: Chaperone-Private
+esx_password: INSERT_PASSWD
+esx_username: INSERT_USER
+hostprofile_name: ''
+mgmt_esx_ip_0: ''
+mgmt_esx_mac_0: ''
+mgmt_esx_name_0: ''
+mgmt_esx_password_0: ''
+mgmt_esx_username_0: ''
+mgmt_vsan: '0'
+nfs_host: ''
+nfs_name: ''
+nfs_path: ''
+ntp_svr: ''
+psc_appliance_dns_name_manual: 10.150.106.67
+psc_appliance_dns_servers: ''
+psc_appliance_domain_name: cloudbuilders.vmware.local
+psc_appliance_ip_address: ''
+psc_appliance_ip_gw: ''
+psc_appliance_ip_prefix: ''
+psc_appliance_root_password: INSERT_PASSWD
+psc_appliance_vcenter_name: psc
+sso_domain_name: corp.local
+sso_password: INSERT_PASSWD
+sso_site_name: dfw
+strg_cider: 10.150.106.0/24
+vcenter_host: 10.150.106.67
+vcenter_password: INSERT_PASSWD
+vcenter_port: '443'
+vcenter_user: INSERT_USER
+vcsa_appliance_dns_servers: 
+vcsa_appliance_domain_name: 
+vcsa_appliance_ip_address: 
+vcsa_appliance_ip_gw: 
+vcsa_appliance_ip_prefix: 
+vcsa_appliance_root_password: INSERT_PASSWD
+vcsa_appliance_vcenter_name: jenkins-vcsa
+vmo_cider: 10.150.106.0/24
