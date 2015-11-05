@@ -15,3 +15,6 @@
 #
 [chaperone-ui]
 vmwcna-ui.cloudbuilders.vmware.local
+
+[docker]
+vmwcna-ui.cloudbuilders.vmware.local

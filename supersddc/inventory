@@ -35,3 +35,16 @@ ansible_ssh_pass="VMware1!"
 ansible_ssh_port=5986
 ansible_connection=winrm
 
+# list all servers for ssh key rotation and base (e.g., sudo) setup
+[base]
+stg-01a.corp.local ansible_ssh_pass=VMware1! ansible_become_pass=VMware1!
+stg-02a.corp.local ansible_ssh_pass=VMware1! ansible_become_pass=VMware1!
+
+# list all servers that should export (via NFS) to esxi hosts
+[nfs-storage]
+stg-01a.corp.local
+stg-02a.corp.local
+
+# list all servers that will execute vRPT
+[vrpt]
+localhost ansible_connection=local
