@@ -1,0 +1,50 @@
+#
+#  Copyright 2015 VMware, Inc.
+#
+#  Licensed under the Apache License, Version 2.0 (the "License");
+#  you may not use this file except in compliance with the License.
+#  You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+#  Unless required by applicable law or agreed to in writing, software
+#  distributed under the License is distributed on an "AS IS" BASIS,
+#  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#  See the License for the specific language governing permissions and
+#  limitations under the License.
+#
+---
+iptables_masquerade: True
+
+# network info for the NAT itself
+iptables_nat_networks:
+  - { internal_net: "192.168.110.0/24", external_dev: "eth0" }
+  - { internal_net: "192.168.150.0/24", external_dev: "eth0" }
+
+# allowed networks (free access)
+iptables_allowed_networks:
+  - "172.16.110.0/24"
+  - "172.16.150.0/24"
+
+# port forwarding
+iptables_forwards:
+  - { interface: eth0, proto: tcp, inport: 9443, fwd_address: 172.16.69.22, dport: 9443 }
+  - { interface: eth0, proto: tcp, inport: 3389, fwd_address: 172.16.69.22, dport: 3389 }
+  - { interface: eth0, proto: tcp, inport: 443, fwd_address: 172.16.69.22, dport: 443 }
+  - { interface: eth0, proto: tcp, inport: 2222, fwd_address: 172.16.69.22, dport: 22 }
+
+# port allowance (if you forward, you better allow too)
+iptables_enable_ports:
+  - { port: 80, proto: "tcp" }
+  - { port: 443, proto: "tcp" }
+  - { port: 2222, proto: "tcp" }
+  - { port: 3389, proto: "tcp" }
+  - { port: 5900, proto: "tcp" }
+  - { port: 9443, proto: "tcp" }
+  - { port: 53, proto: "udp" }
+  - { port: 67, proto: "udp" }
+  - { port: 68, proto: "udp" }
+  - { port: 69, proto: "udp" }
+
+# kernel modules
+iptables_kernel_modules: "tftp_conntrack_tftp nf_nat_tftp nf_conntrack_ftp nf_nat_ftp nf_conntrack_netbios_ns"
