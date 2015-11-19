@@ -59,3 +59,7 @@
     compute_esx_count: ""
     nsxedge_appliance_count: ""
     network_ip_scheme: ""
+    ntp_server: ""
+    dns_server: ""
+    syslog_server: ""
+    dns_domain: ""

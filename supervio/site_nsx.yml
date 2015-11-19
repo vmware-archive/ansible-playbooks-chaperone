@@ -14,11 +14,12 @@
 #  limitations under the License.
 #
 ---
-- name: setup vcenter with nsx for vio
+- name: Deploy and configure NSX
   hosts: local
   remote_user: vmware
   roles:
    - nsx
   vars_files:
-    - /var/lib/supervio/answerfile.yml
     - /opt/supervio-ansible/roles/supervio/defaults/main.yml
+    - /var/lib/chaperone-admin/answerfile.yml
+    - /var/lib/supervio/answerfile.yml
