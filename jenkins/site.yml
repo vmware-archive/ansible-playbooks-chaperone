@@ -20,10 +20,14 @@
   remote_user: photon
   vars_files:
     - vars/main.yml
+  vars:
+    docker_insecure_registries:
+    - {host: registry.cloudbuilders.vmware.local, port: 5000}
 
   roles:
     - photon
     - pip
     - sudo
+    - hosts
     - jenkins
     - haproxy
