@@ -15,6 +15,8 @@ edge_esx_name_0: ''
 edge_esx_password_0: ''
 edge_esx_username_0: ''
 edge_vsan: '0'
+esx_cluster: Compute1
+esx_datacenter: LAB4
 esx_datastore: ds-63-nssd
 esx_hostname: 10.150.106.67
 esx_network: Chaperone-Private
