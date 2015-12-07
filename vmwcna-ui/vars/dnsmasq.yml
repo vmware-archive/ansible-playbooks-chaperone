@@ -35,13 +35,11 @@ dhcp_reservations:
 - { mac: "00:0C:29:CF:1C:61", address: "172.16.172.10", hostname: "172.16.172.10.cloudbuilders.vmware.local" }
 # hosts not otherwise setup by DHCP requestors we want in the domain.
 dnsmasq_additional_hosts:
-- { ipv4: "10.150.111.238", host: "gerrit.cloudbuilders.vmware.local" }
 - { ipv4: "172.16.69.1", host: "router.cloudbuilders.vmware.local" }
 - { ipv4: "172.16.69.22", host: "vc-l-01a.cloudbuilders.vmware.local" }
 # alias (cname) records
 dnsmasq_cnames:
-- { host: "redmine.cloudbuilders.vmware.local", target: "gerrit.cloudbuilders.vmware.local" }
-- { host: "chapero.cloudbuilders.vmware.local", target: "router.cloudbuilders.vmware.local" }
+- { host: "chaperone.cloudbuilders.vmware.local", target: "router.cloudbuilders.vmware.local" }
 - { host: "tftp.cloudbuilders.vmware.local", target: "router.cloudbuilders.vmware.local" }
 # Enable tftp services
 dnsmasq_enable_tftp: True

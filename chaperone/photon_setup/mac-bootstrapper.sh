@@ -24,8 +24,8 @@ echo "This session, and additional information is logged to: $LOGFILE"
 echo -e "\n\nBegan new run of Mac Chaperone Bootstrapper at $(date +%s)" >> $LOGFILE
 exec > >(tee -a $LOGFILE)
 
-# IP Address to test VPN connectivity, presently gerrit.cloudbuilders:
-VPN_IP=10.150.111.238
+# IP Address to test VPN connectivity, presently gerrit:
+VPN_IP=10.150.38.241
 
 echo -n "Confirming VPN connectivity... "
 if ping -c2 -t2 $VPN_IP > /dev/null; then
@@ -232,10 +232,9 @@ ssh -i $APC_KEY photon@$CHAPERONE_IP "git clone http://10.150.111.238:8080/ansib
 
 # These will go away once DNS entries have been properly established:
 echo "Setting host entries..."
-if ssh -i $APC_KEY photon@$CHAPERONE_IP "grep -q 'gerrit.cloudbuilders.vmware.local\|registry.cloudbuilders.vmware.local' /etc/hosts"; then
+if ssh -i $APC_KEY photon@$CHAPERONE_IP "grep -q 'registry.cloudbuilders.vmware.local' /etc/hosts"; then
   echo "Warning: Host entries were detected already, this might cause an issue!"
 else
-  ssh -i $APC_KEY photon@$CHAPERONE_IP "sudo sh -c 'echo 10.150.111.238  gerrit.cloudbuilders.vmware.local >> /etc/hosts'"
   ssh -i $APC_KEY photon@$CHAPERONE_IP "sudo sh -c 'echo 10.150.111.233  registry.cloudbuilders.vmware.local >> /etc/hosts'"
 fi
 

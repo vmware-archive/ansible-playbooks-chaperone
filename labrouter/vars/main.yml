@@ -33,9 +33,7 @@ dnsmasq_dhcp_hosts: "{{ dnsmasq_etc_path }}/dhcp-hosts"
 dnsmasq_hosts:
   - { ipv4: "172.16.69.10", "jenkins.cloudbuilders.vmware.local" }
 #hosts: {{ dnsmasq_etc_path }}/hosts.{{ dnsmasq_domain_name }}
-dnsmasq_additional_hosts:
-  - { ipv4: "10.150.111.238", host: "gerrit.cloudbuilders.vmware.local" }
-  - { ipv4: "10.150.111.238", host: "redmine.cloudbuilders.vmware.local" }
+dnsmasq_additional_hosts: []
 
 # --- NAT setup
 iptables_masquerade: True

@@ -24,10 +24,6 @@ hosts_additional_hosts:
   - address: 10.150.111.233
     hostnames:
       - registry.cloudbuilders.vmware.local
-  - address: 10.150.111.238
-    hostnames:
-      - gerrit.cloudbuilders.vmware.local
-      - redmine.cloudbuilders.vmware.local
 
 # haproxy related
 haproxy_backend_server: "jenkins:8080"

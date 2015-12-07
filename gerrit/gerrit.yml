@@ -24,7 +24,7 @@
     - vars/users.yml
   roles:
     - role: postfix
-      postfix_domain: 'cloudbuilders.vmware.local'
+      postfix_domain: 'eng.vmware.com'
       postfix_notify_email: 'thite@vmware.com'
     - role: openldap
       openldap_server_enable_ssl: no

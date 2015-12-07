@@ -69,7 +69,7 @@ instructions() {
 			git config --global user.name "Your Full Name Here"
 			git config --global user.email "your_email_name@your_company.com"
 			cd chaperone
-			repo init -u http://gerrit.cloudbuilders.vmware.local:8080/supervio -b master -g supervio
+			repo init -u http://gerrit.eng.vmware.com:8080/supervio -b master -g supervio
 			repo sync
 
 		Don't worry about all the 404 warnings from the sync -- they don't matter.
