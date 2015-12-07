@@ -1,5 +1,5 @@
 [gerrit]
 host=gerrit.eng.vmware.com
 port=29418
-project=ansible-playbooks-supervio
+project=ansible-playbooks-chaperone
 defaultbranch=master

@@ -228,7 +228,7 @@ echo "Installing Git..."
 ssh -i $APC_KEY photon@$CHAPERONE_IP "sudo tdnf install -y git"
 
 echo "Cloning repository..."
-ssh -i $APC_KEY photon@$CHAPERONE_IP "git clone http://10.150.111.238:8080/ansible-playbooks-supervio"
+ssh -i $APC_KEY photon@$CHAPERONE_IP "git clone http://10.150.111.238:8080/ansible-playbooks-chaperone"
 
 # These will go away once DNS entries have been properly established:
 echo "Setting host entries..."
@@ -241,9 +241,9 @@ fi
 echo "==============================================================="
 echo "Mac-Boostrapper: Invoking Photon setup script..."
 echo "==============================================================="
-ssh -i $APC_KEY photon@$CHAPERONE_IP "cd /home/photon/ansible-playbooks-supervio/chaperone/photon_setup/; sudo ./photon.sh"
+ssh -i $APC_KEY photon@$CHAPERONE_IP "cd /home/photon/ansible-playbooks-chaperone/chaperone/photon_setup/; sudo ./photon.sh"
 
 echo "==============================================================="
 echo "Mac-Boostrapper: Invoking Chaperone setup script..."
 echo "==============================================================="
-ssh -i $APC_KEY photon@$CHAPERONE_IP "cd /home/photon/ansible-playbooks-supervio/chaperone/photon_setup/; ./chaperone.sh"
+ssh -i $APC_KEY photon@$CHAPERONE_IP "cd /home/photon/ansible-playbooks-chaperone/chaperone/photon_setup/; ./chaperone.sh"

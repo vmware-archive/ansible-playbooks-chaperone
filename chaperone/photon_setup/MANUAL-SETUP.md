@@ -23,11 +23,11 @@ Make sure git is available
 
 Get the code we'll use to setup Photon:
 
-    git clone http://10.150.111.238:8080/ansible-playbooks-supervio
+    git clone http://10.150.111.238:8080/ansible-playbooks-chaperone
 
 Change directories so accessing the setup scripts is easier:
 
-    cd ansible-playbooks-supervio/chaperone/photon_setup
+    cd ansible-playbooks-chaperone/chaperone/photon_setup
 
 Fix the 'vars' file with the appropriate values for the gerrit and docker registry:
 
@@ -49,7 +49,7 @@ After setting up, you no longer need the playbook repository cloned above,
 so just remove it:
 
     cd ${HOME}
-    rm -rf ansible-playbooks-supervio
+    rm -rf ansible-playbooks-chaperone
 
 # License and Copyright
 

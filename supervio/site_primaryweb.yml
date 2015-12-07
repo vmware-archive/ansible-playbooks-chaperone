@@ -17,7 +17,7 @@
 - name: Build the primary web interface
   hosts: local
   roles:
-    - supervio
+    - chaperone
   vars:
     django_debug: "True"
     django_domain: "corp.local"

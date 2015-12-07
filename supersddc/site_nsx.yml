@@ -21,4 +21,4 @@
    - nsx
   vars_files:
     - /var/lib/supersddc/answerfile.yml
-    - /opt/supersddc-ansible/roles/supervio/defaults/main.yml
+    - /opt/supersddc-ansible/roles/chaperone/defaults/main.yml

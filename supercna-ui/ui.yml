@@ -20,14 +20,14 @@
     - pip
     - ansible
     - apache
-    - supervio
+    - chaperone
   vars:
     django_debug: 'True'
     django_shortname: SuperCNA
     django_app: supercna
     django_domain: corp.local
-    #supervio_vcenter_port: 11443
-    #supervio_download_files: true
+    #vcenter_port: 11443
+    #download_files: true
     # Apache server
     apache_loglevel: debug
     django_template_debug: True

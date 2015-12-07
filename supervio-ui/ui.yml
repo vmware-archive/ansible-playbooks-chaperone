@@ -19,7 +19,7 @@
   roles:
     - pip
     - apache
-    - supervio
+    - chaperone
     - ovftool
   vars:
     django_debug: "True"
@@ -38,9 +38,9 @@
     #vcenter_port: 11443
     #
     # The following variables are instantiated here to support the
-    # updatebase-ui.yml task in the supervio role. Any additional UI
+    # updatebase-ui.yml task in the chaperone role. Any additional UI
     # elements added to the Chaperone Admin UI (specifically the roles/...
-    # ...supervio/templates/var/lib/chaperone-admin/base.yml.j2 file) must be
+    # ...chaperone/templates/var/lib/chaperone-admin/base.yml.j2 file) must be
     # added here for the ui.yml playbook to work properly.
     deploy_cna: ""
     deploy_esx: ""

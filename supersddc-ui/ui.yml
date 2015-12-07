@@ -19,7 +19,7 @@
   roles:
     - pip
     - apache
-    - supervio
+    - chaperone
     - ovftool
   vars:
     django_shortname: SuperSDDC

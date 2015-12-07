@@ -19,6 +19,6 @@
   roles:
    - vcsa
   vars_files:
-    - /opt/supervio-ansible/roles/supervio/defaults/main.yml
+    - /opt/supervio-ansible/roles/chaperone/defaults/main.yml
     - /var/lib/chaperone-admin/answerfile.yml
     - /var/lib/supervio/answerfile.yml

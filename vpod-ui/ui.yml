@@ -19,5 +19,5 @@
   vars_files:
     - vars/ui.yml
   roles:
-    - supervio
+    - chaperone
     - ovftool
