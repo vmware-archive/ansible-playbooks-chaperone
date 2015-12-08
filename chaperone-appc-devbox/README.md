@@ -3,7 +3,7 @@ Chaperone Playbook
 This playbook provides scripts and plays to ease setting up for developing
 and installing Chaperone.
 
-See the photon_setup/SETUP.md file for directions.
+See the [setup instructions](photon_setup/SETUP.md) for details.
 
 # License and Copyright
 
