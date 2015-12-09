@@ -1,0 +1,65 @@
+#
+#  Copyright 2015 VMware, Inc.
+#
+#  Licensed under the Apache License, Version 2.0 (the "License");
+#  you may not use this file except in compliance with the License.
+#  You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+#  Unless required by applicable law or agreed to in writing, software
+#  distributed under the License is distributed on an "AS IS" BASIS,
+#  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#  See the License for the specific language governing permissions and
+#  limitations under the License.
+#
+---
+- hosts: chaperone-ui
+  sudo: yes
+  roles:
+    - pip
+    - apache
+    - chaperone
+    - ovftool
+  vars:
+    django_debug: "True"
+    django_domain: "corp.local"
+    django_app: "chaperone"
+    django_admin_app: "chaperone-admin"
+    django_shortname: "Chaperone"
+    django_admin_shortname: "Chaperone Administration"
+    apache_loglevel: debug
+    django_template_debug: True
+    django_debug: True
+    update_pkg_cache: "yes"
+    # When running a VIO based vPod from OpenCloud or NSBU, the
+    # following will allow running a local UI server against the remote
+    # vCenter server for deploys.
+    #vcenter_port: 11443
+    #
+    # The following variables are instantiated here to support the
+    # updatebase-ui.yml task in the chaperone role. Any additional UI
+    # elements added to the Chaperone Admin UI (specifically the roles/...
+    # ...chaperone/templates/var/lib/chaperone-admin/base.yml.j2 file) must be
+    # added here for the ui.yml playbook to work properly.
+    deploy_cna: ""
+    deploy_esx: ""
+    deploy_vcenter: ""
+    deploy_nsx: ""
+    deploy_vio: ""
+    deploy_vra: ""
+    deploy_vrli: ""
+    deploy_vrops: ""
+    deploy_vrb: ""
+    enable_oob_mgmt_svcs: ""
+    psc_appliance_deployment_scheme: ""
+    mgmt_esx_count: ""
+    nsxedge_esx_count: ""
+    compute_cluster_count: ""
+    compute_esx_count: ""
+    nsxedge_appliance_count: ""
+    network_ip_scheme: ""
+    ntp_server: ""
+    dns_server: ""
+    syslog_server: ""
+    dns_domain: ""
