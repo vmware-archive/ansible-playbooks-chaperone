@@ -16,6 +16,7 @@
 ---
 - name: Build the primary web interface
   hosts: local
+  connection: local
   roles:
     - chaperone
   vars:
