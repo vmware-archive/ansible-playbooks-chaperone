@@ -20,6 +20,5 @@
   roles:
    - nsx
   vars_files:
-    - /opt/chaperone-ansible/roles/chaperone/defaults/main.yml
     - /var/lib/chaperone-admin/answerfile.yml
     - /var/lib/chaperone/answerfile.yml
