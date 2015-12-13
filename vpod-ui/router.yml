@@ -17,8 +17,11 @@
 - hosts: chaperone-ui
   sudo: yes
   vars_files:
-    - "vars/iptables.yml"
-    - "vars/dnsmasq.yml"
+    - vars/iptables.yml
+    - vars/dnsmasq.yml
+  vars:
+    - download_files: False
   roles:
     - iptables
+    - assets
     - dnsmasq

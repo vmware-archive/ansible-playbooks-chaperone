@@ -17,55 +17,51 @@
 #--- Network Services on specific nics
 # the general domain name to serve up
 dnsmasq_domain_name: corp.local
+
 # dhcp interfaces (implicitely *not* DHCP serving)
 dnsmasq_external_interfaces:
-  - {'search': 'corp.local', 'broadcast': '192.168.0.255', 'netmask': '255.255.255.0', 'dns': '10.148.20.5 10.148.20.6', 'address': '192.168.0.2', 'device': 'eth0', 'type': 'static', 'gateway': '192.168.0.1'}
+  - {'search': 'corp.local vmware.com', 'broadcast': '192.168.0.255', 'netmask': '255.255.255.0', 'dns': '10.148.20.5 10.148.20.6', 'address': '192.168.0.2', 'device': 'eth0', 'type': 'static', 'gateway': '192.168.0.1'}
 
 # For each net device that DHCP is desired, set the network up as a static router interface
 dnsmasq_dhcp_networks:
   - {  device: "eth1", address: "192.168.110.2", netmask: "255.255.255.0", broadcast: "192.168.110.255",  range: "192.168.110.100,192.168.110.199", lease: 1440, dns: "192.168.110.2" }
-  - {  device: "eth2", address: "192.168.150.2", netmask: "255.255.255.0", broadcast: "192.168.150.255",  range: "192.168.150.100,192.168.150.199", lease: 1440, dns: "192.168.150.2" }
 
 # Set static reservations here for assuring specific serves addresses
 # These need not be in the ranges above.
 dnsmasq_dhcp_reservations:
-  - { mac: "00:50:56:03:42:48", address: "192.168.110.51", hostname: "esx-01a.corp.local" }
-  - { mac: "00:50:56:03:13:FE", address: "192.168.150.51", hostname: "esx-01a-stg.corp.local" }
-  - { mac: "00:50:56:03:3C:7A", address: "192.168.110.52", hostname: "esx-02a.corp.local" }
-  - { mac: "00:50:56:03:3C:99", address: "192.168.150.52", hostname: "esx-02a-stg.corp.local" }
-  - { mac: "00:50:56:03:2F:C6", address: "192.168.110.53", hostname: "esx-03a.corp.local" }
-  - { mac: "00:50:56:03:34:3E", address: "192.168.150.53", hostname: "esx-03a-stg.corp.local" }
-  - { mac: "00:50:56:03:45:AE", address: "192.168.110.61", hostname: "esx-04a.corp.local" }
-  - { mac: "00:50:56:03:4C:9B", address: "192.168.150.61", hostname: "esx-04a-stg.corp.local" }
-  - { mac: "00:50:56:03:3C:9C", address: "192.168.110.62", hostname: "esx-05a.corp.local" }
-  - { mac: "00:50:56:03:39:1B", address: "192.168.150.62", hostname: "esx-05a-stg.corp.local" }
-  - { mac: "00:50:56:03:1E:21", address: "192.168.110.63", hostname: "esx-06a.corp.local" }
-  - { mac: "00:50:56:03:1E:24", address: "192.168.150.63", hostname: "esx-06a-stg.corp.local" }
-  - { mac: "00:50:56:03:12:A1", address: "192.168.150.21", hostname: "stg-01a.corp.local" }
-  - { mac: "00:50:56:03:06:C3", address: "192.168.150.22", hostname: "stg-02a.corp.local" }
+  - { hostname: "nfs-01a.corp.local", address: "192.168.110.11", mac: "00:50:56:03:3e:b0" }
+  - { hostname: "nfs-02a.corp.local", address: "192.168.110.12", mac: "00:50:56:03:34:4c" }
+  - { hostname: "esx-oob-01a.corp.local", address: "192.168.110.50", mac: "00:50:56:03:4e:77" }
+  - { hostname: "esx-mgmt-01a.corp.local", address: "192.168.110.51", mac: "00:50:56:03:29:10" }
+  - { hostname: "esx-mgmt-02a.corp.local", address: "192.168.110.52", mac: "00:50:56:03:1b:53" }
+  - { hostname: "esx-mgmt-03a.corp.local", address: "192.168.110.53", mac: "00:50:56:03:18:69" }
+  - { hostname: "esx-comp-01a.corp.local", address: "192.168.110.71", mac: "00:50:56:03:48:ad" }
+  - { hostname: "esx-comp-02a.corp.local", address: "192.168.110.72", mac: "00:50:56:03:42:c5" }
+  - { hostname: "esx-edge-01a.corp.local", address: "192.168.110.61", mac: "00:50:56:03:08:a2" }
+  - { hostname: "esx-edge-02a.corp.local", address: "192.168.110.62", mac: "00:50:56:03:48:94" }
+  - { hostname: "vra-iaas.corp.local", address: "192.168.110.92", mac: "00:50:56:03:09:27" }
 
 # hosts not otherwise setup by DHCP requestors we want in the domain.
 dnsmasq_additional_hosts:
-  - { ipv4: "10.150.111.238", host: "gerrit.corp.local" }
   - { ipv4: "10.150.111.233", host: "registry.corp.local" }
   - { ipv4: "192.168.110.2", host: "chaperone-ui.corp.local" }
   - { ipv4: "192.168.110.22", host: "vc-l-01a.corp.local" }
 
 # alias (cname) records
 dnsmasq_cnames:
-  - { host: "redmine.corp.local", target: "gerrit.corp.local" }
   - { host: "vpodrouter.corp.local", target: "chaperone-ui.corp.local" }
   - { host: "tftp.corp.local", target: "chaperone-ui.corp.local" }
 
 # Enable tftp services
 dnsmasq_enable_tftp: True
 dnsmasq_tftp_iso: "/var/www/html/downloads/VMware-VMvisor-Installer-6.0.0-2494585.x86_64.iso"
+
 # esxi info
 esxi_full_access_users: root
 esxi_nfs_stores:
-  - { ipv4: "stg-01a.corp.local",  export: "/exports/management", vol_name: "stg-01a" }
-  - { ipv4: "stg-02a.corp.local",  export: "/exports/compute", vol_name: "stg-02a" }
+  - { ipv4: "nfs-01a.corp.local",  export: "/exports/management", vol_name: "nfs-01a" }
+  - { ipv4: "nfs-02a.corp.local",  export: "/exports/compute", vol_name: "nfs-02a" }
+  
 esxi_firewall_enabled: "no"
 esxi_dhcp_vmnics:
   - vmnic0
-  - vmnic1

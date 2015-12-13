@@ -15,5 +15,4 @@
 #
 ---
 - include: base.yml
-- include: ui.yml
 - include: router.yml
