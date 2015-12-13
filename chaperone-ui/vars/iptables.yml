@@ -38,6 +38,7 @@ iptables_enable_ports:
   - { port: 443, proto: "tcp" }
   - { port: 1443, proto: "tcp" }
   - { port: 5480, proto: "tcp" }
+  - { port: 8080, proto: "tcp" }
   - { port: 9443, proto: "tcp" }
   - { port: 15480, proto: "tcp" }
   - { port: 53, proto: "udp" }

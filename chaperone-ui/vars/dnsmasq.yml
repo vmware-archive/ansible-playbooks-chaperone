@@ -59,9 +59,9 @@ dnsmasq_tftp_iso: "/var/www/html/downloads/VMware-VMvisor-Installer-6.0.0-249458
 # esxi info
 esxi_full_access_users: root
 esxi_nfs_stores:
-  - { ipv4: "nfs-01a.corp.local",  export: "/exports/management", vol_name: "nfs-01a" }
-  - { ipv4: "nfs-02a.corp.local",  export: "/exports/compute", vol_name: "nfs-02a" }
-  
+  - { ipv4: "nfs-01a.corp.local",  export: "/exports/esxi", vol_name: "nfs-01a" }
+  - { ipv4: "nfs-02a.corp.local",  export: "/exports/esxi", vol_name: "nfs-02a" }
+
 esxi_firewall_enabled: "no"
 esxi_dhcp_vmnics:
   - vmnic0

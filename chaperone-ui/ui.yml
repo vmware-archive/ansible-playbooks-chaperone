@@ -16,12 +16,9 @@
 ---
 - hosts: chaperone-ui
   sudo: yes
-  roles:
-    - pip
-    - apache
-    - chaperone
-    - ovftool
   vars:
+    download_files: True
+    chaperone_is_router: False
     django_domain: "corp.local"
     django_app: "chaperone"
     django_admin_app: "chaperone-admin"
@@ -42,6 +39,7 @@
     # elements added to the Chaperone Admin UI (specifically the roles/...
     # ...chaperone/templates/var/lib/chaperone-admin/base.yml.j2 file) must be
     # added here for the ui.yml playbook to work properly.
+    deploy_ambient: ""
     deploy_cna: ""
     deploy_esx: ""
     deploy_vcenter: ""
@@ -63,3 +61,13 @@
     dns_server: ""
     syslog_server: ""
     dns_domain: ""
+  vars_files:
+    - vars/iptables.yml
+    - vars/dnsmasq.yml
+  roles:
+    - { role: iptables, when: chaperone_is_router, tags: [ 'router' ] }
+    - pip
+    - chaperone
+    - ovftool
+    - assets
+    - { role: dnsmasq, when: chaperone_is_router, tags: [ 'router' ] }

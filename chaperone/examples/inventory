@@ -13,8 +13,12 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 #
-[chaperone]
-chaperone.corp.local
+[local]
+localhost
 
-[chaperone-dev]
-172.17.0.2 ansible_ssh_pass=vmware ansible_sudo_pass=vmware
+[chaperone-ui]
+chaperone-ui.corp.local
+
+[nfs-storage]
+nfs-01a.corp.local ansible_user='vmware' ansible_ssh_pass='VMware1!' ansible_become_pass='VMware1!' 
+nfs-02a.corp.local ansible_user='vmware' ansible_ssh_pass='VMware1!' ansible_become_pass='VMware1!' 
