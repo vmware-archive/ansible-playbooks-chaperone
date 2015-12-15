@@ -16,6 +16,7 @@
 ---
 - name: Manage IB/OOB vCenter Datacenter and Clusters
   hosts: local
+  connection: local  
   roles:
     - vcenter
   vars_files:

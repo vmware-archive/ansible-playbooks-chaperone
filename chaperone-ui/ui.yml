@@ -39,6 +39,7 @@
     # elements added to the Chaperone Admin UI (specifically the roles/...
     # ...chaperone/templates/var/lib/chaperone-admin/base.yml.j2 file) must be
     # added here for the ui.yml playbook to work properly.
+    deploy_phase1: ""
     deploy_ambient: ""
     deploy_cna: ""
     deploy_esx: ""

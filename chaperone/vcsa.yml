@@ -16,6 +16,7 @@
 ---
 - name: Provision vCenter appliance(s) using to ovftool
   hosts: local
+  connection: local  
   roles:
    - vcsa
   vars_files:
