@@ -14,9 +14,10 @@
 #  limitations under the License.
 #
 ---
-- name: setup vcenter datacenter and clusters
+- name: Manage IB/OOB vCenter Datacenter and Clusters
   hosts: local
   roles:
     - vcenter
   vars_files:
     - /var/lib/chaperone/answerfile.yml
+    - /var/lib/chaperone-admin/answerfile.yml
