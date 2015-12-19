@@ -1,8 +1,16 @@
-Chaperone Playbooks
-==================
-This repository provides playbooks associated with developing and installing SuperVIO.
+# Chaperone Playbooks
 
-See the docs directory in the chaperone project for detailed startup instructions.
+This repository provides playbooks associated with the [Chaperone] project
+for configuring and installing various Software Defined Data Center ("SDDC")
+scenarios.
+
+One should note that the playbooks herein show general examples, though are
+used for their purposes. But where new scenarios, for example a specific
+model of automating a particular setup of certificates, or other use cases
+for automation.
+
+See the docs directory in the [Chaperone](https://github.com/chaperone)
+project for detailed startup instructions for developers and users.
 
 # License and Copyright
  
