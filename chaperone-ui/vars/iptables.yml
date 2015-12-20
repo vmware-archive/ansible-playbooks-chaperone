@@ -27,20 +27,25 @@ iptables_allowed_networks:
 # port forwarding
 iptables_forwards:
   - { interface: eth0, proto: tcp, inport: 443, fwd_address: 192.168.110.22, dport: 443 }
-  - { interface: eth0, proto: tcp, inport: 1443, fwd_address: 192.168.110.50, dport: 443 }
+  - { interface: eth0, proto: tcp, inport: 444, fwd_address: 192.168.110.23, dport: 443 }
+  - { interface: eth0, proto: tcp, inport: 445, fwd_address: 192.168.110.50, dport: 443 }
+  - { interface: eth0, proto: tcp, inport: 3389, fwd_address: 192.168.110.10, dport: 3389 }
   - { interface: eth0, proto: tcp, inport: 5480, fwd_address: 192.168.110.22, dport: 5480 }
-  - { interface: eth0, proto: tcp, inport: 15480, fwd_address: 192.168.110.50, dport: 5480 }
+  - { interface: eth0, proto: tcp, inport: 5481, fwd_address: 192.168.110.23, dport: 5480 }
   - { interface: eth0, proto: tcp, inport: 9443, fwd_address: 192.168.110.22, dport: 9443 }
+  - { interface: eth0, proto: tcp, inport: 9444, fwd_address: 192.168.110.23, dport: 9443 }
 
 # port allowance (if you forward, you better allow too)
 iptables_enable_ports:
   - { port: 80, proto: "tcp" }
   - { port: 443, proto: "tcp" }
-  - { port: 1443, proto: "tcp" }
+  - { port: 444, proto: "tcp" }
+  - { port: 445, proto: "tcp" }
   - { port: 5480, proto: "tcp" }
+  - { port: 5481, proto: "tcp" }
   - { port: 8080, proto: "tcp" }
   - { port: 9443, proto: "tcp" }
-  - { port: 15480, proto: "tcp" }
+  - { port: 9444, proto: "tcp" }
   - { port: 53, proto: "udp" }
   - { port: 67, proto: "udp" }
   - { port: 68, proto: "udp" }

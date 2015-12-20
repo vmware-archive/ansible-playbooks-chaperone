@@ -17,4 +17,5 @@
 # Before running this play, assure you ran:
 #   ansible-playbook --ask-pass --ask-sudo-pass -i inventory base.yml
 - include: base.yml
+- include: router.yml
 - include: ui.yml

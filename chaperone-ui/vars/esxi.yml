@@ -1,0 +1,55 @@
+#
+#  Copyright 2015 VMware, Inc.
+#
+#  Licensed under the Apache License, Version 2.0 (the "License");
+#  you may not use this file except in compliance with the License.
+#  You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+#  Unless required by applicable law or agreed to in writing, software
+#  distributed under the License is distributed on an "AS IS" BASIS,
+#  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#  See the License for the specific language governing permissions and
+#  limitations under the License.
+#
+---
+# Format: root,user2,myname
+esxi_full_access_users: root
+
+# Setup for firewall services, for example:
+#    esxi_firewall_enabled: "yes"
+esxi_firewall_enabled: "no"
+esxi_firewall_services: "syslog sshClient ntpClient updateManager httpClient netdump"
+
+# ESXi PXE boot installer info
+esxi_tftp_esxi_version: "6.0.0-2494585"
+esxi_tftp_iso: "{{ downloads_dir }}/VMware-VMvisor-Installer-{{ esxi_tftp_esxi_version }}.x86_64.iso"
+esxi_tftp_iso_mountpoint: "/tmp/tftp_iso_mount"
+
+# NFS stores to set as shared storage on ESXi hosts.
+# Format:  - { ipv4: "nfs-01a.corp.local",  export: "/exports/esxi", vol_name: "nfs-01a" }
+esxi_nfs_stores:
+  - { ipv4: "nfs-01a.corp.local",  export: "/exports/esxi", vol_name: "nfs-01a" }
+  - { ipv4: "nfs-02a.corp.local",  export: "/exports/esxi", vol_name: "nfs-02a" }
+
+
+# List any vmnics to setup for DHCP
+esxi_dhcp_vmnics:
+  - vmnic0
+
+# List any vmnics to setup for static IP (examples included)
+# Format:  - { name: "vmnic0", hostname: "esx-oob-01a.corp.local",  address: "192.168.110.50", netmask: "255.255.255.0", gateway: "192.168.110.1", dns1: "192.168.110.1" }
+esxi_static_vmnics: []
+
+# List any vSwitches and portgroups to setup
+# Format: - { vsname: "vSwitch0", pgname: "Management" }
+esxi_vswitches:
+  - { vsname: "vSwitch0", pgname: "Management" }
+
+# Set the kickstart info: target is the target environment (and thus
+# has a directory in templates/tftp/; and template is the template
+# to use for generating the kickstart (see templates/tftp).
+esxi_kickstart_target: "vpod"
+esxi_kickstart_template: "ESX_VPOD_KS.CFG.j2"
+dnsmasq_tftp_kickstart_template: "tftp/{{ esxi_kickstart_target }}/{{ esxi_kickstart_template }}"

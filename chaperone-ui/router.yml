@@ -14,13 +14,19 @@
 #  limitations under the License.
 #
 ---
-- hosts: base
+- hosts: routers
   sudo: yes
-  roles:
-    - { role: hosts, when: ansible_virtualization_type != 'docker' }
-    - sudo
-    - sshkeys
   vars:
+    download_files: False
+    chaperone_is_router: True
+    apache_loglevel: debug
     update_pkg_cache: "yes"
-    new_priv_key: "~{{ sshkeys_user }}/.ssh/id_priv_new"
-    new_pub_key: "{{ new_priv_key }}.pub"
+  vars_files:
+    - vars/iptables.yml
+    - vars/dnsmasq.yml
+    - vars/esxi.yml
+  roles:
+    - { role: iptables, when: chaperone_is_router, tags: [ 'router', 'iptables' ] }
+    - apache
+    - assets
+    - { role: dnsmasq, when: chaperone_is_router, tags: [ 'router', 'dnsmasq' ] }

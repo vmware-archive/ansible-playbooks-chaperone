@@ -39,22 +39,27 @@ dnsmasq_dhcp_reservations:
   - { hostname: "esx-comp-02a.corp.local", address: "192.168.110.72", mac: "00:50:56:03:42:c5" }
   - { hostname: "esx-edge-01a.corp.local", address: "192.168.110.61", mac: "00:50:56:03:08:a2" }
   - { hostname: "esx-edge-02a.corp.local", address: "192.168.110.62", mac: "00:50:56:03:48:94" }
+  - { hostname: "controlcenter.corp.local", address: "192.168.110.10", mac: "00:50:56:03:29:20" }
   - { hostname: "vra-iaas.corp.local", address: "192.168.110.92", mac: "00:50:56:03:09:27" }
 
 # hosts not otherwise setup by DHCP requestors we want in the domain.
 dnsmasq_additional_hosts:
   - { ipv4: "10.150.111.233", host: "registry.corp.local" }
   - { ipv4: "192.168.110.2", host: "chaperone-ui.corp.local" }
-  - { ipv4: "192.168.110.22", host: "vc-l-01a.corp.local" }
+  - { ipv4: "192.168.110.22", host: "vc-inband.corp.local" }
+  - { ipv4: "192.168.110.23", host: "vc-ooband.corp.local" }
 
 # alias (cname) records
 dnsmasq_cnames:
   - { host: "vpodrouter.corp.local", target: "chaperone-ui.corp.local" }
   - { host: "tftp.corp.local", target: "chaperone-ui.corp.local" }
 
-# Enable tftp services
+# Enable and setup tftp services
 dnsmasq_enable_tftp: True
 dnsmasq_tftp_iso: "/var/www/html/downloads/VMware-VMvisor-Installer-6.0.0-2494585.x86_64.iso"
+dnsmasq_tftp_images_dir: "/tftp/pxeboot/images/ESXi-{{ esxi_tftp_esxi_version }}"
+dnsmasq_tftp_kickstart_dir: "/tftp/webroot/KS"
+dnsmasq_tftp_kickstart_file: "ESX_KS.CFG"
 
 # esxi info
 esxi_full_access_users: root
