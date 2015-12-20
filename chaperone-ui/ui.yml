@@ -17,8 +17,7 @@
 - hosts: chaperone-ui
   sudo: yes
   vars:
-    download_files: True
-    chaperone_is_router: False
+    download_files: False
     django_domain: "corp.local"
     django_app: "chaperone"
     django_admin_app: "chaperone-admin"
