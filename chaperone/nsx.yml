@@ -16,6 +16,7 @@
 ---
 - name: Deploy and configure NSX
   hosts: local
+  connection: local
   remote_user: vmware
   roles:
    - nsx
