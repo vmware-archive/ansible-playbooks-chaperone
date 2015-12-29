@@ -19,6 +19,16 @@ localhost
 [chaperone-ui]
 chaperone-ui.corp.local
 
+[base]
+nfs-01a.corp.local ansible_user='vmware'
+nfs-02a.corp.local ansible_user='vmware'
+
+[base:vars]
+ansible_ssh_user='vmware'
+ansible_ssh_pass='VMware1!'
+ansible_become_pass='VMware1!'
+
+# Note: you must have run the base play first to setup nfs storage.
 [nfs-storage]
-nfs-01a.corp.local ansible_user='vmware' ansible_ssh_pass='VMware1!' ansible_become_pass='VMware1!' 
-nfs-02a.corp.local ansible_user='vmware' ansible_ssh_pass='VMware1!' ansible_become_pass='VMware1!' 
+nfs-01a.corp.local
+nfs-02a.corp.local

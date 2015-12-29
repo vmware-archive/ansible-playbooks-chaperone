@@ -14,13 +14,15 @@
 #  limitations under the License.
 #
 ---
-- hosts: chaperone
-  sudo: no
-  connection: local
-  tasks:
-    - file: path=roles state=directory mode=0755
-    - shell: git clone "http://gerrit.eng.vmware.com:8080/{{ item.repo }}" "{{ item.dest }}"
-      with_items:
-        - { repo: 'ansible-role-sudo', dest: 'roles/sudo' }
-        - { repo: 'ansible-role-photon', dest: 'roles/photon' }
-        - { repo: 'ansible-role-pip', dest: 'roles/pip' }
+- hosts: base
+  sudo: yes
+  roles:
+    - { role: hosts, when: ansible_virtualization_type != 'docker' }
+    - sudo
+    - sshkeys
+  vars:
+    update_pkg_cache: "yes"
+    new_priv_key: "~{{ sshkeys_user }}/.ssh/id_priv_new"
+    new_pub_key: "{{ new_priv_key }}.pub"
+  vars_files:
+    - /var/lib/supersddc/answerfile.yml
