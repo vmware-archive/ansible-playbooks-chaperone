@@ -58,6 +58,7 @@
     dns_server: ""
     syslog_server: ""
     dns_domain: ""
+    configure_nsx_manager: ""
   roles:
     - pip
     - ansible
