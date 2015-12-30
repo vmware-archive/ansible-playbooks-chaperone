@@ -18,7 +18,7 @@
   sudo: yes
   vars:
     download_files: True
-    chaperone_is_router: False
+    chaperone_is_router: True
     apache_loglevel: debug
     update_pkg_cache: "yes"
   vars_files:

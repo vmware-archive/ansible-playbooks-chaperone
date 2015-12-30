@@ -25,4 +25,4 @@
     new_priv_key: "~{{ sshkeys_user }}/.ssh/id_priv_new"
     new_pub_key: "{{ new_priv_key }}.pub"
   vars_files:
-    - /var/lib/supersddc/answerfile.yml
+    - /var/lib/chaperone/answerfile.yml
