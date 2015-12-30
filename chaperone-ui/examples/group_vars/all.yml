@@ -13,19 +13,5 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 #
----
-- hosts: routers
-  sudo: yes
-  vars:
-    download_files: True
-    apache_loglevel: debug
-    update_pkg_cache: "yes"
-  vars_files:
-    - vars/iptables.yml
-    - vars/dnsmasq.yml
-    - vars/esxi.yml
-  roles:
-    - { role: iptables, when: chaperone_is_router, tags: [ 'router', 'iptables' ] }
-    - apache
-    - assets
-    - { role: dnsmasq, when: chaperone_is_router, tags: [ 'router', 'dnsmasq' ] }
+chaperone_is_router: False
+

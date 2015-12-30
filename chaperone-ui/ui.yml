@@ -35,5 +35,6 @@
   roles:
     - pip
     - ansible
+    - { role: apache, when: not chaperone_is_router }
     - chaperone
     - ovftool
