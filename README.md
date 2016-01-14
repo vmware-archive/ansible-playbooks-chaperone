@@ -9,7 +9,7 @@ used for their purposes. But where new scenarios, for example a specific
 model of automating a particular setup of certificates, or other use cases
 for automation.
 
-See the docs directory in the [Chaperone](https://github.com/chaperone)
+See the docs directory in the [Chaperone](https://github.com/vmware/chaperone)
 project for detailed startup instructions for developers and users.
 
 # License and Copyright
