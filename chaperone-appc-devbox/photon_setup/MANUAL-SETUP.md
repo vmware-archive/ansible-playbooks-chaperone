@@ -29,11 +29,6 @@ Change directories so accessing the setup scripts is easier:
 
     cd ansible-playbooks-chaperone/chaperone/photon_setup
 
-Fix the 'vars' file with the appropriate values for the gerrit and docker registry:
-
-    vi vars
-      (edit the values appropriately and save the file)
-
 Setup Photon with all the things we need:
 
     sudo ./photon.sh

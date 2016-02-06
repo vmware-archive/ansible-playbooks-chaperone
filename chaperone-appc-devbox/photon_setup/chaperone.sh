@@ -15,25 +15,17 @@
 #  limitations under the License.
 #
 
-if [ -f ./vars ]
-then
-	source ./vars
-else
-	echo "ERROR: vars file is not in the current directory. Aborting!"
-	exit 1
-fi
-
 # run ansible playbook
 ansible_run() {
 	local play="${1}"
 	shift
 	echo ">>>>>>>>>> ansible ${play} playbook . . ."
 	pushd $(dirname $(dirname $(realpath ${0})))
-	ansible-playbook -i examples/inventory ${play}.yml "$@"
+	ansible-playbook -i 'localhost,' --connection=local ${play}.yml "$@"
 	popd
 }
 
-# start the containers
+# check for docker installation and proper configuration
 check_docker() {
 	docker ps -a >/dev/null 2>&1
 	if [ $? -ne 0 ]
@@ -48,11 +40,10 @@ check_docker() {
 			  $(realpath ${0})
 
 		EOF
-		exit 1
 	fi
 }
 
-# start the containers
+# print instructions
 instructions() {
 	ipaddr=$(ip a show eth0 | awk -F '[ /^]' '/^ *inet[^6]/ {print $6}')
 	cat <<-EOF
@@ -69,10 +60,8 @@ instructions() {
 			git config --global user.name "Your Full Name Here"
 			git config --global user.email "your_email_name@your_company.com"
 			cd chaperone
-			repo init -u http://gerrit.eng.vmware.com:8080/chaperone -b master -g chaperone
-			repo sync
-
-		Don't worry about all the 404 warnings from the sync -- they don't matter.
+			repo init -u https://github.com/vmware/chaperone -b master -g chaperone
+			repo sync -q
 
 		===============================================================================
 	EOF

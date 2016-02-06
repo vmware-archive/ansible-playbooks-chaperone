@@ -14,7 +14,7 @@
 #  limitations under the License.
 #
 ---
-- hosts: chaperone
+- hosts: all
   sudo: no
   connection: local
   tasks:

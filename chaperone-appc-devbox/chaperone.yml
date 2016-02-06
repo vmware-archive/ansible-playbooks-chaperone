@@ -14,7 +14,7 @@
 #  limitations under the License.
 #
 ---
-- hosts: chaperone
+- hosts: all
   sudo: yes
   connection: local
   roles:
@@ -22,7 +22,7 @@
     - pip
     - photon
   tasks:
-    - pip: name=docker-py
+    - pip: name=docker-py, version='1.2.3'
   vars:
     update_pkg_cache: "yes"
     docker_insecure_registries:

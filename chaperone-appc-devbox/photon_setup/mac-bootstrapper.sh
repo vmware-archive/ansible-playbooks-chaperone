@@ -24,11 +24,8 @@ echo "This session, and additional information is logged to: $LOGFILE"
 echo -e "\n\nBegan new run of Mac Chaperone Bootstrapper at $(date +%s)" >> $LOGFILE
 exec > >(tee -a $LOGFILE)
 
-# IP Address to test VPN connectivity, presently gerrit:
-VPN_IP=10.150.38.241
-
-echo -n "Confirming VPN connectivity... "
-if ping -c2 -t2 $VPN_IP > /dev/null; then
+echo -n "Confirming connectivity... "
+if ping -c2 -t2 github.com > /dev/null; then
   echo "[ OK ]"
 else
   echo "[ Error ]"
@@ -225,25 +222,17 @@ echo "==============================================================="
 # Ansible on it, in case you were wondering why we add host entries here:
 
 echo "Installing Git..."
-ssh -i $APC_KEY photon@$CHAPERONE_IP "sudo tdnf install -y git"
+ssh -i $APC_KEY photon@${CHAPERONE_IP} "sudo tdnf install -y git"
 
 echo "Cloning repository..."
-ssh -i $APC_KEY photon@$CHAPERONE_IP "git clone http://10.150.111.238:8080/ansible-playbooks-chaperone"
-
-# These will go away once DNS entries have been properly established:
-echo "Setting host entries..."
-if ssh -i $APC_KEY photon@$CHAPERONE_IP "grep -q 'registry.cloudbuilders.vmware.local' /etc/hosts"; then
-  echo "Warning: Host entries were detected already, this might cause an issue!"
-else
-  ssh -i $APC_KEY photon@$CHAPERONE_IP "sudo sh -c 'echo 10.150.111.233  registry.cloudbuilders.vmware.local >> /etc/hosts'"
-fi
+ssh -i $APC_KEY photon@${CHAPERONE_IP} "git clone https://github.com/vmware/ansible-playbooks-chaperone"
 
 echo "==============================================================="
 echo "Mac-Boostrapper: Invoking Photon setup script..."
 echo "==============================================================="
-ssh -i $APC_KEY photon@$CHAPERONE_IP "cd /home/photon/ansible-playbooks-chaperone/chaperone/photon_setup/; sudo ./photon.sh"
+ssh -i $APC_KEY photon@$CHAPERONE_IP 'cd ansible-playbooks-chaperone/chaperone-appc-devbox/photon_setup && sudo ./photon.sh'
 
 echo "==============================================================="
 echo "Mac-Boostrapper: Invoking Chaperone setup script..."
 echo "==============================================================="
-ssh -i $APC_KEY photon@$CHAPERONE_IP "cd /home/photon/ansible-playbooks-chaperone/chaperone/photon_setup/; ./chaperone.sh"
+ssh -i $APC_KEY photon@$CHAPERONE_IP 'cd ansible-playbooks-chaperone/chaperone-appc-devbox/photon_setup && ./chaperone.sh'

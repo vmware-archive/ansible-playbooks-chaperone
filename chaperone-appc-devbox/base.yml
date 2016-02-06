@@ -14,12 +14,12 @@
 #  limitations under the License.
 #
 ---
-- hosts: chaperone
+- hosts: all
   sudo: no
   connection: local
   tasks:
     - file: path=roles state=directory mode=0755
-    - shell: git clone "http://gerrit.eng.vmware.com:8080/{{ item.repo }}" "{{ item.dest }}"
+    - shell: git clone "https://github.com/vmware/{{ item.repo }}" "{{ item.dest }}"
       with_items:
         - { repo: 'ansible-role-sudo', dest: 'roles/sudo' }
         - { repo: 'ansible-role-photon', dest: 'roles/photon' }

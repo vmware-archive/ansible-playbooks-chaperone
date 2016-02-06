@@ -15,14 +15,6 @@
 #  limitations under the License.
 #
 
-if [ -f ./vars ]
-then
-	source ./vars
-else
-	echo "ERROR: vars file is not in the current directory. Aborting!"
-	exit 1
-fi
-
 install_yum() {
 	# make sure yum is available and updated
 	echo ">>>>>>>>>> installing yum . . ."
