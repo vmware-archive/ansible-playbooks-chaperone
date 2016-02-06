@@ -22,7 +22,7 @@
     - pip
     - photon
   tasks:
-    - pip: name=docker-py, version='1.2.3'
+    - pip: name=docker-py version='1.2.3'
   vars:
     update_pkg_cache: "yes"
     docker_insecure_registries:

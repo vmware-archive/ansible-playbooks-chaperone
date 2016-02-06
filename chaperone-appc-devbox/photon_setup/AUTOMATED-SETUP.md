@@ -6,8 +6,13 @@ process should errors occur.
 
 ## Assumptions
 
+If you do not have AppCatalyst, this setup will install it automatically.
+Therefore, this setup assumes you want AppCatalyst.
+
 If you have an existing AppCatalyst VM called "chaperone", this script will use
-that VM, and run scripts on top of it again, in a mostly idempotent fashion.
+that VM, and run scripts on top of it again, in a mostly idempotent fashion. If
+you do not have such a VM, the automated setup will create and start one so
+named. The scripts assume the VM created (or in existence) is a PhotonOS base.
 
 ## Getting Started
 
