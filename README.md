@@ -25,7 +25,7 @@ See the docs directory in the
 [Chaperone](https://github.com/vmware/chaperone) project for detailed
 startup instructions for developers and users. Also, for easy developer
 setup using Docker Containers, see the documentation in
-[photon_setup](chaperone-appc-devbox/photon_setup/README.md).
+[photon_setup](chaperone-appc-devbox).
 
 # License and Copyright
  
