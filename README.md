@@ -9,8 +9,11 @@ used for their purposes. But where new scenarios, for example a specific
 model of automating a particular setup of certificates, or other use cases
 for automation.
 
-See the docs directory in the [Chaperone](https://github.com/chaperone)
-project for detailed startup instructions for developers and users.
+See the docs directory in the
+[Chaperone](https://github.com/vmware/chaperone) project for detailed
+startup instructions for developers and users. Also, for easy developer
+setup using Docker Containers, see the documentation in
+[photon_setup](photon_setup/README.md).
 
 # License and Copyright
  
