@@ -17,13 +17,14 @@
 - hosts: routers
   sudo: yes
   vars:
-    download_files: True
     apache_loglevel: debug
     update_pkg_cache: "yes"
   vars_files:
-    - vars/iptables.yml
+    - vars/assets.yml
     - vars/dnsmasq.yml
     - vars/esxi.yml
+    - vars/iptables.yml
+
   roles:
     - { role: iptables, when: chaperone_is_router, tags: [ 'router', 'iptables' ] }
     - apache
