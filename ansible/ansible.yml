@@ -17,6 +17,8 @@
 - hosts: ansible
   sudo: yes
   vars:
+    sudo_users:
+      - { userid: vmware, group: vmware, password: "$6$qIze9/RaQ$aX/a6mCfI2MHpbzJ/4aYogc59/pvuo3ECo6I1jDPPjPKsdNDWN5JNOQFuFJDC/4oc60zfv1QTimsPNXfDyIs.0" }
     ansible_additional_packages:
       - vim
   roles:

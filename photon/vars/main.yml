@@ -25,3 +25,5 @@ ansible_packages:
 # sshkeys
 new_priv_key: "~{{ sshkeys_user }}/.ssh/id_priv_new"
 new_pub_key: "{{ new_priv_key }}.pub"
+sudo_users:
+  - { userid: vmware, group: vmware, password: "$6$qIze9/RaQ$aX/a6mCfI2MHpbzJ/4aYogc59/pvuo3ECo6I1jDPPjPKsdNDWN5JNOQFuFJDC/4oc60zfv1QTimsPNXfDyIs.0" }
