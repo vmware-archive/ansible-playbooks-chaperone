@@ -16,7 +16,7 @@
 ---
 - name: Deploy and configure Management Cluster
   hosts: local
-  connection: local  
+  connection: local
   roles:
     - vcloud-nfv-ra
   vars_files:
