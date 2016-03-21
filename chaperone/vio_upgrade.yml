@@ -14,9 +14,10 @@
 #  limitations under the License.
 #
 ---
-- name:  Deploy OVA and create config.json for vio
-  hosts: local
-  connection: local
+- name: Upgrade VIO 2.0 to VIO 2.01 Patch
+  hosts: oms
+  become: yes
+  become_user: 'root'
   roles:
     - vio
   vars_files:
