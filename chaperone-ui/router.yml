@@ -15,7 +15,7 @@
 #
 ---
 - hosts: routers
-  sudo: yes
+  become: yes
   vars:
     apache_loglevel: debug
     update_pkg_cache: "yes"
@@ -24,7 +24,6 @@
     - vars/dnsmasq.yml
     - vars/esxi.yml
     - vars/iptables.yml
-
   roles:
     - { role: iptables, when: chaperone_is_router, tags: [ 'router', 'iptables' ] }
     - apache

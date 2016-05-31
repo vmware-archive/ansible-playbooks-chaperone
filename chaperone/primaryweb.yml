@@ -20,14 +20,13 @@
   roles:
     - chaperone
   vars:
-    django_debug: "True"
+    django_debug: True
     django_domain: "corp.local"
     django_app: "chaperone"
     django_admin_app: "chaperone-admin"
     django_shortname: "Chaperone"
     apache_loglevel: debug
     django_template_debug: True
-    django_debug: True
     update_pkg_cache: "yes"
   vars_files:
     - /var/lib/chaperone-admin/answerfile.yml

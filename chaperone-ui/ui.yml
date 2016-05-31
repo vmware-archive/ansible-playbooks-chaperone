@@ -15,7 +15,7 @@
 #
 ---
 - hosts: chaperone-ui
-  sudo: yes
+  become: yes
   vars:
     download_files: False
     django_domain: "corp.local"
@@ -26,7 +26,6 @@
     django_debug: True
     django_template_debug: True
     apache_loglevel: debug
-    django_debug: True
     update_pkg_cache: "yes"
     # Turn to true to add additional menu (base.yml) options
     chaperone_developer_menus: False
