@@ -27,5 +27,3 @@ chaperone-ui.corp.local
 
 [base:vars]
 ansible_user='vmware'
-ansible_ssh_pass='VMware1!'
-ansible_become_pass='VMware1!'

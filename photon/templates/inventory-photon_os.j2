@@ -13,18 +13,15 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 #
----
-- hosts: bonneville-swarm
-  connection: local
-  sudo: no
-  vars_files:
-    - /var/lib/chaperone/answerfile.yml
-  vars:
-    - bonneville_deploy: false
-    - docker_exports:
-      - "DOCKER_HOST=tcp://{{ bonneville_docker_host }}:2376"
-      - "DOCKER={{ bonneville_dir }}/docker-linux"
-    - swarm_running_file: "/tmp/swarm_{{ bonneville_docker_name }}_is_running"
-    - swarm_manager_running_file: ""
-  roles:
-    - bonneville
+[local]
+localhost ansible_connection=local
+
+[photon]
+{% for host in photon_os_targets -%}
+{{ host.uri }} 
+{% endfor %}
+
+[photon:vars]
+ansible_connection=paramiko
+ansible_user=root
+ansible_ssh_pass="vmwarevmware"

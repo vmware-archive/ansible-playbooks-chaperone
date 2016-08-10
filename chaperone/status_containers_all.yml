@@ -25,7 +25,7 @@
   connection: local
   sudo: no
   vars_files:
-    - /var/lib/supercna/answerfile.yml
+    - /var/lib/chaperone/answerfile.yml
   tasks:
     - name: show all containers on Bonneville
       command: "{{ bonneville_dir }}/docker-linux -H tcp://{{ bonneville_docker_host }}:2376 ps -a"

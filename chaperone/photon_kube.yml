@@ -14,25 +14,25 @@
 #  limitations under the License.
 #
 ---
-- hosts: kube-master
+- hosts: kubernetes_master
   sudo: yes
   remote_user: vmware
   vars:
     portal_net: "10.254.0.0/16"
     kube_config_dir: /etc/kubernetes
-    master_address: "{{ hostvars[groups['kube-master'][0]]['ansible_eth0']['ipv4']['address'] }}"
+    master_address: "{{ hostvars[groups['kubernetes_master'][0]]['ansible_eth0']['ipv4']['address'] }}"
 
   roles:
     - kubernetes_master
 
-- hosts: kube-node
+- hosts: kubernetes_node
   sudo: yes
   remote_user: vmware
   vars:
     portal_net: "10.254.0.0/16"
     update_pkg_cache: no
     # send logs to the first master
-    master_address: "{{ hostvars[groups['kube-master'][0]]['ansible_eth0']['ipv4']['address'] }}"
+    master_address: "{{ hostvars[groups['kubernetes_master'][0]]['ansible_eth0']['ipv4']['address'] }}"
     logstash_server: "{{ master_address }}"
     logstash_port: 32768
 

@@ -28,7 +28,7 @@ apache_create_vhosts: False
 # ------------------------------------------------------------------------
 deploy_phase1: ""
 deploy_ambient: ""
-deploy_cna: ""
+deploy_kubernetes: ""
 deploy_esx: ""
 deploy_vcenter: ""
 deploy_nsx: ""

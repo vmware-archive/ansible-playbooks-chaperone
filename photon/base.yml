@@ -15,8 +15,7 @@
 #
 ---
 - hosts: photon
-  sudo: yes
-  remote_user: vmware
+  become: yes
   roles:
     - sshkeys
     - pip
