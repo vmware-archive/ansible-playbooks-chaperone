@@ -15,7 +15,7 @@
 #
 ---
 - hosts: local
-  sudo: yes
+  become: yes
   roles:
     - ovftool
     - vrli

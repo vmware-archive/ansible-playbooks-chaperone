@@ -15,7 +15,7 @@
 #
 ---
 - hosts: kibana
-  sudo: yes
+  become: yes
   vars:
     logstash_container_port: 32768
     logstash_server_port: 8514

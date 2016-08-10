@@ -15,7 +15,7 @@
 #
 ---
 - hosts: one-consul
-  sudo: yes
+  become: yes
   tasks:
     - name: show consul members
       command: /opt/consul/bin/consul members

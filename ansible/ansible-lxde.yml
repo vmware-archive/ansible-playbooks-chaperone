@@ -15,7 +15,7 @@
 #
 ---
 - hosts: ansible
-  sudo: yes
+  become: yes
   vars:
     ansible_additional_packages:
       - lxde

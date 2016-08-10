@@ -15,7 +15,7 @@
 #
 ---
 - hosts: photon
-  sudo: yes
+  become: yes
   vars:
     - update_pkg_cache: "yes"
     - start_swarm: false

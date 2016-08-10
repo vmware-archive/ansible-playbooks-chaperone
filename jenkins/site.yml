@@ -16,7 +16,7 @@
 ---
 
 - hosts: photon
-  sudo: yes
+  become: yes
   remote_user: photon
   vars_files:
     - vars/main.yml

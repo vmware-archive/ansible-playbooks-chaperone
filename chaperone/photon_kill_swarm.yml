@@ -15,7 +15,7 @@
 #
 ---
 - hosts: photon
-  sudo: yes
+  become: yes
   vars_files:
     - /var/lib/chaperone/answerfile.yml
   vars:

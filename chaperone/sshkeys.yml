@@ -15,7 +15,7 @@
 #
 ---
 - hosts: photon-base
-  sudo: yes
+  become: yes
   vars:
     - update_pkg_cache: "yes"
     # sshkeys

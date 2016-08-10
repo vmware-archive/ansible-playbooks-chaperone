@@ -15,7 +15,7 @@
 #
 ---
 - hosts: consul-dc1
-  sudo: yes
+  become: yes
   roles:
     - consul
     - registrator

@@ -16,7 +16,7 @@
 ---
 - hosts: elasticsearch
   serial: 1
-  sudo: yes
+  become: yes
   vars:
   roles:
     - elasticsearch

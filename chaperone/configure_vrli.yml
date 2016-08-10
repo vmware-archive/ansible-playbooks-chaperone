@@ -15,7 +15,7 @@
 #
 ---
 - hosts: vrli_host
-  sudo: yes
+  become: yes
   roles:
     - vrli
   vars:

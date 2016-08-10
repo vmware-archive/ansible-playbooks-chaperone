@@ -15,7 +15,7 @@
 #
 ---
 - hosts: gerrit
-  sudo: yes
+  become: yes
   vars:
     - update_pkg_cache: "yes"
     - openldap_server_rootpw: vmware

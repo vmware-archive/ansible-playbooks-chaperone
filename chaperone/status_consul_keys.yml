@@ -15,7 +15,7 @@
 #
 ---
 - hosts: one-consul
-  sudo: yes
+  become: yes
   tasks:
     - name: show all keys
       command: /opt/consul/bin/consulkv ls

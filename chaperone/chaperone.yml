@@ -15,7 +15,7 @@
 #
 ---
 - hosts: chaperone
-  sudo: yes
+  become: yes
   connection: local
   roles:
     - sudo

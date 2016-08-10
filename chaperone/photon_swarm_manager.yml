@@ -15,7 +15,7 @@
 #
 ---
 - hosts: swarm-manager
-  sudo: yes
+  become: yes
   vars:
     - start_swarm: false
     - start_swarm_manager: true

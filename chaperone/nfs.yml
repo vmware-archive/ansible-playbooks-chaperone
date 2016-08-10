@@ -15,7 +15,7 @@
 #
 ---
 - hosts: nfs-storage
-  sudo: yes
+  become: yes
   vars:
     update_package_cache: "yes"
     nfs_exports:

@@ -15,7 +15,7 @@
 #
 ---
 - hosts: graphite-api
-  sudo: yes
+  become: yes
   vars:
   roles:
     - graphite-api

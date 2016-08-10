@@ -15,7 +15,7 @@
 #
 ---
 - hosts: base
-  sudo: yes
+  become: yes
   roles:
     - { role: hosts, when: ansible_virtualization_type != 'docker' }
     - sudo

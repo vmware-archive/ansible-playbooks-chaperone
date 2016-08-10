@@ -15,7 +15,7 @@
 #
 ---
 - hosts: ansible
-  sudo: yes
+  become: yes
   vars:
     sudo_users:
       - { userid: vmware, group: vmware }

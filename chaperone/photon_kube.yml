@@ -15,32 +15,24 @@
 #
 ---
 - hosts: kubernetes_master
-  sudo: yes
+  become: yes
   remote_user: vmware
+  vars_files:
+    - /var/lib/chaperone/answerfile.yml
+    - /var/lib/chaperone-admin/answerfile.yml  
   vars:
-    portal_net: "10.254.0.0/16"
-    kube_config_dir: /etc/kubernetes
     master_address: "{{ hostvars[groups['kubernetes_master'][0]]['ansible_eth0']['ipv4']['address'] }}"
-
   roles:
     - kubernetes_master
 
 - hosts: kubernetes_node
-  sudo: yes
+  become: yes
   remote_user: vmware
+  vars_files:
+    - /var/lib/chaperone/answerfile.yml
+    - /var/lib/chaperone-admin/answerfile.yml  
   vars:
-    portal_net: "10.254.0.0/16"
-    update_pkg_cache: no
-    # send logs to the first master
     master_address: "{{ hostvars[groups['kubernetes_master'][0]]['ansible_eth0']['ipv4']['address'] }}"
-    logstash_server: "{{ master_address }}"
-    logstash_port: 32768
-
-    # lets send remote syslog to the logstash server
-    remote_syslog_server: "{{ logstash_server }}"
-    remote_syslog_port: "{{ logstash_port }}"
-
-    kube_config_dir: /etc/kubernetes
   roles:
     - kubernetes_node
 

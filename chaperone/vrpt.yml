@@ -15,7 +15,7 @@
 #
 ---
 - hosts: vrpt
-  sudo: yes
+  become: yes
   vars:
     docker_opts: "--insecure-registry registry.corp.local:5000"
     vrpt_docker_image: "registry.corp.local:5000/openedge/vrtp"

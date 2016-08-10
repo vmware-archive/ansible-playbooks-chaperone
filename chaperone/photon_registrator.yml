@@ -19,7 +19,7 @@
   tasks: [ ]
 
 - hosts: photon
-  sudo: yes
+  become: yes
   remote_user: vmware
   vars:
     update_pkg_cache: "yes"

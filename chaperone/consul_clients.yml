@@ -19,7 +19,7 @@
   tasks: [ ]
 
 - hosts: consul-dc1-clients
-  sudo: yes
+  become: yes
   roles:
     - consul
     - registrator

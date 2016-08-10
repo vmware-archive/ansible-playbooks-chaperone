@@ -15,7 +15,7 @@
 #
 ---
 - hosts: routers
-  sudo: yes
+  become: yes
   vars:
     update_pkg_cache: "yes"
     new_priv_key: "~{{ sshkeys_user }}/.ssh/id_priv_new"
