@@ -18,9 +18,9 @@
 # the general domain name to serve up
 dnsmasq_domain_name: corp.local
 
-# dhcp interfaces (implicitely *not* DHCP serving)
+# dhcp interfaces (implicitly *not* DHCP serving)
 dnsmasq_external_interfaces:
-  - {'search': 'corp.local vmware.com', 'broadcast': '192.168.0.255', 'netmask': '255.255.255.0', 'dns': '10.148.20.5 10.148.20.6', 'address': '192.168.0.2', 'device': 'eth0', 'type': 'static', 'gateway': '192.168.0.1'}
+  - {'search': 'corp.local vmware.com', 'broadcast': '192.168.109.255', 'netmask': '255.255.255.0', 'dns': '10.148.20.5 10.148.20.6', 'address': '192.168.0.2', 'device': 'eth0', 'type': 'static', 'gateway': '192.168.0.1'}
 
 # For each net device that DHCP is desired, set the network up as a static router interface
 dnsmasq_dhcp_networks:
@@ -29,25 +29,26 @@ dnsmasq_dhcp_networks:
 # Set static reservations here for assuring specific serves addresses
 # These need not be in the ranges above.
 dnsmasq_dhcp_reservations:
+  - { hostname: "controlcenter.corp.local", address: "192.168.110.10", mac: "00:50:56:03:29:20" }
   - { hostname: "nfs-01a.corp.local", address: "192.168.110.11", mac: "00:50:56:03:3e:b0" }
   - { hostname: "nfs-02a.corp.local", address: "192.168.110.12", mac: "00:50:56:03:34:4c" }
+  - { hostname: "vra-iaas.corp.local", address: "192.168.110.92", mac: "00:50:56:03:09:27" }
+  # ESXi hosts don't need reservations, just A records
   - { hostname: "esx-oob-01a.corp.local", address: "192.168.110.50", mac: "00:50:56:03:4e:77" }
   - { hostname: "esx-mgmt-01a.corp.local", address: "192.168.110.51", mac: "00:50:56:03:29:10" }
   - { hostname: "esx-mgmt-02a.corp.local", address: "192.168.110.52", mac: "00:50:56:03:1b:53" }
   - { hostname: "esx-mgmt-03a.corp.local", address: "192.168.110.53", mac: "00:50:56:03:18:69" }
-  - { hostname: "esx-comp-01a.corp.local", address: "192.168.110.71", mac: "00:50:56:03:48:ad" }
-  - { hostname: "esx-comp-02a.corp.local", address: "192.168.110.72", mac: "00:50:56:03:42:c5" }
   - { hostname: "esx-edge-01a.corp.local", address: "192.168.110.61", mac: "00:50:56:03:08:a2" }
   - { hostname: "esx-edge-02a.corp.local", address: "192.168.110.62", mac: "00:50:56:03:48:94" }
-  - { hostname: "controlcenter.corp.local", address: "192.168.110.10", mac: "00:50:56:03:29:20" }
-  - { hostname: "vra-iaas.corp.local", address: "192.168.110.92", mac: "00:50:56:03:09:27" }
+  - { hostname: "esx-comp-01a.corp.local", address: "192.168.110.71", mac: "00:50:56:03:48:ad" }
+  - { hostname: "esx-comp-02a.corp.local", address: "192.168.110.72", mac: "00:50:56:03:42:c5" }
 
 # hosts not otherwise setup by DHCP requestors we want in the domain.
 dnsmasq_additional_hosts:
-  - { ipv4: "10.150.111.233", host: "registry.corp.local" }
-  - { ipv4: "192.168.110.2", host: "chaperone-ui.corp.local" }
-  - { ipv4: "192.168.110.22", host: "vc-inband.corp.local" }
-  - { ipv4: "192.168.110.23", host: "vc-ooband.corp.local" }
+  - { host: "registry.corp.local",     ipv4: "10.150.111.233" }
+  - { host: "chaperone-ui.corp.local", ipv4: "192.168.110.2" }
+  - { host: "vc-inband.corp.local",    ipv4: "192.168.110.22" }
+  - { host: "vc-ooband.corp.local",    ipv4: "192.168.110.23" }
 
 # alias (cname) records
 dnsmasq_cnames:

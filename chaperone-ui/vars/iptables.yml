@@ -50,6 +50,7 @@ iptables_enable_ports:
   - { port: 67, proto: "udp" }
   - { port: 68, proto: "udp" }
   - { port: 69, proto: "udp" }
+  - { port: 123, proto: "udp" }
 
 # kernel modules
 iptables_kernel_modules: "nf_conntrack_tftp nf_nat_tftp nf_conntrack_ftp nf_nat_ftp nf_conntrack_netbios_ns"

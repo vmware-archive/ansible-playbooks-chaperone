@@ -1,0 +1,165 @@
+#
+#  Copyright 2015 VMware, Inc.
+#
+#  Licensed under the Apache License, Version 2.0 (the "License");
+#  you may not use this file except in compliance with the License.
+#  You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+#  Unless required by applicable law or agreed to in writing, software
+#  distributed under the License is distributed on an "AS IS" BASIS,
+#  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#  See the License for the specific language governing permissions and
+#  limitations under the License.
+#
+#  Credits: William Lam (VMware)
+#
+
+# Accept the VMware End User License Agreement
+vmaccepteula
+
+# Set the root password for the DCUI and ESXi Shell
+rootpw VMware1!
+
+# Install on the first local disk available on machine
+install --firstdisk=local --overwritevmfs --novmfsondisk
+
+# Set the network to DHCP on the first network adapater.
+# Use the specified hostname and do not create a portgroup for the VMs.
+{% for vmnic in esxi_dhcp_vmnics -%}
+network --bootproto=dhcp --device={{ vmnic }} --addvmportgroup=0
+{% endfor %}
+
+{% for vmnic in esxi_static_vmnics -%}
+network --bootproto=static --addvmportgroup=0 --device={{ vmnic.name }} --ip={{ vmnic.address }} --netmask={{ vmnic.netmask }} --gateway={{ vmnic.gateway }} --nameserver={{ vmnic.dns1 }} --hostname={{ vmnic.hostname }}
+{% endfor %}
+
+# reboots the host after the scripted installation is completed
+reboot
+
+%firstboot --interpreter=busybox
+
+# enable & start remote ESXi Shell  (SSH)
+vim-cmd hostsvc/enable_ssh
+vim-cmd hostsvc/start_ssh
+
+# enable & start ESXi Shell (TSM)
+vim-cmd hostsvc/enable_esx_shell
+vim-cmd hostsvc/start_esx_shell
+
+# supress ESXi Shell shell warning
+# Thanks to Duncan Epping (http://www.yellow-bricks.com/2011/07/21/esxi-5-suppressing-the-localremote-shell-warning/)
+esxcli system settings advanced set -o /UserVars/SuppressShellWarning -i 1
+
+# ESXi Shell interactive idle time logout
+esxcli system settings advanced set -o /UserVars/ESXiShellInteractiveTimeOut -i 3600
+
+# Users that will have full access to DCUI even if they don't have admin permssions on ESXi host
+vim-cmd hostsvc/advopt/update DCUI.Access string {{ esxi_full_access_users }}
+
+# Block VM guest BPDU packets, global configuration
+esxcli system settings advanced set -o /Net/BlockGuestBPDU -i 1
+
+# assign license
+#vim-cmd vimsvc/license --set AAAAA-BBBBB-CCCCC-DDDDD-EEEEE
+
+## SATP CONFIGURATIONS ##
+#esxcli storage nmp satp set --satp VMW_SATP_SYMM --default-psp VMW_PSP_RR
+#esxcli storage nmp satp set --satp VMW_SATP_DEFAULT_AA --default-psp VMW_PSP_RR
+
+## VSWITCH CONFIGURATIONS ##
+# configure portgroups on vSwitch
+{% for item in esxi_vswitches -%}
+vs=$(esxcfg-vswitch -c "{{ item.vsname }}")
+if [ $vs -eq 0 ]; then
+  esxcli network vswitch standard add --vswitch-name="{{ item.vsname }}"
+  esxcli network vswitch standard uplink add --vswitch-name="{{ item.vsname }}" --uplink-name={{ item.uplink }}
+else
+  echo "{{ item.vsname }} already exists so not creating."
+fi
+
+pg=$(esxcfg-vswitch --check-pg="{{ item.pgname }}")
+if [ $pg -eq 0 ]; then
+  esxcli network vswitch standard portgroup add --portgroup-name="{{ item.pgname }}" --vswitch-name="{{ item.vsname }}"
+
+  # for this implementation, put a vmknic on every pg but the VM network
+  if [ "{{ item.pgname }}" == "VM Network" ]; then
+    echo "Not creating vmknic on {{ item.pgname }}."
+  else
+    esxcfg-vmknic -a -i DHCP -p "{{ item.pgname }}"
+  fi
+else
+  echo "{{item.pgname}} already exists so not creating port group."
+fi
+{% endfor %}
+unset vs
+unset pg
+
+# Disable IPv6 for VMkernel interfaces
+esxcli system module parameters set -m tcpip3 -p ipv6=0
+
+## NFS DATASTOREs ##
+{% for n in esxi_nfs_stores %}
+for i in $(seq 1 6); do
+  esxcli storage nfs add --host {{ n.ipv4 }} --share {{ n.export }} --volume-name {{ n.vol_name }}
+  if [ $? -eq 0 ]; then
+    continue
+  else
+    echo "Failed ${i} times to add nfs storage for {{ n.vol_name }}."
+    sleep 5
+  fi
+done
+{% endfor %}
+
+## ADV CONFIGURATIONS ##
+esxcli system settings advanced set --option /Net/TcpipHeapSize --int-value 30
+esxcli system settings advanced set --option /Net/TcpipHeapMax --int-value 120
+esxcli system settings advanced set --option /NFS/HeartbeatMaxFailures --int-value 10
+esxcli system settings advanced set --option /NFS/HeartbeatFrequency --int-value 20
+esxcli system settings advanced set --option /NFS/HeartbeatTimeout --int-value 10
+esxcli system settings advanced set --option /NFS/MaxVolumes --int-value 128
+
+### TODO: make generic
+## NTP CONFIGURATIONS ##
+cat > /etc/ntp.conf << __NTP_CONFIG__
+restrict default kod nomodify notrap noquerynopeer
+restrict 127.0.0.1
+server 0.vmware.pool.ntp.org
+server 1.vmware.pool.ntp.org
+__NTP_CONFIG__
+/sbin/chkconfig ntpd on
+
+## FIREWALL CONFIGURATION ##
+
+# enable firewall
+esxcli network firewall set --default-action false --enabled {{ esxi_firewall_enabled }}
+
+# services to allow by default
+for fwsvc in {{ esxi_firewall_services }}
+do
+ esxcli network firewall ruleset set --ruleset-id ${fwsvc} --enabled yes
+done
+
+# add esxui Fling
+curdir="$(pwd)"
+cd /tmp
+wget http://chaperone-ui.corp.local:81/downloads/{{ esxui_fling }}
+esxcli software vib install -v /tmp/{{ esxui_fling }} --force
+cd "${curdir}"
+unset curdir
+
+# backup ESXi configuration to persist changes
+/sbin/auto-backup.sh
+
+# enter maintenance mode
+#esxcli system maintenanceMode set -e true
+
+# copy %first boot script logs to persisted datastore
+cp /var/log/hostd.log "/firstboot-hostd.log"
+cp /var/log/hostd.log "/var/log/firstboot-hostd.log"
+cp /var/log/esxi_install.log "/firstboot-esxi_install.log"
+cp /var/log/esxi_install.log "/var/log/firstboot-esxi_install.log"
+
+# Needed for configuration changes that could not be performed in esxcli
+#esxcli system shutdown reboot -d 60 -r "rebooting after host configurations"

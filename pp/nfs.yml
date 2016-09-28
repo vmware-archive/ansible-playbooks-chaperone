@@ -14,25 +14,12 @@
 #  limitations under the License.
 #
 ---
-- hosts: chaperone-ui
+- hosts: nfs-storage
   become: yes
   vars:
-    django_domain: "corp.local"
-    django_app: "chaperone"
-    django_admin_app: "chaperone-admin"
-    django_shortname: "Chaperone"
-    django_admin_shortname: "Chaperone Administration"
-    django_debug: True
-    django_template_debug: True
-    apache_loglevel: debug
-    update_pkg_cache: "yes"
-    # Turn to true to add additional menu (base.yml) options
-    chaperone_developer_menus: False
-  vars_files:
-    - vars/ui.yml
+    update_package_cache: "yes"
+    nfs_exports:
+      - { device: "/dev/sdb", mount_point: "/exports/esxi", fstype: "ext4", mount_opts: "noatime", nfs_opts: "192.168.30.0/24(rw,nohide,insecure,no_root_squash,no_subtree_check,async)" }
   roles:
-    - pip
-    - ansible
-    - { role: apache, when: not chaperone_is_router }
-    - chaperone
-    - { role: ovftool, when: download_files == 'True' }
+    - hosts
+    - nfs

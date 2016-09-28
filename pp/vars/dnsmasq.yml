@@ -1,0 +1,79 @@
+#
+#  Copyright 2015 VMware, Inc.
+#
+#  Licensed under the Apache License, Version 2.0 (the "License");
+#  you may not use this file except in compliance with the License.
+#  You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+#  Unless required by applicable law or agreed to in writing, software
+#  distributed under the License is distributed on an "AS IS" BASIS,
+#  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#  See the License for the specific language governing permissions and
+#  limitations under the License.
+#
+---
+#--- Network Services on specific nics
+# the general domain name to serve up
+dnsmasq_domain_name: corp.local
+
+# interfaces for which only DNS should apply, though are not DHCP enabled
+dnsmasq_dns_only:
+  - "eth0"
+  - "eth2"
+
+# dhcp interfaces (implicitly *not* DHCP serving)
+dnsmasq_external_interfaces:
+  - { search: 'corp.local vmware.com',  broadcast: '192.168.0.255', netmask: '255.255.255.0',  dns: '10.148.20.5 10.148.20.6', address: '192.168.0.2', device: 'eth0', type: 'static', gateway: '192.168.0.1'}
+  - {  address: "192.168.20.2", netmask: "255.255.255.0", broadcast: "192.168.20.255",  device: 'eth2', type: 'static' }
+
+# For each net device that DHCP is desired, set the network up as a static router interface
+dnsmasq_dhcp_networks:
+  #- {  device: "eth0", address: "192.168.0.2", netmask: "255.255.255.0", broadcast: "192.168.0.255",  range: "192.168.0.32,192.168.0.254", lease: 1440, dns: "192.168.0.2" }
+  - {  device: "eth1", address: "192.168.10.2", netmask: "255.255.255.0", broadcast: "192.168.10.255",  range: "192.168.10.3,static", lease: 1440, dns: "192.168.10.2" }
+  - {  device: "eth3", address: "192.168.30.2", netmask: "255.255.255.0", broadcast: "192.168.30.255",  range: "192.168.30.3,192.168.30.254", lease: 1440, dns: "192.168.30.2" }
+
+# Set static reservations here for assuring specific serves addresses
+# These need not be in the ranges above.
+dnsmasq_dhcp_reservations:
+  # ESXi management host nics on Management Network
+  - { hostname: "esx-m-01a.corp.local", address: "192.168.10.10", mac: "00:50:56:03:09:61" }
+  - { hostname: "esx-m-02a.corp.local", address: "192.168.10.11", mac: "00:50:56:03:41:4a" }
+  - { hostname: "esx-m-03a.corp.local", address: "192.168.10.12", mac: "00:50:56:03:2c:47" }
+  # ESXi compute host nics on Management Network
+  - { hostname: "esx-c-01a.corp.local", address: "192.168.10.21", mac: "00:50:56:03:2b:d7" }
+  - { hostname: "esx-c-02a.corp.local", address: "192.168.10.22", mac: "00:50:56:03:2a:d5" }
+  - { hostname: "esx-c-03a.corp.local", address: "192.168.10.23", mac: "00:50:56:03:47:59" }
+  # NFS hosts
+  - { hostname: "nfs-m-01a.corp.local", address: "192.168.30.10", mac: "00:50:56:03:11:f0" }
+  - { hostname: "nfs-c-01a.corp.local", address: "192.168.30.11", mac: "00:50:56:03:09:6e" }
+
+# hosts not otherwise setup by DHCP requestors we want in the domain.
+dnsmasq_additional_hosts:
+  - { host: "router.corp.local", ipv4: "192.168.0.2" }
+
+# alias (cname) records
+dnsmasq_cnames:
+  - { host: "vpodrouter.corp.local", target: "router.corp.local" }
+  - { host: "chaperone-ui.corp.local", target: "router.corp.local" }
+  - { host: "tftp.corp.local", target: "chaperone-ui.corp.local" }
+
+# Enable and setup tftp services
+dnsmasq_enable_tftp: True
+dnsmasq_tftp_iso: "/var/www/html/downloads/VMware-VMvisor-Installer-6.0.0-3620759.x86_64.iso"
+dnsmasq_tftp_images_dir: "/tftp/pxeboot/images/ESXi-{{ esxi_tftp_esxi_version }}"
+dnsmasq_tftp_kickstart_dir: "/tftp/webroot/KS"
+dnsmasq_tftp_kickstart_file: "ESX_KS.CFG"
+
+# esxi info
+#esxi_full_access_users: root
+#esxi_nfs_stores:
+#  - { ipv4: "nfs-m-01a.corp.local",  export: "/exports/esxi", vol_name: "nfs-m-01a" }
+#  - { ipv4: "nfs-c-01a.corp.local",  export: "/exports/esxi", vol_name: "nfs-c-01a" }
+
+#esxi_firewall_enabled: "no"
+#esxi_dhcp_vmnics:
+#  - vmnic0
+#  - vmnic1
+#  - vmnic2

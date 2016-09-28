@@ -13,14 +13,20 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 #
-[defaults]
-remote_user = vmware
-roles_path = ../../roles
-host_key_checking = False
-library = ../../library
+<VirtualHost *:{{ dnsmasq_tftp_web_port }}>
+    ServerName tftp.{{ dnsmasq_domain_name }}
+    ServerAdmin webmaster@example.com
 
-# Uncomment the following section when layered file systems
-# (container) operations fail SSH. Make sure the directory is one
-# that is bind mounted to the container host.
-#[ssh_connection]
-#control_path=/home/vmware/chaperone/ansible-ssh-%%h-%%p-%%r
+    DocumentRoot /tftp/webroot
+    Alias /webroot /tftp/webroot
+
+    <Directory />
+        Options FollowSymLinks
+        AllowOverride None
+        Require all granted
+    </Directory>
+
+    ErrorLog /var/log/apache2/tftp_error.log
+    CustomLog /var/log/apache2/tftp_access.log combined
+    LogLevel {{ dnsmasq_tftp_web_loglevel }}
+</VirtualHost>

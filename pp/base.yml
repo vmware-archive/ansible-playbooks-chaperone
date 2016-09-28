@@ -14,25 +14,15 @@
 #  limitations under the License.
 #
 ---
-- hosts: chaperone-ui
+- hosts: routers-base
   become: yes
-  vars:
-    django_domain: "corp.local"
-    django_app: "chaperone"
-    django_admin_app: "chaperone-admin"
-    django_shortname: "Chaperone"
-    django_admin_shortname: "Chaperone Administration"
-    django_debug: True
-    django_template_debug: True
-    apache_loglevel: debug
-    update_pkg_cache: "yes"
-    # Turn to true to add additional menu (base.yml) options
-    chaperone_developer_menus: False
-  vars_files:
-    - vars/ui.yml
   roles:
-    - pip
-    - ansible
-    - { role: apache, when: not chaperone_is_router }
-    - chaperone
-    - { role: ovftool, when: download_files == 'True' }
+    - { role: hosts, when: ansible_virtualization_type != 'docker' }
+    - sudo
+    - sshkeys
+  vars:
+    sudo_users:
+      - { userid: vmware, group: vmware }
+    update_pkg_cache: "yes"
+    new_priv_key: "~{{ sshkeys_user }}/.ssh/id_priv_new"
+    new_pub_key: "{{ new_priv_key }}.pub"

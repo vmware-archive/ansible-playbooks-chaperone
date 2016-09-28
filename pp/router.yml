@@ -14,25 +14,18 @@
 #  limitations under the License.
 #
 ---
-- hosts: chaperone-ui
+- hosts: routers-base
   become: yes
   vars:
-    django_domain: "corp.local"
-    django_app: "chaperone"
-    django_admin_app: "chaperone-admin"
-    django_shortname: "Chaperone"
-    django_admin_shortname: "Chaperone Administration"
-    django_debug: True
-    django_template_debug: True
     apache_loglevel: debug
     update_pkg_cache: "yes"
-    # Turn to true to add additional menu (base.yml) options
-    chaperone_developer_menus: False
   vars_files:
-    - vars/ui.yml
+    - vars/assets.yml
+    - vars/dnsmasq.yml
+    - vars/esxi.yml
+    - vars/iptables.yml
   roles:
-    - pip
-    - ansible
-    - { role: apache, when: not chaperone_is_router }
-    - chaperone
-    - { role: ovftool, when: download_files == 'True' }
+    - { role: iptables, when: chaperone_is_router, tags: [ 'router', 'iptables' ] }
+    #- apache
+    #- assets
+    #- { role: dnsmasq, when: chaperone_is_router, tags: [ 'router', 'dnsmasq' ] }
