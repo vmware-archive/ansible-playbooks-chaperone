@@ -35,4 +35,4 @@
     - ansible
     - { role: apache, when: not chaperone_is_router }
     - chaperone
-    - { role: ovftool, when: download_files == 'True' }
+    - { role: ovftool, when: download_files }

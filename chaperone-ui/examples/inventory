@@ -17,13 +17,13 @@
 localhost ansible_connection=local
 
 [chaperone-ui]
-chaperone-ui.corp.local
+chaperone-ui.corp.local:22222
 
 [routers]
 chaperone-ui.corp.local
 
 [base]
-chaperone-ui.corp.local
+chaperone-ui.corp.local:22222
 
 [base:vars]
 ansible_user='vmware'

@@ -13,5 +13,5 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 #
-chaperone_is_router: True
-
+chaperone_is_router: False
+download_files: False
