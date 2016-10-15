@@ -13,12 +13,10 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 #
----
-- hosts: routers
-  become: yes
-  vars_files:
-    - vars/ui.yml
-  roles:
-    - { role: apache, when: not chaperone_is_router }
-    - chaperone
-    - { role: ovftool, when: download_files == 'True' }
+
+# this defines all the vhosts we need
+apache_listen_port: 81
+apache_create_vhosts: False
+apache_vhosts:
+  - { servername: "chaperone-ui.{{ django_domain }}", documentroot: "/var/www/vhosts/chaperone-ui.{{ django_domain }}" }
+  - { servername: "tftp.{{ dnsmasq_domain_name }}", documentroot: "/tftp/webroot" }

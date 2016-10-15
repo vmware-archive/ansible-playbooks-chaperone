@@ -33,8 +33,8 @@ esxi_tftp_iso_mountpoint: "/tmp/tftp_iso_mount"
 # NFS stores to set as shared storage on ESXi hosts.
 # Format:  - { ipv4: "nfs-01a.corp.local",  export: "/exports/esxi", vol_name: "nfs-01a" }
 esxi_nfs_stores:
-  - { ipv4: "nfs-c-01a.corp.local",  export: "/exports/esxi", vol_name: "nfs-c-01a" }
-  - { ipv4: "nfs-m-01a.corp.local",  export: "/exports/esxi", vol_name: "nfs-m-01a" }
+  - { ipv4: "nfs-c-01a.corp.local",  export: "/exports/cloud", vol_name: "cloud" }
+  - { ipv4: "nfs-c-01a.corp.local",  export: "/exports/image", vol_name: "image" }
 
 # List any vmnics to setup for DHCP
 esxi_dhcp_vmnics:

@@ -14,19 +14,24 @@
 #  limitations under the License.
 #
 
-# get LXDE up for a decent ui of sorts locally available
-ansible_additional_packages:
-  - lxde
-  - lxdm
-  - geany
-  - geany-plugins
-  - chromium-browser
+# to cover photon
+#ansible_additional_packages:
+#  - binutils
+#  - gcc
+#  - glibc-devel
 
-# this is defining the download vhost
-apache_listen_port: 81
-apache_vhosts:
-  - {servername: "chaperone-ui.{{ chaperone_django_domain }}", documentroot: "/var/www/vhosts/chaperone-ui.{{ chaperone_django_domain }}"}
-apache_create_vhosts: False
+django_domain: "corp.local"
+django_app: "chaperone"
+django_admin_app: "chaperone-admin"
+django_shortname: "Chaperone"
+django_admin_shortname: "Chaperone Administration"
+django_debug: True
+django_template_debug: True
+apache_loglevel: debug
+update_pkg_cache: "yes"
+
+# Turn to true to add additional menu (base.yml) options
+chaperone_developer_menus: False
 
 # ------------------------------------------------------------------------
 # The following variables are instantiated here to support the

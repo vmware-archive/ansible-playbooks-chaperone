@@ -16,6 +16,8 @@
 ---
 - hosts: local
   become: yes
+  vars_files:
+    - vars/pc.yml
   roles:
     - ovftool
     - photon-controller

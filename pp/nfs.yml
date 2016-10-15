@@ -19,7 +19,10 @@
   vars:
     update_package_cache: "yes"
     nfs_exports:
-      - { device: "/dev/sdb", mount_point: "/exports/esxi", fstype: "ext4", mount_opts: "noatime", nfs_opts: "192.168.30.0/24(rw,nohide,insecure,no_root_squash,no_subtree_check,async)" }
+      - { device: "/dev/sdb", mount_point: "/exports/cloud", fstype: "ext4", mount_opts: "noatime", nfs_opts: "192.168.11.0/24(rw,nohide,insecure,no_root_squash,no_subtree_check,async)" }
+      - { device: "/dev/sdc", mount_point: "/exports/image", fstype: "ext4", mount_opts: "noatime", nfs_opts: "192.168.11.0/24(rw,nohide,insecure,no_root_squash,no_subtree_check,async)" }
   roles:
     - hosts
+    - pip
+    - photon
     - nfs

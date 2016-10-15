@@ -14,7 +14,7 @@
 #  limitations under the License.
 #
 ---
-- hosts: routers-base
+- hosts: routers
   become: yes
   vars:
     apache_loglevel: debug
@@ -24,8 +24,12 @@
     - vars/dnsmasq.yml
     - vars/esxi.yml
     - vars/iptables.yml
+    - vars/ui.yml
+    - vars/apache.yml
   roles:
     - { role: iptables, when: chaperone_is_router, tags: [ 'router', 'iptables' ] }
-    #- apache
-    #- assets
-    #- { role: dnsmasq, when: chaperone_is_router, tags: [ 'router', 'dnsmasq' ] }
+    - pip
+    - ansible
+    - { role: apache, when: chaperone_is_router }
+    - assets
+    - { role: dnsmasq, when: chaperone_is_router, tags: [ 'router', 'dnsmasq' ] }

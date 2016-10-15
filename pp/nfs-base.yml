@@ -14,11 +14,19 @@
 #  limitations under the License.
 #
 ---
-- hosts: routers
+- hosts:
+  - nfs-base
   become: yes
-  vars_files:
-    - vars/ui.yml
   roles:
-    - { role: apache, when: not chaperone_is_router }
-    - chaperone
-    - { role: ovftool, when: download_files == 'True' }
+    - { role: hosts, when: ansible_virtualization_type != 'docker' }
+    - sudo
+    - sshkeys
+  vars:
+    sudo_users:
+      - { userid: vmware, group: vmware }
+    update_pkg_cache: "yes"
+    sshkeys_user: vmware
+    sshkeys_remote_user: "{{ sshkeys_user }}"
+    sshkeys_remote_group: "{{ sshkeys_user }}"
+    new_priv_key: "~{{ sshkeys_user }}/.ssh/id_priv_new"
+    new_pub_key: "{{ new_priv_key }}.pub"

@@ -13,12 +13,31 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 #
----
-- hosts: routers
-  become: yes
-  vars_files:
-    - vars/ui.yml
-  roles:
-    - { role: apache, when: not chaperone_is_router }
-    - chaperone
-    - { role: ovftool, when: download_files == 'True' }
+[local]
+localhost ansible_connection=local
+
+[routers-base]
+router.corp.local
+
+[routers-base:vars]
+ansible_user='vmware'
+ansible_ssh_pass='VMware1!'
+ansible_become_pass='VMware1!'
+
+[routers]
+router.corp.local
+
+# NFS stores
+[nfs-base]
+nfs-c-01a.corp.local
+#nfs-m-01a.corp.local
+
+[nfs-base:vars]
+ansible_ssh_user='root'
+ansible_ssh_pass='VMware1!'
+ansible_become_pass='VMware1!'
+
+# Note: you must have run the base play first to setup nfs storage.
+[nfs-storage]
+nfs-c-01a.corp.local
+#nfs-m-01a.corp.local

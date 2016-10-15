@@ -1,0 +1,70 @@
+#
+#  Copyright 2015 VMware, Inc.
+#
+#  Licensed under the Apache License, Version 2.0 (the "License");
+#  you may not use this file except in compliance with the License.
+#  You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+#  Unless required by applicable law or agreed to in writing, software
+#  distributed under the License is distributed on an "AS IS" BASIS,
+#  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#  See the License for the specific language governing permissions and
+#  limitations under the License.
+#
+---
+# Set some limits on sizing of deployed VMs
+pc_management_cpus: 4
+pc_management_memory: 4096
+pc_management_disk: 40
+
+# whether to enable Lightwave
+pc_auth_enabled: False
+
+# The network info for the installer VM
+pc_installer_ip_address: "10.10.0.4"
+pc_installer_netmask: "255.255.0.0"
+pc_installer_gateway: "10.10.0.2"
+pc_installer_ntp_server: "tick.grayware.com"
+pc_installer_dns_server: "10.10.0.2"
+pc_installer_vm_network_name: "VM Network"
+
+# vm storage onto which to place the installer.
+pc_installer_datastore: "image"
+
+# vm storage for the management vms
+pc_management_datastore: "cloud"
+
+# Network info for management vms
+pc_management_portgroup: "VM Network"
+pc_management_network_netmask: "255.255.0.0"
+pc_management_network_dns_server: "10.10.0.2"
+pc_management_network_gateway: "10.10.0.2"
+pc_management_vm_ips: "10.10.0.5-10.10.0.7"
+
+# Management ESXi host info (addresses and ranges separated by commas)
+pc_management_addresses: "192.168.10.10-192.168.10.12"
+pc_management_esxi_username: 'root'
+pc_management_esxi_password: 'VMware1!'
+
+# Cloud ESXi host info (addresses and ranges separated by commas)
+pc_cloud_addresses: "192.168.10.13-192.168.10.15"
+pc_cloud_esxi_username: 'root'
+pc_cloud_esxi_password: 'VMware1!'
+
+# image storage
+pc_image_datastores: "image"
+
+# Syslog server
+# pc_syslog_endpoint: 192.168.10.3
+
+# NTP server (tick.grayware.com)
+pc_ntp_endpoint: 71.252.193.25
+
+# Auth tenant info
+pc_oauth_tenant: docna
+pc_oauth_username: admin
+pc_oauth_password: 'VMware1!'
+pc_oauth_security_groups:
+  - "docna\\administrators"

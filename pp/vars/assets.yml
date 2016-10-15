@@ -14,6 +14,7 @@
 #  limitations under the License.
 #
 #download_files: True
+downloads_dir: /var/www/html/downloads
 downloads_timeout: 10
 
 assets:
@@ -21,22 +22,18 @@ assets:
     description: esxui fling
     checksum: f6f3e151ab6c1be9c4d2a90f9f2b0b78
     url: "http://build-squid.eng.vmware.com/build/mts/release/bora-4355717/publish/esxui-4355717.vib"
-
   VMware-ESXi-6.0.0-3620759-depot.zip:
     description: depot
     checksum: c0697883a40ffa7be24aaeb5cc507e8c
     url: "http://build-squid.eng.vmware.com/build/mts/release/bora-3620759/publish/VMware-ESXi-6.0.0-3620759-depot.zip"
-
   VMware-ovftool-4.1.0-4155548-lin.x86_64.zip:
     description: ovftool
     checksum: 12474e0066bef46c399ba081c2ab8a4c
     url: "http://build-squid.eng.vmware.com/build/mts/release/bora-4155548/publish/VMware-ovftool-4.1.0-4155548-lin.x86_64.zip"
-
   VMware-VMvisor-Installer-6.0.0-3620759.x86_64.iso:
     description: esx hypervisor iso
     checksum: cd0ea968c7f97672a0715792e052f4de
     url: "http://build-squid.eng.vmware.com/build/mts/release/bora-3620759/publish/VMware-VMvisor-Installer-6.0.0-3620759.x86_64.iso"
-
   installer-vm.ova:
     description: Photon Controller installer
     checksum: a844c9aa51b646706066711399533188
