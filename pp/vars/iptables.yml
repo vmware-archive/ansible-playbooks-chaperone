@@ -34,11 +34,14 @@ iptables_forwards:
   - { interface: eth3, proto: tcp, inport: 8081, fwd_address: 192.168.10.10, dport: 443 }
   - { interface: eth3, proto: tcp, inport: 8082, fwd_address: 192.168.10.11, dport: 443 }
   - { interface: eth3, proto: tcp, inport: 8083, fwd_address: 192.168.10.12, dport: 443 }
-  - { interface: eth3, proto: tcp, inport: 8084, fwd_address: 192.168.10.21, dport: 443 }
-  - { interface: eth3, proto: tcp, inport: 8085, fwd_address: 192.168.10.22, dport: 443 }
-  - { interface: eth3, proto: tcp, inport: 8086, fwd_address: 192.168.10.23, dport: 443 }
-  - { interface: eth3, proto: tcp, inport: 8090, fwd_address: 192.168.20.20, dport: 80 }
-  - { interface: eth3, proto: tcp, inport: 9000, fwd_address: 192.168.20.20, dport: 9000 }
+  - { interface: eth3, proto: tcp, inport: 8084, fwd_address: 192.168.10.13, dport: 443 }
+  - { interface: eth3, proto: tcp, inport: 8085, fwd_address: 192.168.10.14, dport: 443 }
+  - { interface: eth3, proto: tcp, inport: 8086, fwd_address: 192.168.10.15, dport: 443 }
+  - { interface: eth3, proto: tcp, inport: 8090, fwd_address: 10.10.0.4, dport: 80 }
+  - { interface: eth3, proto: tcp, inport: 9000, fwd_address: 10.10.0.4, dport: 9000 }
+  - { interface: eth3, proto: tcp, inport: 9001, fwd_address: 10.10.0.5, dport: 9000 }
+  - { interface: eth3, proto: tcp, inport: 9002, fwd_address: 10.10.0.6, dport: 9000 }
+  - { interface: eth3, proto: tcp, inport: 9003, fwd_address: 10.10.0.7, dport: 9000 }
 
 # port allowance (if you forward, you better allow too)
 iptables_enable_ports:
@@ -52,7 +55,12 @@ iptables_enable_ports:
   - { port: 8086, proto: "tcp" }
   - { port: 8090, proto: "tcp" }
   - { port: 8091, proto: "tcp" }
+  - { port: 8092, proto: "tcp" }
+  - { port: 8093, proto: "tcp" }
   - { port: 9000, proto: "tcp" }
+  - { port: 9001, proto: "tcp" }
+  - { port: 9002, proto: "tcp" }
+  - { port: 9003, proto: "tcp" }
   - { port: 53, proto: "udp" }
   - { port: 67, proto: "udp" }
   - { port: 68, proto: "udp" }

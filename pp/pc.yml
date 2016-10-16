@@ -17,7 +17,8 @@
 - hosts: local
   become: yes
   vars_files:
-    - vars/pc.yml
+    - vars/pc.yml 
+    - /var/lib/chaperone/answerfile.yml
   roles:
     - ovftool
     - photon-controller
