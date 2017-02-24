@@ -1,0 +1,45 @@
+---
+language: python
+python: "2.7"
+
+addons:
+  apt:
+    packages:
+      - curl
+
+sudo: required
+
+addons:
+  apt:
+    packages:
+      - curl
+
+sudo: required
+
+before_install:
+  - env
+  - curl https://storage.googleapis.com/git-repo-downloads/repo > /tmp/repo
+  - sudo mv /tmp/repo /bin/repo
+  - sudo chmod a+x /bin/repo
+  # get the username portion from github
+  - export GIT_USER=${TRAVIS_REPO_SLUG%/*}
+  - export CHAPERONE_BRANCH="master"
+  - git config --global user.email "you@example.com"
+  - git config --global user.name "Your Name"
+  - git ls-remote --exit-code --heads https://github.com/$GIT_USER/chaperone "$TRAVIS_BRANCH" && CHAPERONE_BRANCH=$TRAVIS_BRANCH || true
+
+install:
+  - pip install ansible
+  - pip install ansible-lint
+  - mkdir /tmp/chaperone
+  - cd /tmp/chaperone
+  - echo "y" | repo init -u https://github.com/$GIT_USER/chaperone -b $CHAPERONE_BRANCH -g chaperone
+
+script:
+  - cd /tmp/chaperone
+  - repo sync
+  - cd ansible/playbooks/ansible
+  - echo -e "[ansible]\nlocalhost ansible_connection=local\n" > inventory
+  - ansible-playbook -i inventory ansible.yml
+  - cd ../chaperone-ui
+  - ls
