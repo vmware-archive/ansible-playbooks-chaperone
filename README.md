@@ -23,9 +23,9 @@ to remove this playbook repo and replace it with yours. For example:
 
 See the docs directory in the
 [Chaperone](https://github.com/vmware/chaperone) project for detailed
-startup instructions for developers and users. Also, for easy developer
-setup using Docker Containers, see the documentation in
-[photon_setup](chaperone-appc-devbox).
+startup instructions for developers and users. Also, for a more automated
+developer setup on Photon OS or a Mac, see the documentation in
+[devbox](devbox).
 
 # License and Copyright
  

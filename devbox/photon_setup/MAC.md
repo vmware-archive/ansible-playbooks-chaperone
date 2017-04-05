@@ -1,23 +1,14 @@
-# Chaperone Setup on Photon
+# Chaperone Development Setup on Mac
 
 Use this process to quickly get your Mac set up to begin Chaperone development.
-Refer to the 'MANUAL-SETUP' document for more information, or to debug this
-process should errors occur.
-
-## Assumptions
-
-If you do not have AppCatalyst, this setup will install it automatically.
-Therefore, this setup assumes you want AppCatalyst.
-
-If you have an existing AppCatalyst VM called "chaperone", this script will use
-that VM, and run scripts on top of it again, in a mostly idempotent fashion. If
-you do not have such a VM, the automated setup will create and start one so
-named. The scripts assume the VM created (or in existence) is a PhotonOS base.
+Refer to the [PHOTON-OS](PHOTON-OS.sh] document for more information, or
+to debug this process should errors occur.
 
 ## Getting Started
 
-Simply execute the `mac-bootstrapper.sh` script, and if prompted, press enter or
-type your sudo password during the appropriate sections.
+Simply execute the [mac-bootstrapper.sh](macbootstrapper.sh) script, and
+if prompted, press enter or type your sudo password during the appropriate
+sections.  
 
 ## Logfile
 

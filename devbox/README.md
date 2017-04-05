@@ -1,11 +1,10 @@
-Chaperone Playbook
+Chaperone DevBox
 ==================
-This playbook provides scripts and plays to ease setting up for developing
+DevBox  provides scripts and plays to ease setting up for developing
 and installing Chaperone.
 
-On Macs, we provide an automated setup that installs and uses
-[VMware&reg; AppCatalyst](http://getappcatalyst.com).  See the
-[automated setup instructions](photon_setup/AUTOMATED-SETUP.md) for details.
+On Macs, we provide an automated setup that installs the necessary
+developmnt bits via [Homebrew](https://brew.sh/).
 
 For non-Mac users, see the [setup instructions](photon_setup/MANUAL-SETUP.md) for
 details.

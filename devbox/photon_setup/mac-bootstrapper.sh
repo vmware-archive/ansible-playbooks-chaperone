@@ -39,10 +39,10 @@ echo ""
 # Phase One: Install requisite development components
 # =============================================================================
 
-# I consider Homebrew, git, wget, and homebrew-based Python (which gives pip),
+# We consider Homebrew, git, and homebrew-based Python (which gives pip),
 # and Ansible to be essential tools for the Mac. Strictly speaking, we don't
-# need them as they're wrapped in the dev-photon-vm, but for future bootstrap-
-# ping, let's leave it here.
+# need them since Chaperone development can occur in a VM, but for future
+# bootstrapping, let's leave it all here.
 
 COUNT=0
 
@@ -121,19 +121,6 @@ check_system() {
     STATE=Bad
   fi
 
-  # Check for wget, because curl doesn't like resuming with AppCatalyst:
-  echo -n "wget:           "
-  if command -v wget > /dev/null; then
-    echo "[ OK ]"
-
-  else
-    echo "[ Missing ]"
-    echo "Installing wget..."
-    brew install wget >> $LOGFILE 2>&1
-    echo ""
-    STATE=Bad
-  fi
-
   # Check for git, because OS X is old:
   echo -n "git:            "
   if git --version | grep -qv Apple > /dev/null; then
@@ -146,24 +133,6 @@ check_system() {
     echo ""
     STATE=Bad
   fi
-
-  # Check and Install AppCatalyst:
-  echo -n "AppCatalyst:    "
-  if pkgutil --pkg-info com.vmware.pkg.AppCatalyst &> /dev/null; then
-    echo "[ OK ]"
-
-  else
-    echo " [ Missing ]"
-    echo "Downloading AppCatalyst..."
-    wget --quiet -c http://getappcatalyst.com/downloads/VMware-AppCatalyst-Technical-Preview-August-2015.dmg >> $LOGFILE 2>&1
-
-    echo "Installing AppCatalyst..."
-    hdiutil attach VMware-AppCatalyst-Technical-Preview-August-2015.dmg >> $LOGFILE 2>&1
-    sudo installer -pkg "/Volumes/VMware AppCatalyst/Install VMware AppCatalyst.pkg" -target / >> $LOGFILE 2>&1
-    umount "/Volumes/VMware AppCatalyst/" >> $LOGFILE 2>&1
-    STATE=Bad
-  fi
-
 }
 
 until [[ $STATE == "OK" ]]; do
@@ -171,68 +140,5 @@ until [[ $STATE == "OK" ]]; do
 done
 
 echo ""
-echo "Your system is ready for Chaperone development!"
+echo "Your Mac is ready for Chaperone development!"
 echo ""
-
-# =============================================================================
-# Phase Two: Bootstrap the AppCatalyst VM
-# =============================================================================
-
-# TODO: Check for running Fusion VMs and kernel things here.
-
-APC=/opt/vmware/appcatalyst/bin/appcatalyst
-APC_KEY=/opt/vmware/appcatalyst/etc/appcatalyst_insecure_ssh_key
-
-echo -n "Creating the Chaperone Photon VM..."
-if $APC vm list 2> /dev/null | grep -q chaperone; then
-  echo "Done."
-else
-  if $APC vm create chaperone >> $LOGFILE 2>&1; then
-    echo "Done."
-  else
-    echo "Error. See $LOGFILE for more information."
-    exit 1
-  fi
-fi
-
-# Can execute if running:
-echo -n "Powering on the Chaperone Photon VM..."
-if $APC vmpower on chaperone >> $LOGFILE 2>&1; then
-  echo "Done."
-else
-  echo "Error. See $LOGFILE for more information."
-  exit 1
-fi
-
-echo -n "Waiting for the Chaperone Photon VM to obtain an IP address (~30s)..."
-until $APC guest getip chaperone &> /dev/null; do
-  echo -n '.'
-  sleep 1
-done
-
-CHAPERONE_IP=$($APC guest getip chaperone)
-
-echo "Done (${CHAPERONE_IP})."
-
-echo "==============================================================="
-echo "Bootstrapping the Chaperone Photon VM..."
-echo "==============================================================="
-
-# These are executed remotely, and exist to bootstrap the VM prior to running
-# Ansible on it, in case you were wondering why we add host entries here:
-
-echo "Installing Git..."
-ssh -i $APC_KEY photon@${CHAPERONE_IP} "sudo tdnf install -y git"
-
-echo "Cloning repository..."
-ssh -i $APC_KEY photon@${CHAPERONE_IP} "git clone https://github.com/vmware/ansible-playbooks-chaperone"
-
-echo "==============================================================="
-echo "Mac-Boostrapper: Invoking Photon setup script..."
-echo "==============================================================="
-ssh -i $APC_KEY photon@$CHAPERONE_IP 'cd ansible-playbooks-chaperone/chaperone-appc-devbox/photon_setup && sudo ./photon.sh'
-
-echo "==============================================================="
-echo "Mac-Boostrapper: Invoking Chaperone setup script..."
-echo "==============================================================="
-ssh -i $APC_KEY photon@$CHAPERONE_IP 'cd ansible-playbooks-chaperone/chaperone-appc-devbox/photon_setup && ./chaperone.sh'

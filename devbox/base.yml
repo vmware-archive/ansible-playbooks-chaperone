@@ -13,5 +13,16 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 #
-[gerrit]
-gerrit.eng.vmware.com
+---
+- hosts: all
+  sudo: no
+  connection: local
+  tasks:
+    - file: path=roles state=directory mode=0755
+    - shell: git clone "https://github.com/vmware/{{ item.repo }}" "{{ item.dest }}"
+      with_items:
+        - { repo: 'ansible-role-sudo', dest: 'roles/sudo' }
+        - { repo: 'ansible-role-pip', dest: 'roles/pip' }
+        - { repo: 'ansible-role-sshkeys', dest: 'roles/sshkeys' }
+  vars:
+    update_pkg_cache: "yes"
