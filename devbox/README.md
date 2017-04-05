@@ -4,9 +4,10 @@ DevBox  provides scripts and plays to ease setting up for developing
 and installing Chaperone.
 
 On Macs, we provide an automated setup that installs the necessary
-developmnt bits via [Homebrew](https://brew.sh/).
+developmnt bits via [Homebrew](https://brew.sh/). Just run mac-bootstrapper.sh
+from the directory in which you want chaperone development to occur.
 
-For non-Mac users, see the [setup instructions](photon_setup/MANUAL-SETUP.md) for
+For non-Mac users, see the [Photon OS](photon_setup/PHOTON-OS.md) for
 details.
 
 # License and Copyright
