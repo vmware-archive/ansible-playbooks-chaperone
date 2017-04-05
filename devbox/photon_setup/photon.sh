@@ -69,7 +69,6 @@ install_ansible() {
 	if [ $ret -ne 0 ];
 	then
 		echo "Check on prior install: rc was ${ret}"
-		umask 0022
 		pip install --no-clean ansible
 	fi
 }
@@ -86,6 +85,7 @@ install_repo() {
 
 ###
 # Main Line Code
+umask 022
 install_yum
 install_dev_tools
 install_python_setuptools

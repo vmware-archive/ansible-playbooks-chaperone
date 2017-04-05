@@ -27,7 +27,8 @@ ansible_run() {
 
 ###
 # Main Line Code
-#ansible_run base
+unask 022
+ansible_run base
 ansible_run chaperone
 cat <<EOF
 
