@@ -1,0 +1,119 @@
+#
+#  Copyright 2017 VMware, Inc.
+#
+#  Licensed under the Apache License, Version 2.0 (the "License");
+#  you may not use this file except in compliance with the License.
+#  You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+#  Unless required by applicable law or agreed to in writing, software
+#  distributed under the License is distributed on an "AS IS" BASIS,
+#  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#  See the License for the specific language governing permissions and
+#  limitations under the License.
+#
+---
+
+- name: Download Assets
+  hosts: localhost
+  roles:
+    - role: assets
+  vars_files:
+    - vars/assets.yml
+
+
+- name: Deploy OVAs into esx
+  hosts: photon
+  connection: local
+
+  pre_tasks:
+    - template:
+        src: ../../roles/photon/templates/ova-spec.j2
+        dest: "/tmp/{{ inventory_hostname }}"
+        mode: 0644
+    - debug:
+        msg: "{{ groups }}"
+
+    - name: make seed-iso base dir
+      file: path="{{ seed_iso_base }}/{{ inventory_hostname }}" state=directory
+      tags: ["cloudinit"]
+    - name: make meta-data
+      copy: "content='instance-id: iid-new01\nlocal-hostname: cloudimg\n' dest='{{ seed_iso_base }}/{{ inventory_hostname }}/meta-data'"
+      tags: ["cloudinit"]
+    - name: make user-data
+      copy:
+        content: |
+          #cloud-config
+          debug: False
+          bootcmd:
+            - echo "boot cmd execute" >> /etc/cmds
+          runcmd:
+            - echo "run cmd execute" >> /etc/cmds
+          chpasswd: { expire: False }
+          chpasswd:
+            list: |
+              root:VMware1!
+            expire: False
+          ssh_pwauth: True
+          users:
+            - name: vmware
+              passwd: $6$rounds=8888$y1zBWcO8MT$J2a599jjEaJDV5Vq3t4yEKz7CVOmJqidRmv4h1fXlkzHArHEcBNUVwbnSGrIaJ2aHUwxRMS193SyuH9fKQJD20
+              sudo: ALL=(ALL) NOPASSWD:ALL
+              groups: users,wheel
+              lock_passwd: false
+              ssh-authorized-keys:
+                - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDAdBqhqy4mbxIydSgi6/H5Oz6en5t5MQQo06aYlJqW4b3LDLZU1rysaWCC+eQA8iA/VvKjSGUWIKFAanGtst9ouKwyHkZPPufDCOmnPlh2rLQDN1qYfZv9OQpQPc5txc+Ss5MJydge0jj0+AzJHx2/TegviGqQdrnLzyXl0TK4Vdu8eU+0L63x6vdOW2gpnatF8VpT2jYYhR6O2HvqNXFk/iNu609OFgiQcVoFYSC+nlpgWZfDG3+r2dtuPRON5opuNffQ5m82OQZlNVy38IVwGBemKAalqKyhPLHo9fCNfG/ArIVjWtxmBBZCGc1MnNrCuWMiSsu5+7TgkNSUmxht tscanlan@tscanlan-mbp15.local
+          hostname: {{ inventory_hostname }}
+          final_message: "The system is finally up, after $UPTIME seconds"
+
+        dest: "{{ seed_iso_base }}/{{ inventory_hostname }}/user-data"
+      tags: ["cloudinit"]
+    - name: generate seed iso
+      shell: genisoimage -o seed.iso -volid cidata -joliet -rock user-data meta-data;
+      args:
+        chdir: '{{ seed_iso_base }}/{{ inventory_hostname }}'
+      tags: ["cloudinit"]
+
+
+  roles:
+    - govc
+  vars:
+    govc_do_cloud_init: True
+    govc_cloud_init_iso: "{{ inventory_hostname }}/config.iso"
+    govc_host: "{{ esx_hostname }}"
+    govc_datastore: "{{ esx_datastore }}"
+    govc_username: "{{ hostvars[ esx_hostname ]['esx_username']}}"
+    govc_password: "{{ hostvars[ esx_hostname ]['esx_password'] }}"
+    govc_insecure: "{{ hostvars[ esx_hostname ]['esx_insecure'] }}"
+    govc_ova_imports:
+      - name: "{{ inventory_hostname }}"
+        ova: /tmp/photon.ova
+        spec: "/tmp/{{ inventory_hostname }}"
+#
+#- name: Import photon ova into esx
+#  hosts: 192.168.1.3
+#  gather_facts: False
+#  tasks:
+#    - include: ../../roles/photon/tasks/deploy_ova.yml
+
+
+#- name: Import photon ova into esx
+#  hosts: photon
+#  gather_facts: False
+#
+#  pre_tasks:
+#    - include: ../../roles/photon/tasks/deploy_ova.yml
+#
+#  roles:
+#    - photon
+#  vars:
+#    photon_vm_host: 192.168.1.3
+#    photon_vm_host_url: "https://{{ photon_vm_host }}/sdk"
+#    photon_vm_host_username: root
+#    photon_vm_host_password: "banggumb0"
+#    photon_vm_host_insecure: True
+#    photon_vm_host_datastore: "datastore"
+#
+#    photon_vm_ova: /tmp/photon.ova
+#    photon_vm_spec: /tmp/p.json
