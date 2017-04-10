@@ -6,7 +6,7 @@ Chaperone on Photon OS.
 ## Getting Started
 To use Photon OS for Chaperone development, we need a few things to start with:
 
-1. Start a Photon OS VM. For example, on VMware Fusion or Workstateion.
+1. Start a Photon OS VM. For example, on VMware Fusion or Workstation.
 1. Login to that VM, as root, and find its IP address for future use: `ip addr`.
 1. Make sure git is available: `tdnf install -y git
 1. Get the code we'll use to setup Photon: `git clone https://github.com/vmware/ansible-playbooks-chaperone chaperone`
@@ -27,7 +27,7 @@ so just remove it:
 1. Login to the VM as vmware and (by default) password VMware1!
 1. Make the chaperone directory: `mkdir chaperone`
 1. Change directories to the dev folder: `cd chaperone`
-1. Initialize repo: `init -u https://github.com/chaperone -b master -g chaperone`
+1. Initialize repo: `repo init -u https://github.com/chaperone -b master -g chaperone`
 
 That's it! Next up is creating the CDS.
 
