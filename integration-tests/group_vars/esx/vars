@@ -1,0 +1,7 @@
+# any of these could be redefined in host_vars
+esx_validate_certs: no
+esx_insecure: true
+esx_username: root
+esx_password: "banggumb0"
+esx_datacenter: ha-datacenter
+esx_datastore: "terra disk1"

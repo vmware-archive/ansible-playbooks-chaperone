@@ -1,0 +1,9 @@
+# any of these could be redefined in host_vars
+#esx_validate_certs: no
+#esx_insecure: true
+#esx_username: root
+#esx_datacenter: Goddard
+esx_datastore: "terra disk1"
+esx_hostname: 192.168.1.3
+seed_iso_base: /tmp/iso
+esx_cdrom_device: cdrom-3002
