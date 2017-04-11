@@ -13,19 +13,16 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 #
-update_pkg_cache: "yes"
-jenkins_container_name: "jenkins"
-jenkins_fqdn: "jenkins.cloudbuilders.vmware.local"
-
-sudo_users:
-  - { userid: photon, group: photon, password: "$6$Fc666CGq$dMNO5zBsimDNeZmncxDMbl6/3EyAJUm4y48hLzja0/UzunDjaoUX0j1hwPgaA58OOLXsOs0mX1dj1eEeFMV8W." }
-
-hosts_additional_hosts:
-  - address: 10.150.111.233
-    hostnames:
-      - registry.cloudbuilders.vmware.local
-
-# haproxy related
-haproxy_backend_server: "jenkins:8080"
-haproxy_backend_container: "{{jenkins_container_name}}"
-haproxy_fqdn: "{{jenkins_fqdn}}"
+---
+- hosts: all
+  sudo: no
+  connection: local
+  tasks:
+    - file: path=roles state=directory mode=0755
+    - shell: git clone "https://github.com/vmware/{{ item.repo }}" "{{ item.dest }}"
+      with_items:
+        - { repo: 'ansible-role-sudo', dest: 'roles/sudo' }
+        - { repo: 'ansible-role-pip', dest: 'roles/pip' }
+        - { repo: 'ansible-role-sshkeys', dest: 'roles/sshkeys' }
+  vars:
+    update_pkg_cache: "yes"

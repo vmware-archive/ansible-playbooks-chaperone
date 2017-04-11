@@ -14,20 +14,18 @@
 #  limitations under the License.
 #
 ---
-
-- hosts: photon
-  become: yes
-  remote_user: photon
-  vars_files:
-    - vars/main.yml
-  vars:
-    docker_insecure_registries:
-    - {host: registry.cloudbuilders.vmware.local, port: 5000}
-
+- hosts: all
+  become: no
   roles:
-    - photon
-    - pip
     - sudo
-    - hosts
-    - jenkins
-    - haproxy
+  tasks:
+    - name: update user vmware with password and ssh key
+      user:
+        name: vmware
+        password: "$6$Qs9CdHwX$1ETZf7/Ur5/Hc7RQz0DXk0XAAmEDEcsqZsKVmeake5mLjZf7eZgFmVPNkaFLgHZl84h5scPUN0nFLpVli5Jz70"
+        generate_ssh_key: yes
+        ssh_key_bits: 2048
+        ssh_key_file: .ssh/id_rsa
+  vars:
+    sudo_users:
+      - { userid: vmware, group: vmware }

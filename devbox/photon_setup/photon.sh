@@ -34,7 +34,7 @@ install_dev_tools() {
 	yum install -y sshpass git curl less tar \
 		gcc make binutils gawk autoconf autogen automake \
 		glibc-devel gmp gmp-devel linux-api-headers \
-		python2-devel libxml2-devel libxslt zlib
+		openssl-devel python2-devel libxml2-devel libxslt zlib
 }
 
 # Install python-setuptools
@@ -80,11 +80,12 @@ install_repo() {
 	then
 		curl https://storage.googleapis.com/git-repo-downloads/repo > /usr/local/bin/repo
 	fi
-	chmod a+x /usr/local/bin/repo
+	chmod a+rx /usr/local/bin/repo
 }
 
 ###
 # Main Line Code
+umask 022
 install_yum
 install_dev_tools
 install_python_setuptools

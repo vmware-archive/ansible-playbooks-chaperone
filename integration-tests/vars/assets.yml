@@ -1,0 +1,10 @@
+download_files: True
+# The directory into which to place the downloaded assets.
+downloads_dir: /tmp
+
+assets:
+    photon.ova:
+        description: "photon 1.0 ova"
+        checksum: "18c1a6d31545b757d897c61a0c3cc0e54d8aeeba"
+        url:  "https://bintray.com/vmware/photon/download_file?file_path=photon-custom-hw11-1.0-62c543d.ova"
+        validate_certs: False
