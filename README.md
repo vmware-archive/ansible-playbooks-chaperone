@@ -13,7 +13,7 @@ In such cases, it is perfectly viable to create your own independently
 managed "playbooks" project and use a [Local Manifest](https://gerrit.googlesource.com/git-repo/+/master/docs/manifest-format.txt#335)
 to remove this playbook repo and replace it with yours. For example:
 
-NOTE:A non-defaulted variable, download_site, must be set in the vars/assets.yml
+NOTE: A non-defaulted variable, download_site, must be set in the vars/assets.yml
 file or by other mechanism prior to calling this playbook. The download_site must
 provide a valid IP (or resolvable DNS name) and path to a directory thereunder
 from which the download files (e.g., ISO files or similar) may be obtained.
@@ -21,6 +21,12 @@ See the vars/assets.yml for the files of interest. In general, you should
 set the assets.yml file to point to all of the files you want to use for
 the deployment, which may be different versions than are shown in this example
 setup.
+
+NOTE 2: By default, this playbook example sets the variable: download_files to
+false to prevent attempts to download invalid or unavailable URLs. The variable
+is set in vars/assets.yml, which upon fixing up the download_site and making
+available the files of interest at that site you should reset the download_files
+variable to true.
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
