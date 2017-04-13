@@ -15,8 +15,8 @@ to remove this playbook repo and replace it with yours. For example:
 
 NOTE: A non-defaulted variable, download_site, must be set in the vars/assets.yml
 file or by other mechanism prior to calling this playbook. The download_site must
-provide a valid IP (or resolvable DNS name) and path to a directory thereunder
-from which the download files (e.g., ISO files or similar) may be obtained.
+provide a valid URL base (e.g., http://mysite.com/downloads) supportable by the
+Ansible url module. The roles download files (e.g., ISO files or similar) therefrom.
 See the vars/assets.yml for the files of interest. In general, you should
 set the assets.yml file to point to all of the files you want to use for
 the deployment, which may be different versions than are shown in this example
