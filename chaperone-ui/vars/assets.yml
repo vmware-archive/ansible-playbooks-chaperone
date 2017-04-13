@@ -13,55 +13,56 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 #
-download_files: True
+download_files: False
+download_site: no-default-exists.com
 
 assets:
   VMware-ESXi-6.0.0-2494585-depot.zip:
     description: depot
     checksum: bebc48450b9743c56073602931d63600
-    url: http://build-squid.eng.vmware.com/build/mts/release/bora-2494585/publish/VMware-ESXi-6.0.0-2494585-depot.zip
+    url: http://{{ download_site }}/VMware-ESXi-6.0.0-2494585-depot.zip
 
   VMware-ovftool-4.1.0-2459827-lin.x86_64.zip:
     description: ovftool
     checksum: 63698e602af6e24640146a6592348c99
-    url: http://build-squid.eng.vmware.com/build/mts/release/bora-2459827/publish/VMware-ovftool-4.1.0-2459827-lin.x86_64.zip
+    url: http://{{ download_site }}/VMware-ovftool-4.1.0-2459827-lin.x86_64.zip
 
   VMware-VMvisor-Installer-6.0.0-2494585.x86_64.iso:
     description: esx hypervisor iso
     checksum: "478e2c6f7a875dd3dacaaeb2b0b38228"
-    url: "http://build-squid.eng.vmware.com/build/mts/release/bora-2494585/publish/VMware-VMvisor-Installer-6.0.0-2494585.x86_64.iso"
+    url: "http://{{ download_site }}/VMware-VMvisor-Installer-6.0.0-2494585.x86_64.iso"
 
   VMware-VCSA-all-6.0.0-3040890.iso:
     description: vCenter Appliance iso
     checksum: "1652d41ae6837b23e177443640579274"
-    url: "http://build-squid.eng.vmware.com/build/mts/release/bora-3040890/publish/VMware-VCSA-all-6.0.0-3040890.iso"
+    url: "http://{{ download_site }}/VMware-VCSA-all-6.0.0-3040890.iso"
 
   VMware-NSX-Manager-6.1.4-2691049.ova:
     description: NSX ova
     checksum: "972754d48346c469e3d32aea5e3d147b"
-    url: "http://build-squid.eng.vmware.com/build/mts/release/bora-2691049/publish/VMware-NSX-Manager-6.1.4-2691049.ova"
+    url: "http://{{ download_site }}/VMware-NSX-Manager-6.1.4-2691049.ova"
 
   vRealize-Operations-Manager-Appliance-6.0.2.2777062_OVF10.ova:
     description: vROps ova
     checksum: "cb4f67d9da7a131553efc9ba4377e9aa"
-    url: "http://build-squid.eng.vmware.com/build/mts/release/bora-2777062/publish/vRealize-Operations-Manager-Appliance-6.0.2.2777062_OVF10.ova"
+    url: "http://{{ download_site }}/vRealize-Operations-Manager-Appliance-6.0.2.2777062_OVF10.ova"
 
   VMware-vRealize-Log-Insight-3.0.0-3021606.ova:
     description: vRLI ova
     checksum: "f6b773ae3f913709fc04eff1c36165e5"
-    url: "http://build-squid.eng.vmware.com/build/mts/release/bora-3021606/publish/VMware-vRealize-Log-Insight-3.0.0-3021606.ova"
+    url: "http://{{ download_site }}/VMware-vRealize-Log-Insight-3.0.0-3021606.ova"
 
   vRealize-Business-Standard-6.0.0.0-2323216_OVF10.ova:
     description: vRB ova
     checksum: "d5ea907a0b29601858f10f0927bac15b"
-    url: "http://build-squid.eng.vmware.com/build/mts/release/bora-2323216/publish/exports/ova/vRealize-Business-Standard-6.0.0.0-2323216_OVF10.ova"
+    url: "http://{{ download_site }}/exports/ova/vRealize-Business-Standard-6.0.0.0-2323216_OVF10.ova"
 
   VMware-vCAC-Appliance-6.2.1.0-2553372_OVF10.ova:
     description: vRA ova
     checksum: "f98a3003d0391b71858c90ce14f2754d"
-    url: "http://build-squid.eng.vmware.com/build/mts/release/bora-2553372/publish/exports/ova/VMware-vCAC-Appliance-6.2.1.0-2553372_OVF10.ova"
+    url: "http://{{ download_site }}/exports/ova/VMware-vCAC-Appliance-6.2.1.0-2553372_OVF10.ova"
 
   VMware-OpenStack-1.0.0.0-2824223_OVF10.ova:
     description: VIO ova
     checksum: "513772592bfd9bf30393a01aa1a15114"
-    url: "http://build-squid.eng.vmware.com/build/mts/release/bora-2824223/publish/openstack_vapp/exports/ova/VMware-OpenStack-1.0.0.0-2824223_OVF10.ova"
+    url: "http://VMware-OpenStack-1.0.0.0-2824223_OVF10.ova"
