@@ -24,5 +24,3 @@
     sudo_users:
       - { userid: vmware, group: vmware }
     update_pkg_cache: "yes"
-    new_priv_key: "~{{ sshkeys_user }}/.ssh/id_priv_new"
-    new_pub_key: "{{ new_priv_key }}.pub"
