@@ -13,15 +13,5 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 #
----
-- hosts:
-  - routers
-  become: yes
-  roles:
-    - { role: hosts, when: ansible_virtualization_type != 'docker' }
-    - sudo
-    - sshkeys
-  vars:
-    sudo_users:
-      - { userid: vmware, group: vmware }
-    update_pkg_cache: "yes"
+chaperone_is_router: False
+download_files: False

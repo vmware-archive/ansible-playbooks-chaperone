@@ -16,10 +16,5 @@
 ---
 - hosts: photon-base
   become: yes
-  vars:
-    - update_pkg_cache: "yes"
-    # sshkeys
-    - new_priv_key: "~{{ sshkeys_user }}/.ssh/id_priv_new"
-    - new_pub_key: "{{ new_priv_key }}.pub"
   roles:
     - sshkeys
